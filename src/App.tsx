@@ -2,11 +2,7 @@ import React from 'react';
 import './App.css';
 
 const App = () => {
-  return (
-    <div className="App">
-      <button type="button">Hello</button>
-    </div>
-  );
+  return <div className="App" />;
 };
 
 export default App;
