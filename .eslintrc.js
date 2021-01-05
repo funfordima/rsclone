@@ -26,5 +26,11 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
+        'linebreak-style': 'off',
+        'prettier/prettier': [
+        'error',
+        {
+            endOfLine: 'auto',
+        }]
     }
 };
