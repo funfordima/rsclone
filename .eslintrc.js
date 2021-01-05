@@ -2,13 +2,8 @@ module.exports = {
     "env": {
         "browser": true,
         "es2021": true,
-        "amd": true,
-        "node": true
     },
     "extends": [
-        "airbnb-typescript",
-        'airbnb/hooks',
-        "airbnb-typescript-prettier",
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended"
