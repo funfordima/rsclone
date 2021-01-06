@@ -3,12 +3,10 @@ module.exports = {
         "browser": true,
         "es2021": true,
         "amd": true,
-        "node": true
+        "node": true,
+        "jest": true
     },
     "extends": [
-        "airbnb-typescript",
-        'airbnb/hooks',
-        "airbnb-typescript-prettier",
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended"
