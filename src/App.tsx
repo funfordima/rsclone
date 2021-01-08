@@ -1,11 +1,15 @@
 import React from 'react';
 import './App.css';
+import CreateHeader from './CreateHeader';
 
 const App = () => {
   return (
-    <div className="App">
-      <button type="button">Hello</button>
-    </div>
+    <>
+      <CreateHeader />
+      <div className="App">
+        <button type="button">Hello</button>
+      </div>
+    </>
   );
 };
 
