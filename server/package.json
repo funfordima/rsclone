@@ -4,7 +4,9 @@
   "private": true,
   "main": "app/www.js",
   "scripts": {
-    "start": "tsc && node ./app/www.js"
+    "start": "node ./app/www.js",
+    "build": "tsc",
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
