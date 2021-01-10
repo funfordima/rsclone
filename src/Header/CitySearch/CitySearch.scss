@@ -10,7 +10,7 @@
   touch-action: manipulation;
   outline: none;
   cursor: pointer;
-  transition-property: background-color;
+  transition-property: background-color, color;
   transition-duration: 0.12s;
   user-select: none;
   border-left: 1px solid hsla(0, 0%, 100%, 0.16);
@@ -35,5 +35,10 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+
+  &:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.04);
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import './LogoSvg.scss';
 
-const LogoSvg = () => {
+const LogoSvg: React.FC = () => {
   return (
     <svg
       className="logo"

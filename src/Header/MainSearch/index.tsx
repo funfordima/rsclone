@@ -1,7 +1,7 @@
 import React from 'react';
 import './MainSearch.scss';
 
-const MainSearch = () => {
+const MainSearch: React.FC = () => {
   return (
     <div className="main-search__wrapper">
       <div className="main-search__container">

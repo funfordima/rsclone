@@ -1,7 +1,7 @@
 import React from 'react';
 import './UserBar.scss';
 
-const UserBar = () => {
+const UserBar: React.FC = () => {
   return (
     <div className="user-bar">
       <a className="user-bar__link" href="/">
