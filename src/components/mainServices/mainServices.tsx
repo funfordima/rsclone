@@ -3,7 +3,7 @@ import './services.css';
 import ServicesTitle from './servicesTitle/servicesTitle';
 import ServicesContent from './servicesContent/servicesContent';
 
-export interface mainServicesProps {
+interface mainServicesProps {
   serviceName: string
   serviceLinks: string[]
   serviceImagesLinks: string[]

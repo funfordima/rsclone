@@ -2,7 +2,7 @@ import React from 'react';
 import './servicesContent.css';
 import ServicesContentLink from '../servicesContentLink/servicesContentLink'
 
-export interface servicesContentProps {
+interface servicesContentProps {
   links: string[]
   images: string[]
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface servicesContentLinkProps {
+interface servicesContentLinkProps {
   link: string
   image: string
 }
