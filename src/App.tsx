@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import CreateHeader from './CreateHeader';
+import CreateHeader from './Header/CreateHeader';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <>
       <CreateHeader />
@@ -11,6 +11,5 @@ const App = () => {
       </div>
     </>
   );
-};
-
+}
 export default App;
