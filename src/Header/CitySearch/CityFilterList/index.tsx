@@ -14,6 +14,8 @@ const CityFilterList: React.FC<CityFilterListProps> = ({ cities, updateCity, clo
     console.log(event.target.textContent);
     updateCity(event.target.textContent);
     closeModalCity();
+
+    localStorage.setItem('myCity', event.target.textContent);
   }
 
   return (

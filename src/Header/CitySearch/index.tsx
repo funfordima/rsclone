@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CitySearch.scss';
 import Modal from '../Modal';
 
@@ -10,6 +10,11 @@ const CitySearch: React.FC = () => {
   }
 
   const [cityValue, setCityValue] = useState('Минск');
+
+  useEffect(() => {
+    const saved = localStorage.getItem('myCity') || 'Минск';
+    setCityValue(saved);
+  }, []);
 
   const updateCityValue = (cityName: string) => {
     setCityValue(() => cityName);

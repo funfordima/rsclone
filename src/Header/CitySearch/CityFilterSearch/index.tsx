@@ -18,7 +18,7 @@ const CityFilterSearch: React.FC<CityFilterSearchProps> = ({ changeCityInput, in
             type="text"
             id="city-filter__search-input"
             className="city-filter__search-input"
-            placeholder="search by the city name"
+            placeholder="Enter the city"
             onChange={changeCityInput}
             onInput={inputCity}
           />

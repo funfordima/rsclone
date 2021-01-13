@@ -18,8 +18,7 @@ const Modal: React.FC<ModalProps> = ({ updateCityValue, closeModalCity }) => {
     description: 'Минск',
     id: 0,
   }];
-
-  const [value, setValue] = useState(cities);
+  const [value, setValue] = useState([]);
 
   const url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address';
   const token = '05b831548bcf77bb6504bc8cc001cdd9ede2da28';
