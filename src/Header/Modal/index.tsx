@@ -54,7 +54,7 @@ const Modal: React.FC<ModalProps> = ({ updateCityValue, closeModalCity }) => {
             id: city.data.geo_lat + city.data.geo_lon,
           });
         }).reduce((acc, item) => !acc.some((el) => el.description === item.description || item.description === null) ? (acc.push(item), acc) : acc, []);
-        setValue(cities);
+        setValue(() => cities);
       })
       .catch(error => console.log('error', error));
   }

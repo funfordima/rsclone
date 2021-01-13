@@ -1,5 +1,6 @@
 import React from 'react';
 import './CityFilterSearch.scss';
+import InputForCity from './InputForCity';
 
 interface CityFilterSearchProps {
   changeCityInput: () => void;
@@ -7,6 +8,7 @@ interface CityFilterSearchProps {
 }
 
 const CityFilterSearch: React.FC<CityFilterSearchProps> = ({ changeCityInput, inputCity }) => {
+
   return (
     <div className="city-filter__search-container">
       <label
@@ -14,14 +16,7 @@ const CityFilterSearch: React.FC<CityFilterSearchProps> = ({ changeCityInput, in
         htmlFor="city-filter__search-input"
       >
         <div className="city-filter__search-input_wrapper">
-          <input
-            type="text"
-            id="city-filter__search-input"
-            className="city-filter__search-input"
-            placeholder="Enter the city"
-            onChange={changeCityInput}
-            onInput={inputCity}
-          />
+          <InputForCity onChange={changeCityInput} onInput={inputCity} />
           <svg
             className="isHidden"
             viewBox="0 0 16 16"
