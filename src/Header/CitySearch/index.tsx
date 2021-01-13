@@ -1,64 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './CitySearch.scss';
 import Modal from '../Modal';
 
 const CitySearch: React.FC = () => {
-  // // const [value, setValue] = useState('');
-
-  // const url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address';
-  // const token = '05b831548bcf77bb6504bc8cc001cdd9ede2da28';
-  // const [cityValue, setCityValue] = useState('минск');
-  // const options = {
-  //   method: 'POST',
-  //   mode: 'cors',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'Accept': 'application/json',
-  //     'Authorization': 'Token ' + token
-  //   },
-  //   body: JSON.stringify({
-  //     query: cityValue,
-  //     "locations": [
-  //       {
-  //         "country": "*"
-  //       }
-  //     ]
-  //   })
-  // }
-
   const [active, setActive] = useState(false);
-
 
   function clickCityHandler(): void {
     setActive(!active);
   }
 
-  // function changeCity(event: React.ChangeEvent<HTMLInputElement>): void {
-  //   console.log('change');
-  //   setCityValue(() => event.target.value);
-  //   console.log(cityValue);
-  // }
+  const [cityValue, setCityValue] = useState('Минск');
 
-  // function inputCity(event: React.ChangeEvent<HTMLInputElement>): void {
-  //   console.log('input');
-  //   // setCityValue(() => event.target.value);
-  // }
-
-  // useEffect(() => {
-  //   fetch(url, options)
-  //     .then(response => response.json())
-  //     .then(result => {
-  //       console.log(result.suggestions);
-  //       const cities = result.suggestions.map((city) => {
-  //         return ({
-  //           description: city.data.city,
-  //           id: city.data.geo_lat + city.data.geo_lon,
-  //         });
-  //       }).reduce((acc, item) => !acc.some((el) => el.description === item.description || item.description === null) ? (acc.push(item), acc) : acc, []);
-  //       setValue(cities);
-  //     })
-  //     .catch(error => console.log('error', error));
-  // });
+  const updateCityValue = (cityName: string) => {
+    setCityValue(() => cityName);
+  }
 
   return (
     <>
@@ -80,9 +35,9 @@ const CitySearch: React.FC = () => {
               d="M7.8 5.7a6 6 0 0 1 8.4 0c1 1 1.7 2.6 1.7 4.1 0 4-5.3 9.8-5.5 10a.5.5 0 0 1-.4.2.5.5 0 0 1-.4-.2c-.2-.2-5.5-6-5.5-10 0-1.5.6-3 1.7-4.1zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
             />
           </svg>
-          <span className="city-search__text" title="Kiev">
-            Kiev
-        </span>
+          <span className="city-search__text" title={cityValue}>
+            {cityValue}
+          </span>
           <svg
             id="icon-menu-down"
             viewBox="0 0 16 16"
@@ -106,7 +61,7 @@ const CitySearch: React.FC = () => {
           </svg>
         </div>
       </div>
-      {active && <Modal />}
+      {active && <Modal updateCityValue={updateCityValue} closeModalCity={clickCityHandler} />}
     </>
   );
 };

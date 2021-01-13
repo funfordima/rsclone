@@ -1,14 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Modal.scss';
 import CityFilterSearch from '../CitySearch/CityFilterSearch';
 import CityFilterList from '../CitySearch/CityFilterList';
 
-// interface ModalProps {
-//   cities: Array<any>;
-// }
+export type cities = {
+  description: string;
+  id: number;
+};
 
-const Modal: React.FC = () => {
-  let cities = [{
+interface ModalProps {
+  updateCityValue: () => void;
+  closeModalCity: () => void;
+}
+
+const Modal: React.FC<ModalProps> = ({ updateCityValue, closeModalCity }) => {
+  let cities: cities[] = [{
     description: 'Минск',
     id: 0,
   }];
@@ -39,19 +45,10 @@ const Modal: React.FC = () => {
   function changeCity(event: React.ChangeEvent<HTMLInputElement>): void {
     console.log('change');
     setCityValue(() => event.target.value);
-    console.log(cityValue);
-  }
 
-  function inputCity(event: React.ChangeEvent<HTMLInputElement>): void {
-    console.log('input');
-    // setCityValue(() => event.target.value);
-  }
-
-  useEffect(() => {
     fetch(url, options)
       .then(response => response.json())
       .then(result => {
-        console.log(result.suggestions);
         cities = result.suggestions.map((city) => {
           return ({
             description: city.data.city,
@@ -61,16 +58,15 @@ const Modal: React.FC = () => {
         setValue(cities);
       })
       .catch(error => console.log('error', error));
-  }, []);
-  // setValue(cities);
+  }
 
   return (
     <div className="modal__container">
       <div className="modal">
         <div className="modal__header">Header for mobile</div>
         <div className="modal__body">
-          <CityFilterSearch changeCityInput={changeCity} inputCity={inputCity} />
-          <CityFilterList cities={value} />
+          <CityFilterSearch changeCityInput={changeCity} />
+          <CityFilterList cities={value} updateCity={updateCityValue} closeModalCity={closeModalCity} />
         </div>
       </div>
     </div>
