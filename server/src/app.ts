@@ -14,14 +14,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/clinics', clinicRouter);
 app.use('/doctors', doctorRouter);
 
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   res.json({
     statusCode: 404,
   })
 });
 
-// error handler
 app.use(function(err, req, res, next) {
   res.json({
     statusCode: 505,
