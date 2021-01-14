@@ -1,10 +1,14 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './UserBar.scss';
 
 const UserBar: React.FC = () => {
   return (
     <div className="user-bar">
-      <a className="user-bar__link" href="/">
+      <NavLink
+        className="user-bar__link"
+        to="/authorization"
+      >
         <span className="user-bar__icon">
           <svg
             viewBox="0 0 24 24"
@@ -24,7 +28,7 @@ const UserBar: React.FC = () => {
           </svg>
         </span>
         <span className="user-bar__text">Login</span>
-      </a>
+      </NavLink>
     </div>
   );
 };
