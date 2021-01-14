@@ -1,0 +1,62 @@
+.city-filter__search {
+  width: 100%;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+
+  &-container {
+    flex: 0 0 auto;
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  &-input_wrapper {
+    position: relative;
+
+    & svg {
+      width: 16px;
+      left: auto;
+      right: 12px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(0, 0, 0, 0.16);
+      fill: currentColor;
+      z-index: 1;
+      transition-duration: 0.12s;
+      transition-timing-function: ease-in-out;
+      touch-action: manipulation;
+      cursor: pointer;
+    }
+  }
+
+  &-input {
+    box-sizing: border-box;
+    position: relative;
+    margin: 0;
+    padding: 7px 12px;
+    width: 100%;
+    font-size: 13px;
+    line-height: 20px;
+    overflow: hidden;
+    touch-action: manipulation;
+    outline: none;
+    border-radius: 2px;
+    transition-property: border-color;
+    transition-duration: 0.12s;
+    transition-timing-function: ease-in-out;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+
+    &:hover {
+      border-color: rgba(0, 0, 0, 0.3);
+    }
+
+    &:focus {
+      border-color: #46cdd6;
+    }
+  }
+}
