@@ -1,8 +1,10 @@
 import React, { Fragment, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, BrowserRouter, Route, Switch } from 'react-router-dom';
 import './AuthorizationPage.scss';
 import styled from 'styled-components';
 import { RegistrationForm } from './RegistrationForm';
+import { RegistrationPage } from '../pages/RegistrationPage';
+import { MainPage } from '../pages/MainPage';
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -18,7 +20,7 @@ const Header = styled.div`
 
 `;
 
-const BackButton = styled.div`
+const BackButton = styled.a`
   color: #fff;
   padding: 16px 16px 16px 0;
   display: inline-flex;
@@ -26,14 +28,22 @@ const BackButton = styled.div`
   align-items: center;
   font-size: 15px;
   line-height: 24px;
-  transition: color 0.2s ease-in-out;
+  transition-property: background-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
   cursor: pointer;
+
+  & span {
+    margin-left: 5px;
+  }
 
   & svg {
     fill: #000;
     vertical-align: bottom;
     transform-origin: center;
     transform: rotate(180deg);
+    border-radius: 50%;
+    background-color: #ccc;
   }
 
   &:hover {
@@ -90,6 +100,12 @@ const ContentWrapper = styled.div`
   margin: 0 auto;
   overflow: hidden;
   box-sizing: border-box;
+  text-align: right;
+
+  & a {
+    color: #0095cc;
+    text-decoration: none;
+  }
 `;
 
 export const AuthorizationPage: React.FC = () => {
@@ -106,31 +122,39 @@ export const AuthorizationPage: React.FC = () => {
 
   return (
     <Fragment>
-      <Wrapper>
-        <Content>
-          <Header>
-            <BackButton>
-              <svg
-                width="24"
-                height="24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M9.3 7.5a.4.4 0 010-.7c.3-.2.6-.1.8 0l4.6 4.9v.6L10 17.1c-.2.2-.5.3-.7 0a.4.4 0 010-.6l4.2-4.5-4.3-4.5z" />
-              </svg>
-              <span>103.ua</span>
-            </BackButton>
-          </Header>
-          <ContentHeader>
-            <div>
-              <NavLink className="tabsItem" to="/">LogIn</NavLink>
-              <NavLink className="tabsItem" to="/registration">SignIn</NavLink>
-            </div>
-          </ContentHeader>
-          <ContentWrapper>
-            <RegistrationForm />
-          </ContentWrapper>
-        </Content>
-      </Wrapper>
+      <BrowserRouter>
+        <Wrapper>
+          <Content>
+            <Header>
+              <BackButton href="/">
+                <svg
+                  width="24"
+                  height="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M9.3 7.5a.4.4 0 010-.7c.3-.2.6-.1.8 0l4.6 4.9v.6L10 17.1c-.2.2-.5.3-.7 0a.4.4 0 010-.6l4.2-4.5-4.3-4.5z" />
+                </svg>
+                <span>103.ua</span>
+              </BackButton>
+            </Header>
+            <ContentHeader>
+              <div>
+                <NavLink className="tabsItem" to="/authorization">LogIn</NavLink>
+                <NavLink className="tabsItem" to="/registration">SignIn</NavLink>
+              </div>
+            </ContentHeader>
+            <ContentWrapper>
+              <Switch>
+                <Route exact path="/authorization" component={RegistrationForm} />
+                <Route path="/registration" component={RegistrationPage} />
+                <Route path="/restore" component={MainPage} />
+              </Switch>
+              {/* <RegistrationForm /> */}
+              <NavLink to="/restore">Forgot password?</NavLink>
+            </ContentWrapper>
+          </Content>
+        </Wrapper>
+      </BrowserRouter>
     </Fragment >
   );
 };
