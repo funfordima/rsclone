@@ -147,10 +147,10 @@ export const AuthorizationPage: React.FC = () => {
               <Switch>
                 <Route exact path="/authorization" component={RegistrationForm} />
                 <Route path="/registration" component={RegistrationPage} />
-                <Route path="/restore" component={MainPage} />
+                {/* <Route path="/restore" component={MainPage} /> */}
               </Switch>
               {/* <RegistrationForm /> */}
-              <NavLink to="/restore">Forgot password?</NavLink>
+              {/* <NavLink to="/restore">Forgot password?</NavLink> */}
             </ContentWrapper>
           </Content>
         </Wrapper>

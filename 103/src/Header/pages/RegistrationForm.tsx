@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { Form, InputText, FormField, TogglePassword } from '../styledComponents';
+import { Form, InputText, FormField, TogglePassword, InputBtnSignIn } from '../styledComponents';
 
 // const Form = styled.form`
 //   font-size: 16px;
@@ -120,7 +120,13 @@ export const RegistrationForm: React.FC = () => {
             Remember Me
           </label>
         </div>
-        {/* <NavLink to="/">Forgot password?</NavLink> */}
+        <NavLink to="/">Forgot password?</NavLink>
+        <InputBtnSignIn
+          tabIndex="4"
+          type="submit"
+          value="LogIn"
+          name="login"
+        />
       </FormOptions>
     </Form>
   );

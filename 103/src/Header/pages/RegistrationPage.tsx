@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Form, InputText, FormField, TogglePassword } from '../styledComponents';
+import { Form, InputText, FormField, TogglePassword, InputBtnSignIn } from '../styledComponents';
 
 const FormFieldCaption = styled.div`
   margin-top: 8px;
@@ -9,20 +9,20 @@ const FormFieldCaption = styled.div`
   color: rgba(0,0,0,0.5);
 `;
 
-const InputBtnSignIn = styled.input`
-  background-color: #1b8dfb;
-  height: 48px;
-  font-size: 15px;
-  font-weight: 500;
-  margin-top: 20px;
-  border-radius: 2px;
-  border: none;
-  color: #fff;
-  width: 100%;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-  background-clip: padding-box;
-`;
+// const InputBtnSignIn = styled.input`
+//   background-color: #1b8dfb;
+//   height: 48px;
+//   font-size: 15px;
+//   font-weight: 500;
+//   margin-top: 20px;
+//   border-radius: 2px;
+//   border: none;
+//   color: #fff;
+//   width: 100%;
+//   cursor: pointer;
+//   transition: background-color 0.2s ease-in-out;
+//   background-clip: padding-box;
+// `;
 
 export const RegistrationPage: React.FC = () => {
 
