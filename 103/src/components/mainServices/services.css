@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
+.services-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.services-container {
+    width: 100%;
+    max-width: 1280px;
+}
