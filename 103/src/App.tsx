@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import CreateHeader from './Header/CreateHeader';
 import MainServices from './components/mainServices/mainServices';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { AuthorizationPage } from './Header/pages/AuthorizationPage';
+import { UserPage } from './Header/pages/UserPage';
+
+export const SignInContext = React.createContext();
 
 const App: React.FC = () => {
+  const [isSignedIn, setSignedIn] = useState(false);
+
+  const toggleEnterUser = (isSign: boolean): void => {
+    console.log('test sign app');
+    setSignedIn(isSign);
+    console.log(isSign);
+  }
+
   return (
-    <>
+    <SignInContext.Provider value={isSignedIn}>
       <BrowserRouter>
         <Switch>
           <Route exact path={'/'} >
@@ -20,11 +31,15 @@ const App: React.FC = () => {
                 'https://static.103.by/images/common/image_block_item/d8d06f02b0ef97038bdd93db3869bb36.jpg', 'https://static.103.by/images/common/image_block_item/00bc4712a75fd469242c191469a80b5f.jpg']}
             />
           </Route>
-          <Route path={'/authorization'} component={AuthorizationPage} />
+          {/* {isSignedIn
+              ? <div>SignIn</div>
+              : <Route path={'/authorization'} render={() => <AuthorizationPage onToggleEnterUser={toggleEnterUser} />} />
+            } */}
+          <Route path={'/authorization'} render={() => isSignedIn ? <Redirect to="/" /> : <AuthorizationPage onToggleEnterUser={toggleEnterUser} />} />
+          <Route path={'/profile'} component={UserPage} />
         </Switch>
       </BrowserRouter>
-
-    </>
+    </SignInContext.Provider>
   );
 }
 export default App;
