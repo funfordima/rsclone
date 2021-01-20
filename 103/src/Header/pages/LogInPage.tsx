@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Form, InputText, FormField, TogglePassword, InputBtnSignIn, AlertError } from '../styledComponents';
 import firebase from 'firebase/app';
 import 'firebase/database';
@@ -27,7 +27,7 @@ const FormOptions = styled.div`
 
 interface LogInPageProps {
   onToggleErrorComponent: () => void;
-  toggleEnterUser: () => void;
+  toggleEnterUser: (value: boolean) => void;
 }
 
 export class LogInPage extends React.Component<LogInPageProps> {
@@ -62,8 +62,6 @@ export class LogInPage extends React.Component<LogInPageProps> {
         console.log('sign ....');
         this.setState({ isSignIn: true });
         this.props.toggleEnterUser(true);
-
-        // window.location.href = '/';
       })
       .catch((error) => {
         console.log(error);

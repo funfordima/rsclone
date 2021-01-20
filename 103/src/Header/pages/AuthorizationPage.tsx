@@ -107,7 +107,7 @@ const uiConfig = {
 };
 
 interface AuthorizationPageProps {
-  onToggleEnterUser: () => void;
+  onToggleEnterUser: (isUser: boolean) => void;
 }
 
 export const AuthorizationPage: React.FC<AuthorizationPageProps> = ({ onToggleEnterUser }) => {
