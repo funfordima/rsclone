@@ -54,17 +54,17 @@ export const UserContentPage: React.FC = () => {
   const [isError, setError] = useState('');
 
   const changeName = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setFirstName(event.target.value);
+    setFirstName(event.target.value.trim());
     setError('');
   };
 
   const changeLastName = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setLastName(event.target.value);
+    setLastName(event.target.value.trim());
     setError('');
   };
 
   const changeEmail = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setEmail(event.target.value);
+    setEmail(event.target.value.trim());
     setError('');
   };
 
