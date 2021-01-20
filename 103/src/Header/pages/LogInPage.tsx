@@ -82,18 +82,20 @@ export class LogInPage extends React.Component<LogInPageProps> {
   }
 
   render() {
-    console.log(this.state);
     return (
       <Form>
-        <InputText
-          tabIndex="1"
-          id="email"
-          name="username"
-          placeholder="E-mail"
-          type="text"
-          autocomplete="off"
-          onChange={this.handleChangeInput}
-        />
+        <FormField>
+          <InputText
+            tabIndex="1"
+            id="email"
+            name="username"
+            placeholder="E-mail"
+            type="text"
+            autocomplete="off"
+            onChange={this.handleChangeInput}
+          />
+        </FormField>
+        {/* {!this.state.isSignIn && <AlertError>{this.state.isSignIn}</AlertError>} */}
         <FormField>
           <InputPassword
             tabIndex="2"

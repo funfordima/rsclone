@@ -56,7 +56,7 @@ export const UserPage: React.FC = () => {
     addBodyClass('user-console');
 
     return () => {
-      removeBodyClass('console');
+      removeBodyClass('user-console');
     }
   }, ['body']);
 
