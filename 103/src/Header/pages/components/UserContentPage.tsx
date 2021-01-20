@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { ContentTitle, UserForm, FormField, ButtonSave, AlertError } from '../../styledComponents';
+import { ContentTitle, UserForm, FormField, ButtonSave, AlertError, AlertSuccess } from '../../styledComponents';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
@@ -52,6 +52,7 @@ export const UserContentPage: React.FC = () => {
   const [email, setEmail] = useState(mail);
   const [isPhoto, setPhoto] = useState(photo);
   const [isError, setError] = useState('');
+  const [isSuccess, setSuccess] = useState('');
 
   const changeName = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setFirstName(event.target.value.trim());
@@ -73,7 +74,6 @@ export const UserContentPage: React.FC = () => {
   };
 
   const handleBtnSaveClick = (): void => {
-    console.log('Save click');
     const minNameLength = 3;
     if (!firstName || firstName.trim().length < minNameLength || firstName[0].match(/\d/)) {
       setError('Name should be at least 4 symbols, don\'t starts with decimal!');
@@ -100,6 +100,10 @@ export const UserContentPage: React.FC = () => {
     }).catch((error) => {
       setError(error.message);
     });
+
+    setSuccess('Personal information changed');
+
+    setTimeout(() => setSuccess(''), 1000);
   };
 
   const handleBtnCancelClick = (): void => {
@@ -151,6 +155,7 @@ export const UserContentPage: React.FC = () => {
             onChange={changeEmail}
           />
         </FormField>
+        {isSuccess && <AlertSuccess>{isSuccess}</AlertSuccess>}
         <FormField>
           <FormInput
             type='file'
