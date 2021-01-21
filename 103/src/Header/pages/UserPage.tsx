@@ -5,9 +5,6 @@ import { BackButton } from '../styledComponents';
 import { ProfileMenu } from './components/ProfileMenu';
 import { UserContentPage } from '../pages/components/UserContentPage';
 import { UserPasswordPage } from '../pages/components/UserPasswordPage';
-import firebase from 'firebase/app';
-import 'firebase/database';
-import 'firebase/auth';
 
 const Header = styled.header`
   display: block;

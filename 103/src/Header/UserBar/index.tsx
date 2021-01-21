@@ -80,8 +80,6 @@ const UserBarIcon = styled.span`
 
 const UserBar: React.FC = () => {
   const isSignIn = useContext(SignInContext) || !!firebase.auth().currentUser;
-  console.log(isSignIn);
-  console.log(firebase.auth().currentUser);
   const [isOpenMenu, setOpenMenu] = useState(false);
 
   const toggleMenu = (): void => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { Form, InputText, FormField, TogglePassword, InputBtnSignIn, AlertError } from '../styledComponents';
+import { Form, InputText, FormField, TogglePassword, InputBtnSignIn } from '../styledComponents';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
@@ -74,14 +74,14 @@ export class LogInPage extends React.Component<LogInPageProps> {
     console.log(1);
   };
 
-  componentDidMount = () => {
+  componentDidMount = (): void => {
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({ isSignIn: !!user });
       this.props.toggleEnterUser(!!user);
     });
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <Form>
         <FormField>

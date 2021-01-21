@@ -35,23 +35,6 @@ const MenuLink = styled(NavLink)`
   }
 `;
 
-const ButtonExit = styled.span`
-  color: rgba(0,0,0,0.48);
-  font-size: 16px;
-  line-height: 24px;
-
-  &:hover {
-    color: #0095cc;
-  }
-
-  &.active {
-    font-weight: 500;
-    text-decoration: none;
-    color: #000;
-    pointer-events: none;
-  }
-`;
-
 export const ProfileMenu: React.FC = () => {
   const dataForList = [
     {
