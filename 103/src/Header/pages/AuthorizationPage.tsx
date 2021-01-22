@@ -4,81 +4,14 @@ import './AuthorizationPage.scss';
 import styled from 'styled-components';
 import { LogInPage } from './LogInPage';
 import { SignInPage } from './SignInPage';
-import { SocialBefore, AlertError, BackButton } from '../styledComponents';
+import { SocialBefore, AlertError, BackButton, Wrapper, Content, ContentHeader, ContentWrapper } from '../styledComponents';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
-const Wrapper = styled.div`
-  box-sizing: border-box;
-  width: 450px;
-  max-width: 100%;
-`;
-
-const Content = styled.div`
-  border-radius: 8px;
-`;
-
 const Header = styled.div`
 
-`;
-
-const ContentHeader = styled.div`
-  background-color: #fff;
-  padding: 24px 40px 0 40px;
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-  border-radius: 8px 8px 0 0;
-
-  & div {
-    display: flex;
-  }
-
-  .tabsItem {
-    flex: 1 1 50%;
-    padding: 0 0 16px 0;
-    font-weight: 500;
-    font-size: 17px;
-    line-height: 24px;
-    color: rgba(0,0,0,0.48);
-    position: relative;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-
-    &.active,
-    &:hover {
-      color: #000;
-    }
-
-    &.active:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -1px;
-      background-color: #1b8dfb;
-      height: 3px;
-      width: 100%;
-      border-radius: 3px 3px 0 0;
-    }
-  }
-`;
-
-const ContentWrapper = styled.div`
-  background-color: #fff;
-  padding: 0 40px 24px 40px;
-  border-radius: 0 0 8px 8px;
-  max-width: 480px;
-  width: 100%;
-  margin: 0 auto;
-  overflow: hidden;
-  box-sizing: border-box;
-  text-align: right;
-
-  & a {
-    color: #0095cc;
-    text-decoration: none;
-  }
 `;
 
 const config = {
@@ -129,7 +62,6 @@ export const AuthorizationPage: React.FC<AuthorizationPageProps> = ({ onToggleEn
 
   return (
     <Fragment>
-      {/* <BrowserRouter> */}
       <Wrapper>
         <Content>
           <Header>
@@ -157,14 +89,12 @@ export const AuthorizationPage: React.FC<AuthorizationPageProps> = ({ onToggleEn
             <Switch>
               <Route exact path="/authorization" render={() => <LogInPage onToggleErrorComponent={toggleErrorComponent} toggleEnterUser={onToggleEnterUser} />} />
               <Route path="/authorization/registration" component={SignInPage} />
-              {/* <Route path="/restore" component={MainPage} /> */}
             </Switch>
             <SocialBefore>sign in via social networks</SocialBefore>
             <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
           </ContentWrapper>
         </Content>
       </Wrapper>
-      {/* </BrowserRouter> */}
     </Fragment >
   );
 };

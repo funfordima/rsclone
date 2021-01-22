@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { Form, InputText, FormField, TogglePassword, InputBtnSignIn } from '../styledComponents';
+import { Form, InputText, FormField, TogglePassword, InputBtnSignIn, AlertSuccess } from '../styledComponents';
+import { ResetPasswordContext } from '../../App';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
@@ -37,6 +38,7 @@ export class LogInPage extends React.Component<LogInPageProps> {
       'email': '',
       'password': '',
       'isSignIn': false,
+      'isChangeEmail': '',
     };
     this.openPasswordRef = React.createRef();
   }
@@ -56,15 +58,13 @@ export class LogInPage extends React.Component<LogInPageProps> {
   logInAccount = (event: React.ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
     const { email, password } = this.state;
-    // firebase.auth().createUserWithEmailAndPassword(email, password)
+
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(() => {
-        console.log('sign ....');
         this.setState({ isSignIn: true });
         this.props.toggleEnterUser(true);
       })
       .catch((error) => {
-        console.log(error);
         this.props.onToggleErrorComponent(true);
         this.props.toggleEnterUser(false);
       });
@@ -83,58 +83,64 @@ export class LogInPage extends React.Component<LogInPageProps> {
 
   render(): JSX.Element {
     return (
-      <Form>
-        <FormField>
-          <InputText
-            tabIndex="1"
-            id="email"
-            name="username"
-            placeholder="E-mail"
-            type="text"
-            autocomplete="off"
-            onChange={this.handleChangeInput}
-          />
-        </FormField>
-        {/* {!this.state.isSignIn && <AlertError>{this.state.isSignIn}</AlertError>} */}
-        <FormField>
-          <InputPassword
-            tabIndex="2"
-            id="password"
-            name="password"
-            placeholder="Password"
-            type="password"
-            autocomplete="off"
-            onChange={this.handleChangeInput}
-          />
-          <TogglePassword
-            ref={this.openPasswordRef}
-            onClick={this.toggleVisiblePassword}
-          />
-        </FormField>
-        <FormOptions>
-          <div>
-            <label htmlFor="rememberMe">
-              <input
-                tabIndex="3"
-                id="rememberMe"
-                name="rememberMe"
-                type="checkbox"
-                checked
-                onChange={this.toggleChecked}
-              />
-            Remember Me
-          </label>
-          </div>
-          <NavLink to="/">Forgot password?</NavLink>
-          <InputBtnSignIn
-            tabIndex="4"
-            type="submit"
-            value="LogIn"
-            name="login"
-            onClick={this.logInAccount}
-          />
-        </FormOptions>
-      </Form>
+      <>
+        <ResetPasswordContext.Consumer>
+          {context => context && <AlertSuccess>{context}</AlertSuccess>}
+        </ResetPasswordContext.Consumer>
+        {/* {ResetPasswordContext && <AlertSuccess>{ResetPasswordContext}</AlertSuccess>} */}
+        < Form >
+          <FormField>
+            <InputText
+              tabIndex="1"
+              id="email"
+              name="username"
+              placeholder="E-mail"
+              type="text"
+              autocomplete="off"
+              onChange={this.handleChangeInput}
+            />
+          </FormField>
+          {/* {!this.state.isSignIn && <AlertError>{this.state.isSignIn}</AlertError>} */}
+          <FormField>
+            <InputPassword
+              tabIndex="2"
+              id="password"
+              name="password"
+              placeholder="Password"
+              type="password"
+              autocomplete="off"
+              onChange={this.handleChangeInput}
+            />
+            <TogglePassword
+              ref={this.openPasswordRef}
+              onClick={this.toggleVisiblePassword}
+            />
+          </FormField>
+          <FormOptions>
+            <div>
+              <label htmlFor="rememberMe">
+                <input
+                  tabIndex="3"
+                  id="rememberMe"
+                  name="rememberMe"
+                  type="checkbox"
+                  checked
+                  onChange={this.toggleChecked}
+                />
+              Remember Me
+            </label>
+            </div>
+            <NavLink to="/reset">Forgot password?</NavLink>
+            <InputBtnSignIn
+              tabIndex="4"
+              type="submit"
+              value="LogIn"
+              name="login"
+              onClick={this.logInAccount}
+            />
+          </FormOptions>
+        </Form>
+      </>
     );
   }
 }

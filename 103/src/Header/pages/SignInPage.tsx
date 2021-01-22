@@ -69,7 +69,7 @@ export const SignInPage: React.FC = () => {
     firebase.auth().createUserWithEmailAndPassword(email, newPassword)
       .then(() => {
         const user = firebase.auth().currentUser;
-        setSuccess('Successful login');
+        // setSuccess('Successful login');
 
         user.updateProfile({
           displayName: `${firstName} ${lastName}`,
@@ -86,7 +86,7 @@ export const SignInPage: React.FC = () => {
           setError(error.message);
         });
 
-        setTimeout(() => setSuccess(''), 1000);
+        // setTimeout(() => setSuccess(''), 1000);
       })
       .catch((error) => {
         setError(error.message);

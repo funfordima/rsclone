@@ -134,8 +134,8 @@ export const AlertSuccess = styled.div`
   text-align: left;
   border-radius: 2px;
   border: 1px solid rgba(0,0,0,0.16);
-  background-color: rgba(204,255,144, 0.08);
-  border-color: rgba(204,255,144,0.4);
+  background-color: rgba(33,194,134,0.08);
+  border-color: rgba(33,194,134,0.4);
 
   &:after {
     content: '';
@@ -269,4 +269,71 @@ export const ButtonSave = styled.button`
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
   background-clip: padding-box;
+`;
+
+export const Wrapper = styled.div`
+  box-sizing: border-box;
+  width: 450px;
+  max-width: 100%;
+`;
+
+export const Content = styled.div`
+  border-radius: 8px;
+`;
+
+export const ContentHeader = styled.div`
+  background-color: #fff;
+  padding: 24px 40px 0 40px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px 8px 0 0;
+
+  & div {
+    display: flex;
+  }
+
+  .tabsItem {
+    flex: 1 1 50%;
+    padding: 0 0 16px 0;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 24px;
+    color: rgba(0,0,0,0.48);
+    position: relative;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+
+    &.active,
+    &:hover {
+      color: #000;
+    }
+
+    &.active:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      background-color: #1b8dfb;
+      height: 3px;
+      width: 100%;
+      border-radius: 3px 3px 0 0;
+    }
+  }
+`;
+
+export const ContentWrapper = styled.div`
+  background-color: #fff;
+  padding: 0 40px 24px 40px;
+  border-radius: 0 0 8px 8px;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+  text-align: right;
+
+  & a {
+    color: #0095cc;
+    text-decoration: none;
+  }
 `;
