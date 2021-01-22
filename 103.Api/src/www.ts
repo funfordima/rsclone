@@ -3,7 +3,7 @@ import debug0 from 'debug';
 import * as http from 'http';
 
 const debug = debug0('server');
-const port = normalizePort(process.env.PORT || '3008');
+const port = normalizePort(process.env.PORT || '3009');
 app.set('port', port);
 
 const server = http.createServer(app);

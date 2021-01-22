@@ -30,3 +30,11 @@ export type DoctorType = {
     complete: boolean
 }
 
+export type ArticleType = {
+    _id: string,
+    title: string,
+    subtitle: string | null,
+    text: string,
+    src: string | null,
+    complete: boolean
+}
