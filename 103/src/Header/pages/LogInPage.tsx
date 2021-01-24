@@ -54,7 +54,6 @@ export class LogInPage extends React.Component<LogInPageProps> {
     this.props.onToggleErrorComponent(false);
   }
 
-  /* eslint-disable no-debugger */
   logInAccount = (event: React.ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
     const { email, password } = this.state;
