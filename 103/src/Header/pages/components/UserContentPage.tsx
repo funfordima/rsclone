@@ -53,8 +53,6 @@ export const UserContentPage: React.FC<UserContentPageProps> = ({ toggleDisplay 
   }
   const mail = user?.email || '';
   // const photo = user?.photoURL || '';
-  // console.log(photo);
-  console.log(user);
   // const [firstName, setFirstName] = useState(name);
   // const [lastName, setLastName] = useState(surname);
   // const [email, setEmail] = useState(mail);
@@ -169,14 +167,14 @@ export const UserContentPage: React.FC<UserContentPageProps> = ({ toggleDisplay 
 
       const byteArray = new Uint8Array(byteNumbers);
 
-      const blob = new Blob([byteArray], { type: 'text/plain' });
+      // const blob = new Blob([byteArray], { type: 'text/plain' });
       // const imageUrl = URL.createObjectURL(blob, { type: 'text/plain' });
 
       // Create a Storage Ref w/ username
       const storageRef = firebase.storage().ref().child(user?.email + '/profile.jpg');
 
       // Upload file
-      const task = storageRef.put(byteArray).then(() => setPhoto(reader.result));
+      storageRef.put(byteArray).then(() => setPhoto(reader.result));
     };
     reader.readAsDataURL(selectedFile);
   }

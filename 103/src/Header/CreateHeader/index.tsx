@@ -11,7 +11,6 @@ const Header = styled.header`
   height: 48px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   align-content: flex-start;
   color: #fff;
   background-color: #46cdd6;

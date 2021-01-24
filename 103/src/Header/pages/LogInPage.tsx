@@ -64,7 +64,7 @@ export class LogInPage extends React.Component<LogInPageProps> {
         this.setState({ isSignIn: true });
         this.props.toggleEnterUser(true);
       })
-      .catch((error) => {
+      .catch(() => {
         this.props.onToggleErrorComponent(true);
         this.props.toggleEnterUser(false);
       });

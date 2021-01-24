@@ -40,7 +40,7 @@ const Aside = styled.aside`
 
   @media only screen and (max-width: 767px) and (min-width: 0) {
     width: 100%;
-    display: ${props => props.display ? 'block' : 'none'};
+    display: ${props => props.isDisplay ? 'block' : 'none'};
   }
 `;
 
@@ -51,14 +51,14 @@ const Content = styled.div`
 
   @media only screen and (max-width: 767px) and (min-width: 0) {
     padding: 0 16px;
-    display: ${props => props.display ? 'none' : 'block'};
+    display: ${props => props.isDisplay ? 'none' : 'block'};
   }
 `;
 
 export const UserPage: React.FC = () => {
   const addBodyClass = (className: string): void => document.body.classList.add(className);
   const removeBodyClass = (className: string): void => document.body.classList.remove(className);
-  const [display, setDisplay] = useState(true);
+  const [isDisplay, setDisplay] = useState(true);
 
   useEffect(() => {
     addBodyClass('user-console');
@@ -88,10 +88,10 @@ export const UserPage: React.FC = () => {
       </Header>
       <Container>
         <Section>
-          <Aside display={display}>
+          <Aside isDisplay={isDisplay}>
             <ProfileMenu toggleDisplay={toggleActivePage} />
           </Aside>
-          <Content display={display}>
+          <Content isDisplay={isDisplay}>
             <Switch>
               <Route exact path={'/profile/account'} render={() => <UserContentPage toggleDisplay={toggleActivePage} />} />
               <Route path={'/profile/password'} render={() => <UserPasswordPage toggleDisplay={toggleActivePage} />} />

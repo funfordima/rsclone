@@ -18,6 +18,8 @@ const UserBarWrapper = styled.div`
   transition-property: background-color;
   transition-duration: .24s;
   cursor: pointer;
+  position: absolute;
+  right: 0;
 
   &:hover {
     opacity: 1;

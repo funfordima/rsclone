@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import './MainSearch.scss';
 
 const MainSearchWrapper = styled.div`
   margin-left: 16px;

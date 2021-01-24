@@ -68,6 +68,11 @@ const CitySearchText = styled.span`
   text-overflow: ellipsis;
 
   & + svg {
+    transition: transform .3s;
+    transform: ${props => props.active ? 'rotateZ(180deg)' : 'rotateZ(0)'};
+  }
+
+  & + svg {
     @media only screen and (max-width: 767px) and (min-width: 0) {
       display: none;
     }
@@ -81,7 +86,7 @@ const CitySearchText = styled.span`
 const CitySearch: React.FC = () => {
   const [active, setActive] = useState(false);
 
-  function clickCityHandler(): void {
+  const clickCityHandler = (): void => {
     setActive(!active);
   }
 
@@ -115,7 +120,7 @@ const CitySearch: React.FC = () => {
               d="M7.8 5.7a6 6 0 0 1 8.4 0c1 1 1.7 2.6 1.7 4.1 0 4-5.3 9.8-5.5 10a.5.5 0 0 1-.4.2.5.5 0 0 1-.4-.2c-.2-.2-5.5-6-5.5-10 0-1.5.6-3 1.7-4.1zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
             />
           </svg>
-          <CitySearchText title={cityValue}>
+          <CitySearchText title={cityValue} active={active}>
             {cityValue}
           </CitySearchText>
           <svg
