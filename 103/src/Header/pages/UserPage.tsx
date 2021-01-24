@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 import { BackButton } from '../styledComponents';
@@ -37,17 +37,28 @@ const Aside = styled.aside`
   flex: 0 0 auto;
   width: 208px;
   padding-top: 48px;
+
+  @media only screen and (max-width: 767px) and (min-width: 0) {
+    width: 100%;
+    display: ${props => props.display ? 'block' : 'none'};
+  }
 `;
 
 const Content = styled.div`
   flex: 1 1 auto;
   padding-left: 48px;
   overflow: hidden;
+
+  @media only screen and (max-width: 767px) and (min-width: 0) {
+    padding: 0 16px;
+    display: ${props => props.display ? 'none' : 'block'};
+  }
 `;
 
 export const UserPage: React.FC = () => {
   const addBodyClass = (className: string): void => document.body.classList.add(className);
   const removeBodyClass = (className: string): void => document.body.classList.remove(className);
+  const [display, setDisplay] = useState(true);
 
   useEffect(() => {
     addBodyClass('user-console');
@@ -57,6 +68,9 @@ export const UserPage: React.FC = () => {
     }
   }, ['body']);
 
+  const toggleActivePage = (): void => {
+    setDisplay(!display);
+  }
 
   return (
     <>
@@ -74,13 +88,13 @@ export const UserPage: React.FC = () => {
       </Header>
       <Container>
         <Section>
-          <Aside>
-            <ProfileMenu />
+          <Aside display={display}>
+            <ProfileMenu toggleDisplay={toggleActivePage} />
           </Aside>
-          <Content>
+          <Content display={display}>
             <Switch>
-              <Route exact path={'/profile/account'} component={UserContentPage} />
-              <Route path={'/profile/password'} component={UserPasswordPage} />
+              <Route exact path={'/profile/account'} render={() => <UserContentPage toggleDisplay={toggleActivePage} />} />
+              <Route path={'/profile/password'} render={() => <UserPasswordPage toggleDisplay={toggleActivePage} />} />
             </Switch>
           </Content>
         </Section>

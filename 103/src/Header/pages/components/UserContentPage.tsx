@@ -39,7 +39,11 @@ const ButtonCancel = styled(ButtonSave)`
   background-color: rgba(0,0,0,0.04);
 `;
 
-export const UserContentPage: React.FC = () => {
+interface UserContentPageProps {
+  toggleDisplay: () => void;
+}
+
+export const UserContentPage: React.FC<UserContentPageProps> = ({ toggleDisplay }) => {
   const user = firebase.auth().currentUser;
   const storageRef = firebase.storage().ref().child(user?.email + '/profile.jpg');
   let name = '';
@@ -128,7 +132,10 @@ export const UserContentPage: React.FC = () => {
 
     setSuccess('Personal information changed');
 
-    setTimeout(() => setSuccess(''), 1000);
+    setTimeout(() => {
+      setSuccess('');
+      toggleDisplay();
+    }, 1000);
   };
 
   const handleBtnCancelClick = (): void => {
@@ -137,6 +144,7 @@ export const UserContentPage: React.FC = () => {
       'lastName': surname,
       'email': mail
     });
+    toggleDisplay();
     // setFirstName(name);
     // setLastName(name);
     // setEmail(mail);
