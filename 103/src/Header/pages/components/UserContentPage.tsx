@@ -39,7 +39,11 @@ const ButtonCancel = styled(ButtonSave)`
   background-color: rgba(0,0,0,0.04);
 `;
 
-export const UserContentPage: React.FC = () => {
+interface UserContentPageProps {
+  toggleDisplay: () => void;
+}
+
+export const UserContentPage: React.FC<UserContentPageProps> = ({ toggleDisplay }) => {
   const user = firebase.auth().currentUser;
   const storageRef = firebase.storage().ref().child(user?.email + '/profile.jpg');
   let name = '';
@@ -49,8 +53,6 @@ export const UserContentPage: React.FC = () => {
   }
   const mail = user?.email || '';
   // const photo = user?.photoURL || '';
-  // console.log(photo);
-  console.log(user);
   // const [firstName, setFirstName] = useState(name);
   // const [lastName, setLastName] = useState(surname);
   // const [email, setEmail] = useState(mail);
@@ -128,7 +130,10 @@ export const UserContentPage: React.FC = () => {
 
     setSuccess('Personal information changed');
 
-    setTimeout(() => setSuccess(''), 1000);
+    setTimeout(() => {
+      setSuccess('');
+      toggleDisplay();
+    }, 1000);
   };
 
   const handleBtnCancelClick = (): void => {
@@ -137,6 +142,7 @@ export const UserContentPage: React.FC = () => {
       'lastName': surname,
       'email': mail
     });
+    toggleDisplay();
     // setFirstName(name);
     // setLastName(name);
     // setEmail(mail);
@@ -161,14 +167,14 @@ export const UserContentPage: React.FC = () => {
 
       const byteArray = new Uint8Array(byteNumbers);
 
-      const blob = new Blob([byteArray], { type: 'text/plain' });
+      // const blob = new Blob([byteArray], { type: 'text/plain' });
       // const imageUrl = URL.createObjectURL(blob, { type: 'text/plain' });
 
       // Create a Storage Ref w/ username
       const storageRef = firebase.storage().ref().child(user?.email + '/profile.jpg');
 
       // Upload file
-      const task = storageRef.put(byteArray).then(() => setPhoto(reader.result));
+      storageRef.put(byteArray).then(() => setPhoto(reader.result));
     };
     reader.readAsDataURL(selectedFile);
   }

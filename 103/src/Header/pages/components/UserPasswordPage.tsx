@@ -9,7 +9,17 @@ const InputPassword = styled(InputText)`
   padding-right: 48px;
 `;
 
-export const UserPasswordPage: React.FC = () => {
+const ButtonCancel = styled(ButtonSave)`
+  color: #000;
+  background-color: rgba(0,0,0,0.04);
+`;
+
+interface UserPasswordPageProps {
+  toggleDisplay: () => void;
+}
+
+
+export const UserPasswordPage: React.FC<UserPasswordPageProps> = ({ toggleDisplay }) => {
   const user = firebase.auth().currentUser;
   const [isError, setError] = useState('');
   const [isSuccess, setSuccess] = useState('');
@@ -95,6 +105,14 @@ export const UserPasswordPage: React.FC = () => {
         >
           Save
           </ButtonSave>
+        <ButtonCancel
+          type='button'
+          name='submitAction'
+          value='Cancel'
+          onClick={toggleDisplay}
+        >
+          Cancel
+          </ButtonCancel>
       </UserForm>
     </>
   );

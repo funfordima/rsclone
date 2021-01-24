@@ -1,7 +1,116 @@
 import React, { useState } from 'react';
-import './Modal.scss';
+import styled from 'styled-components';
 import CityFilterSearch from '../CitySearch/CityFilterSearch';
 import CityFilterList from '../CitySearch/CityFilterList';
+
+const ModalContainer = styled.div`
+  position: fixed;
+  inset: 48px auto auto 172px;
+  transform-origin: left top;
+  width: 216px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.32);
+  border-radius: 2px;
+  background-color: #fff;
+  will-change: transform;
+  z-index: 2;
+
+  @media only screen and (max-width: 767px) and (min-width: 0) {
+    inset: 48px auto auto 1px;
+  }
+
+  @media only screen and (max-width: 479px) and (min-width: 0) {
+    opacity: 1;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transform-origin: center;
+
+  }
+`;
+
+const ModalElement = styled.div`
+  flex: 0 1 auto;
+  max-height: 360px;
+  display: flex;
+  flex-direction: column;
+
+  @media only screen and (max-width: 479px) {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+  }
+`;
+
+const ModalHeader = styled.div`
+  display: none;
+  color: #000;
+
+  @media only screen and (max-width: 479px) {
+    position: relative;
+    box-sizing: border-box;
+    display: block;
+    padding: 0 47px;
+    flex: 0 0 56px;
+    height: 56px;
+    line-height: 56px;
+    font-size: 18px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+`;
+
+const ModalBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  @media only screen and (max-width: 479px) {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 100%;
+}
+`;
+
+const ModalTitle = styled.span`
+`;
+
+const ModalIcon = styled.div`
+  position: absolute;
+  padding: 8px;
+  line-height: 0;
+  font-size: 2rem;
+  cursor: pointer;
+  touch-action: manipulation;
+
+  & span {
+    display: flex;
+    align-items: center;
+    fill: currentColor;
+    color: currentColor;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    touch-action: manipulation;
+    transform-origin: center center;
+  }
+
+  @media only screen and (max-width: 479px) {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 12px;
+  }
+`;
 
 export type cities = {
   description: string;
@@ -41,8 +150,7 @@ const Modal: React.FC<ModalProps> = ({ updateCityValue, closeModalCity }) => {
     })
   }
 
-  function changeCity(event: React.ChangeEvent<HTMLInputElement>): void {
-    console.log('change');
+  const changeCity = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setCityValue(() => event.target.value);
 
     fetch(url, options)
@@ -56,19 +164,26 @@ const Modal: React.FC<ModalProps> = ({ updateCityValue, closeModalCity }) => {
         }).reduce((acc, item) => !acc.some((el) => el.description === item.description || item.description === null) ? (acc.push(item), acc) : acc, []);
         setValue(() => cities);
       })
-      .catch(error => console.log('error', error));
+      .catch(error => console.error(error.message));
   }
 
   return (
-    <div className="modal__container">
-      <div className="modal">
-        <div className="modal__header">Header for mobile</div>
-        <div className="modal__body">
+    <ModalContainer>
+      <ModalElement>
+        <ModalHeader>
+          <ModalTitle>
+            Location
+          </ModalTitle>
+          <ModalIcon onClick={closeModalCity}>
+            <span>&times;</span>
+          </ModalIcon>
+        </ModalHeader>
+        <ModalBody>
           <CityFilterSearch changeCityInput={changeCity} />
           <CityFilterList cities={value} updateCity={updateCityValue} closeModalCity={closeModalCity} />
-        </div>
-      </div>
-    </div>
+        </ModalBody>
+      </ModalElement>
+    </ModalContainer>
   );
 };
 

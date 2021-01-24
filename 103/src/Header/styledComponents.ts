@@ -9,6 +9,10 @@ export const Form = styled.form`
   font-size: 16px;
   line-height: 24px;
   color: #000;
+
+  @media only screen and (max-width: 767px) and (min-width: 0) {
+   max-width: 280px;
+  }
 `;
 
 export const InputText = styled.input`
@@ -152,13 +156,14 @@ export const AlertSuccess = styled.div`
 `;
 
 export const BackButton = styled(NavLink)`
-  color: #fff;
   padding: 16px 16px 16px 0;
   display: inline-flex;
   flex-wrap: nowrap;
   align-items: center;
   font-size: 15px;
   line-height: 24px;
+  color: #fff;
+  text-decoration: none;
   transition-property: background-color, color;
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
@@ -179,6 +184,19 @@ export const BackButton = styled(NavLink)`
 
   &:hover {
     color: rgba(255,255,255,0.8);
+  }
+
+  @media only screen and (max-width: 767px) and (min-width: 0) {
+    padding: 20px 16px;
+    color: rgba(0,0,0,0.48);
+
+    &:hover {
+      color: rgba(0,0,0,0.8);
+    }
+
+    & svg {
+      background-color: rgba(0,0,0,0.1);
+    }
   }
 `;
 
@@ -275,10 +293,23 @@ export const Wrapper = styled.div`
   box-sizing: border-box;
   width: 450px;
   max-width: 100%;
+
+  @media only screen and (max-width: 767px) and (min-width: 0) {
+    width: 100%;
+    flex: 1;
+    display: flex;
+  }
 `;
 
 export const Content = styled.div`
   border-radius: 8px;
+
+  @media only screen and (max-width: 767px) and (min-width: 0) {
+    margin-top: 0;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
 `;
 
 export const ContentHeader = styled.div`
@@ -319,6 +350,10 @@ export const ContentHeader = styled.div`
       border-radius: 3px 3px 0 0;
     }
   }
+
+  @media only screen and (max-width: 767px) and (min-width: 0) {
+    padding: 24px 16px 0;
+  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -335,5 +370,12 @@ export const ContentWrapper = styled.div`
   & a {
     color: #0095cc;
     text-decoration: none;
+  }
+
+  @media only screen and (max-width: 767px) and (min-width: 0) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px 16px 16px;
   }
 `;

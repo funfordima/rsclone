@@ -11,7 +11,9 @@ import 'firebase/auth';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 const Header = styled.div`
-
+@media only screen and (max-width: 767px) and (min-width: 0) {
+    min-height: 32px;
+  }
 `;
 
 const config = {

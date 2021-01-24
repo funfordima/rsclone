@@ -57,10 +57,6 @@ export const ResetPage: React.FC<ResetPageProps> = ({ onResetPassword }) => {
     }
   }, ['body']);
 
-  const toggleErrorComponent = (isError: boolean): void => {
-    setErrorSignIn(isError);
-  }
-
   const changeUserEmail = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setEmail(event.target.value);
   };
