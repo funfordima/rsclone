@@ -1,6 +1,7 @@
 export type ClinicType = {
     _id: string,
     section: string,
+    subsection: string,
     title: string,
     country: string,
     city: string,
@@ -8,8 +9,9 @@ export type ClinicType = {
     workingHours: string | null,
     tel: string | null,
     description: string | null,
-    picters: Array<string> | null,
+    pictures: Array<string> | null,
     personnelID: Array<string> | null,
+    coordinates: Array<number>,
     complete: boolean
 }
 
@@ -26,7 +28,15 @@ export type DoctorType = {
     placeWork: string | null,
     idWork: string | null,
     tel: string | null,
-    picters: Array<string> | null,
+    pictures: Array<string> | null,
     complete: boolean
 }
 
+export type ArticleType = {
+    _id: string,
+    title: string,
+    subtitle: string | null,
+    text: string,
+    src: string | null,
+    complete: boolean
+}
