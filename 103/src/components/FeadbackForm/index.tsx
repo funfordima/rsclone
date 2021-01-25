@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 import { AlertSuccess } from '../../Header/styledComponents';
 
@@ -59,7 +59,7 @@ const TextArea = styled.textarea`
   box-sizing: border-box;
 `;
 
-const ButtonSave = styled.button`
+const ButtonSave = styled.input`
   padding: 13px 19px;
   display: inline-block;
   font-size: 14px;
@@ -93,13 +93,76 @@ const AlertError = styled.div`
 `;
 
 const FeedbackForm: React.FC = () => {
-  const [isError, setError] = useState('');
+  const [isErrorName, setErrorName] = useState('');
+  const [isErrorText, setErrorText] = useState('');
+  const [isErrorPhone, setErrorPhone] = useState('');
   const [isSuccess, setSuccess] = useState(false);
+  const [userReview, setUserReview] = useState({
+    name: '',
+    text: '',
+    phone: '',
+  });
+
+  const changeUserName = (event: ChangeEvent<HTMLInputElement>): void => {
+    setUserReview(() => ({ ...userReview, 'name': event.target.value.trim() }));
+    setErrorName('');
+  };
+
+  const changeUserText = (event: ChangeEvent<HTMLInputElement>): void => {
+    setUserReview(() => ({ ...userReview, 'text': event.target.value.trim() }));
+    setErrorText('');
+  };
+
+  const changeUserPhone = (event: ChangeEvent<HTMLInputElement>): void => {
+    setUserReview(() => ({ ...userReview, 'phone': event.target.value.toString().trim() }));
+    setErrorPhone('For Example: 380991453287');
+  };
+
+  const handleSubmitReview = (event: ChangeEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    const { name, text, phone } = userReview;
+    const minTextLength = 5;
+
+    switch (true) {
+      case (!name.match(/[a-zA-Z]{3,}/)): {
+        setErrorName('This field is required');
+        break;
+      }
+      case (text.length < minTextLength): {
+        setErrorText('This field is required');
+        break;
+      }
+      case (!phone.match(/^\d{10,12}$/)): {
+        setErrorPhone('This field is required');
+        break;
+      }
+      case (!name.match(/[a-zA-Z]{3,}/) || text.length < minTextLength || !phone.match(/^\d{10,12}$/)): {
+        setErrorName('This field is required');
+        setErrorText('This field is required');
+        setErrorPhone('This field is required');
+        break;
+      }
+      default: {
+        console.log('Send request');
+        // Обработка публикации отзыва на сервер
+
+        // fetch(url)
+        //   .then(() => {
+        //     setSuccess(true);
+
+        //     setTimeout(() => setSuccess(false), 1000);
+        //   })
+        //   .catch((error) => {
+        //     setError(error.message);
+        //   });
+      }
+    }
+  };
 
   return (
     <>
       <FeedbackFormWrapper>
-        <FormElement>
+        <FormElement onSubmit={handleSubmitReview}>
           <FeedbackTitle>
             LEAVE A REVIEW
           </FeedbackTitle>
@@ -110,18 +173,21 @@ const FeedbackForm: React.FC = () => {
               placeholder='Name'
               title='This field is required'
               required
+              value={userReview.name}
+              onChange={changeUserName}
             />
-            {isError && <AlertError>{isError}</AlertError>}
+            {isErrorName && <AlertError>{isErrorName}</AlertError>}
           </FeedbackInputContainer>
           <FeedbackInputContainer>
             <TextArea
               maxLength='1000'
-              name='feedback-text'
+              name='feedbackText'
               placeholder='Leave review'
               title='This field is required'
-              required
+              value={userReview.text}
+              onChange={changeUserText}
             />
-            {isError && <AlertError>{isError}</AlertError>}
+            {isErrorText && <AlertError>{isErrorText}</AlertError>}
           </FeedbackInputContainer>
           <FeedbackInputContainer>
             <InputReview
@@ -130,13 +196,16 @@ const FeedbackForm: React.FC = () => {
               placeholder='Phone'
               title='This field is required'
               required
+              value={userReview.phone}
+              onChange={changeUserPhone}
             />
-            {isError && <AlertError>{isError}</AlertError>}
+            {isErrorPhone && <AlertError>{isErrorPhone}</AlertError>}
           </FeedbackInputContainer>
           <FeedbackInputContainer>
-            <ButtonSave>
-              Submit comment
-            </ButtonSave>
+            <ButtonSave
+              type='submit'
+              value='Submit comment'
+            />
           </FeedbackInputContainer>
         </FormElement>
         {isSuccess && <AlertSuccess>Your review has been accepted. Thank you!</AlertSuccess>}

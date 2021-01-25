@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BackButton } from '../../Header/styledComponents';
+import FeedbackForm from '../FeadbackForm';
 
 const CatalogPageWrapper = styled.div`
   margin: 0 auto;
@@ -8,6 +9,7 @@ const CatalogPageWrapper = styled.div`
   width: 100%;
   max-width: 640px;
   display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
   overflow: hidden;
   position: relative;
@@ -19,7 +21,7 @@ const CatalogPageWrapper = styled.div`
     top: 0;
     z-index: 2;
     bottom: -30px;
-    border-right: 1px solid #e6e6e6;
+    // border-right: 1px solid #e6e6e6;
   }
 
   @media only screen and (max-width: 1000px) {
@@ -33,6 +35,10 @@ const BackLink = styled(BackButton)`
   color: rgba(0,0,0,.5);
   font: 400 12px/16px Roboto;
   text-transform: uppercase;
+
+  &:hover {
+    color: #000;
+  }
 `;
 
 const TitleContainer = styled.div`
@@ -61,6 +67,15 @@ const CountView = styled.span`
   font: 400 13px/16px Roboto;
   text-decoration: none;
   color: rgba(0,0,0,.5);
+
+  & svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    fill-opacity: .5;
+    margin-right: 8px;
+    vertical-align: bottom;
+  }
 `;
 
 const BodyTextContainer = styled.div`
@@ -69,6 +84,10 @@ const BodyTextContainer = styled.div`
   line-height: 24px;
   font-style: normal;
   font-weight: 400;
+
+  @media only screen and (max-width: 1000px) {
+    width: 90%;
+  }
 `;
 
 const ArticleText = styled.p`
@@ -78,7 +97,7 @@ const ArticleText = styled.p`
 `;
 
 const ImgContainer = styled.div`
-  width: calc(100vw - 300px);
+  width: 100%;
   margin-left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -157,6 +176,7 @@ const CatalogPage: React.FC<CatalogPageProps> = ({ title, authorName, articleDat
         </BodyTextContainer>
       </CatalogPageWrapper>
       <BorderBottom />
+      <FeedbackForm />
     </>
   );
 };
