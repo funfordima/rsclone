@@ -1,8 +1,9 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
-import defaultUserAvatar from '../../assets/images/chatbot/avatar.png';
+import defaultUserAvatar from '../../assets/images/chatbot/defaultUserAvatar.png';
 import HeaderForChatbot from './HeaderForChatbot';
+import FormForChatbot from './FormForChatbot';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/storage';
@@ -75,13 +76,19 @@ const SimpleChatbot: React.FC = () => {
 
         return true;
       },
-      trigger: 'Show email input'
+      trigger: "Finish",
     },
     {
       id: "Show email input",
       component: (
-        <div> This is an example component </div>
+        <FormForChatbot />
       ),
+      waitAction: true,
+      trigger: "Finish",
+    },
+    {
+      id: "Finish",
+      message: "Good! Well done!!!",
       end: true,
     },
   ];
@@ -95,10 +102,10 @@ const SimpleChatbot: React.FC = () => {
     botBubbleColor: "#00B2B2",
     botFontColor: "#fff",
     userBubbleColor: "#fafafa",
-    userFontColor: "#000"
+    userFontColor: "#00B2B2"
   };
 
-  const handleEndChat = ({ values }): void => {
+  const handleEndChat = ({ values }: Record<string, unknown>): void => {
     console.log('end input');
     console.log(values);
   };
@@ -110,7 +117,6 @@ const SimpleChatbot: React.FC = () => {
         floating='true'
         userAvatar={userAvatar}
         botAvatar={'https://vjoy.cc/wp-content/uploads/2020/11/klassnye-kartinki-i-fotki-v-shapke-na-avu-avatarku-podborka-2.jpg'}
-        // headerTitle="Speech Recognition"
         recognitionEnable={true}
         speechSynthesis={{ enable: true, lang: 'en' }}
         steps={steps}
