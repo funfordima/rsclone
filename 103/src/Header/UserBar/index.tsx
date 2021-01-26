@@ -113,10 +113,10 @@ const UserBar: React.FC = () => {
     <UserBarWrapper isOpenMenu={isOpenMenu} onClick={toggleMenu}>
       {isSignIn
         ? (<>
-          <UserBarPicture title={firebase.auth().currentUser.displayName}>
+          <UserBarPicture title={firebase.auth().currentUser?.displayName}>
             <img
-              src={firebase.auth().currentUser.photoURL}
-              alt={firebase.auth().currentUser.displayName}
+              src={firebase.auth().currentUser?.photoURL}
+              alt={firebase.auth().currentUser?.displayName}
             />
           </UserBarPicture>
           <UserBarName isOpenMenu={isOpenMenu}>{firebase.auth().currentUser.displayName}</UserBarName>
