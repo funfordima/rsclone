@@ -99,6 +99,27 @@ const AvatarInnerContainer = styled.div`
   }
 `;
 
+const TextContainer = styled.div`
+  padding: 4px 0;
+`;
+
+const Text = styled.div`
+  color: #ffffff;
+  font-style: normal;
+  font-size: 16px;
+  font-family: Helvetica, Arial !important;
+  line-height: 1.2;
+`;
+
+const LinkToEmail = styled.a`
+  margin: 0;
+  font-size: 12px;
+  font-weight: normal;
+  color: white;
+  line-height: 1;
+  font-family: Helvetica, Arial;
+`;
+
 const HeaderForChatbot: React.FC = () => {
   return (
     <HeaderWrapper>
@@ -110,6 +131,17 @@ const HeaderForChatbot: React.FC = () => {
           />
         </AvatarInnerContainer>
       </AvatarWrapper>
+      <TextContainer>
+        <Text>
+          Write to the administrator 103.ua
+        </Text>
+        <LinkToEmail
+          href="mailto:103.ua@gmail.com?subject=Advertising on 103.ua"
+          target="_blank"
+        >
+          Advertising on 103.ua
+        </LinkToEmail>
+      </TextContainer>
     </HeaderWrapper>
   );
 };

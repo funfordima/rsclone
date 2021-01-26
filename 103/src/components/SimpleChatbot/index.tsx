@@ -14,7 +14,7 @@ const SimpleChatbot: React.FC = () => {
   const steps = [
     {
       id: "Greet",
-      message: "Hello, Welcome!",
+      message: "Hello, I'm Anna!",
       trigger: "Ask Name",
     },
     {
@@ -106,7 +106,7 @@ const SimpleChatbot: React.FC = () => {
   return (
     <ThemeProvider theme={theme} >
       <ChatBot
-        // headerTitle={<HeaderForChatbot />}
+        headerTitle={<HeaderForChatbot />}
         floating='true'
         userAvatar={userAvatar}
         botAvatar={'https://vjoy.cc/wp-content/uploads/2020/11/klassnye-kartinki-i-fotki-v-shapke-na-avu-avatarku-podborka-2.jpg'}
