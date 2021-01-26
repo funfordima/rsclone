@@ -117,13 +117,14 @@ const FormForChatbot: React.FC<FormForChatbotProps> = ({ triggerNextStep }) => {
   };
 
   const handleSubmitForm = (event: ChangeEvent<HTMLFormElement>): boolean => {
-    event.preventDefault();
+    // event.preventDefault();
     const { name, city, email } = userMsg;
     const minNameLength = 3;
 
     if (name.length < minNameLength
       || city.match(/\d+/)
       || !email.match(/\S+@\S+\.\S+/)) {
+
       setError(true);
 
       return false;
