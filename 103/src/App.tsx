@@ -7,6 +7,7 @@ import { AuthorizationPage } from './Header/pages/AuthorizationPage';
 import { UserPage } from './Header/pages/UserPage';
 import { ResetPage } from './Header/pages/ResetPage';
 import CatalogPage from './components/CatalogPage';
+import SimpleChatbot from './components/SimpleChatbot';
 
 export const SignInContext = React.createContext();
 export const ResetPasswordContext = React.createContext();
@@ -54,6 +55,7 @@ const App: React.FC = () => {
                   'https://static.103.by/images/common/image_block_item/d8d06f02b0ef97038bdd93db3869bb36.jpg', 'https://static.103.by/images/common/image_block_item/00bc4712a75fd469242c191469a80b5f.jpg']}
               />
               <CatalogPage {...user} />
+              <SimpleChatbot />
             </Route>
             <Route path={'/authorization'} render={() => isSignedIn ? <Redirect to="/" /> : <AuthorizationPage onToggleEnterUser={toggleEnterUser} />} />
             <Route path={'/profile'} component={UserPage} />
