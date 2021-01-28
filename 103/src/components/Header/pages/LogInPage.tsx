@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { Form, InputText, FormField, TogglePassword, InputBtnSignIn, AlertSuccess } from '../styledComponents';
-import { ResetPasswordContext } from '../../App';
+import { ResetPasswordContext } from '../../../App';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';

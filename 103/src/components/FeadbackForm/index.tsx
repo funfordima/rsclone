@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
-import { AlertSuccess } from '../../Header/styledComponents';
+import { AlertSuccess } from '../Header/styledComponents';
 
 const FeedbackFormWrapper = styled.div`
   margin: 24px auto 60px auto;

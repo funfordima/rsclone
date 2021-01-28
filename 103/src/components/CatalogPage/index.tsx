@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BackButton } from '../../Header/styledComponents';
+import { BackButton } from '../Header/styledComponents';
 import FeedbackForm from '../FeadbackForm';
 
 const CatalogPageWrapper = styled.div`

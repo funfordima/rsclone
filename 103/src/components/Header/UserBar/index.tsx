@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { SignInContext } from '../../App';
+import { SignInContext } from '../../../App';
 import styled from 'styled-components';
 import { ModalUserBar } from '../ModalUserBar';
 import firebase from 'firebase/app';

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
-import CreateHeader from './Header/CreateHeader';
+import CreateHeader from './components/Header/CreateHeader';
 import MainServices from './components/mainServices/mainServices';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { AuthorizationPage } from './Header/pages/AuthorizationPage';
-import { UserPage } from './Header/pages/UserPage';
-import { ResetPage } from './Header/pages/ResetPage';
+import { AuthorizationPage } from './components/Header/pages/AuthorizationPage';
+import { UserPage } from './components/Header/pages/UserPage';
+import { ResetPage } from './components/Header/pages/ResetPage';
 import CatalogPage from './components/CatalogPage';
 import SimpleChatbot from './components/SimpleChatbot';
 
