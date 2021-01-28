@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "src/Header/styledComponents.ts", "src/Header/pages/RegistrationPage.tsx"  ]
 }
