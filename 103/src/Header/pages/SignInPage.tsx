@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Form, InputText, FormField, TogglePassword, InputBtnSignIn, FormFieldCaption, AlertError, AlertSuccess } from '../styledComponents';
+import { Form, InputText, FormField, TogglePassword, InputBtnSignIn, FormFieldCaption, AlertError } from '../styledComponents';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
 
 export const SignInPage: React.FC = () => {
   const [isError, setError] = useState('');
-  const [isSuccess, setSuccess] = useState('');
+  // const [isSuccess, setSuccess] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -74,14 +74,14 @@ export const SignInPage: React.FC = () => {
         user.updateProfile({
           displayName: `${firstName} ${lastName}`,
         }).then(() => {
-          setFirstName(firstName.toString());
-          setLastName(lastName.toString());
+          // setFirstName(firstName.toString());
+          // setLastName(lastName.toString());
         }).catch((error) => {
           setError(error.message);
         });
 
         user.updateEmail(`${email}`).then(() => {
-          setEmail(email);
+          // setEmail(email);
         }).catch((error) => {
           setError(error.message);
         });
@@ -129,7 +129,7 @@ export const SignInPage: React.FC = () => {
           Password must contains a lowercase letters, an uppercase letters, number and be at least 8 characters.
         </FormFieldCaption>
         {isError && <AlertError>{isError}</AlertError>}
-        {isSuccess && <AlertSuccess>{isSuccess}</AlertSuccess>}
+        {/* {isSuccess && <AlertSuccess>{isSuccess}</AlertSuccess>} */}
         <FormField>
           <InputText
             type="password"

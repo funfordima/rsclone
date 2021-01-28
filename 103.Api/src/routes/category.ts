@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import * as storage from '../storage/mongoArticles';
+import * as storage from '../storage/mongoCategory';
 
 const router = Router();
 

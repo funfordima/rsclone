@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { SignInContext } from '../../App';
 import styled from 'styled-components';
 import { ModalUserBar } from '../ModalUserBar';
-import './UserBar.scss';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
@@ -19,10 +18,18 @@ const UserBarWrapper = styled.div`
   transition-property: background-color;
   transition-duration: .24s;
   cursor: pointer;
+  position: absolute;
+  right: 0;
 
   &:hover {
     opacity: 1;
     background-color: rgba(0, 0, 0, 0.04);
+  }
+
+  @media only screen and (max-width: 959px) and (min-width: 0) {
+    flex: 0 0 auto;
+    position: absolute;
+    right: 0;
   }
 `;
 
@@ -62,11 +69,16 @@ const UserBarName = styled.span`
     transition-property: transform;
     transition-duration: .24s;
   }
+
+  @media only screen and (max-width: 479px) and (min-width: 0) {
+    display: none;
+  }
 `;
 
 const UserBarIcon = styled.span`
   display: flex;
   margin-right: 4px;
+  float: left;
 
   & svg {
     width: 24px;
@@ -76,6 +88,17 @@ const UserBarIcon = styled.span`
     transition-property: transform;
     transition-duration: .24s;
   }
+`;
+
+const UserBarText = styled.span`
+  @media only screen and (max-width: 479px) and (min-width: 0) {
+    display: none;
+  }
+`;
+
+const UserBarLink = styled(NavLink)`
+  text-decoration: none;
+  color: #fff;
 `;
 
 const UserBar: React.FC = () => {
@@ -90,14 +113,14 @@ const UserBar: React.FC = () => {
     <UserBarWrapper isOpenMenu={isOpenMenu} onClick={toggleMenu}>
       {isSignIn
         ? (<>
-          <UserBarPicture title={firebase.auth().currentUser.displayName}>
+          <UserBarPicture title={firebase.auth().currentUser?.displayName}>
             <img
-              src={firebase.auth().currentUser.photoURL}
-              alt={firebase.auth().currentUser.displayName}
+              src={firebase.auth().currentUser?.photoURL}
+              alt={firebase.auth().currentUser?.displayName}
             />
           </UserBarPicture>
           <UserBarName isOpenMenu={isOpenMenu}>{firebase.auth().currentUser.displayName}</UserBarName>
-          <span className="user-bar__icon">
+          <UserBarIcon>
             <svg
               id="icon-menu-down"
               viewBox="0 0 16 16"
@@ -119,11 +142,10 @@ const UserBar: React.FC = () => {
                 <path id="dfXMLID_9_" d="M8 11L2.7 5.7l.6-.6L8 9.8l4.7-4.7.6.6z" />
               </g>
             </svg>
-          </span>
+          </UserBarIcon>
           {isOpenMenu && <ModalUserBar />}
         </>)
-        : (<NavLink
-          className="user-bar__link"
+        : (<UserBarLink
           to="/authorization"
         >
           <UserBarIcon>
@@ -144,8 +166,8 @@ const UserBar: React.FC = () => {
               />
             </svg>
           </UserBarIcon>
-          <span className="user-bar__text">Login</span>
-        </NavLink>)
+          <UserBarText>Login</UserBarText>
+        </UserBarLink>)
       }
     </UserBarWrapper>
   );
