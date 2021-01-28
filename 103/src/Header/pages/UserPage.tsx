@@ -69,7 +69,7 @@ export const UserPage: React.FC = () => {
   }, ['body']);
 
   const toggleActivePage = (): void => {
-    setDisplay(!display);
+    setDisplay(!isDisplay);
   }
 
   return (
