@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import { YMaps, Map, Placemark } from "react-yandex-maps";
+import { YMaps, Map, Placemark, FullscreenControl, ZoomControl } from "react-yandex-maps";
 import CitiesCoordinates from './citiesCoordinates';
 import { ClinicType } from '../../types';
 import './popup.css';
@@ -33,9 +33,11 @@ const MapClinics: React.FC<MapProps> = ( { city, clinics } ) => {
 
     return (
         <YMaps>
-            <Map width="35vw" height="400px" 
+            <Map width="35vw" height="100vh" 
                 defaultState={ mapData } modules={ ["layout.ImageWithContent"] }>
                 { Placemarks }
+                <FullscreenControl />
+                <ZoomControl options={{ float: 'right' }} />
             </Map>
         </YMaps>
     )
