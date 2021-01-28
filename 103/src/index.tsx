@@ -7,7 +7,7 @@ import MainServices from './components/mainServices/mainServices';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
+    <App />
     <MainServices 
       serviceName = {'Новый год 2021 в санаториях Беларуси'}
       serviceLinks = {['#', '#', '#', '#', '#', '#']}
