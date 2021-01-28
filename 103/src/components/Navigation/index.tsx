@@ -13,22 +13,22 @@ const Navigation: React.FC<INavigation> = ({
   categoriesList,
   subCategoriesList,
 }) => {
-  const [currentItem, setCurrentItem] = useState<number | null>(null);
+  const [currentItem, setCurrentItem] = useState<string | null>(null);
 
-  const handleClick = (id: number | null): void => {
+  const handleClick = (id: string | null): void => {
     currentItem !== id ? setCurrentItem(id) : setCurrentItem(null);
   };
 
   return (
     <div className="navigation">
       <CategoriesMenu
-        value={currentItem}
-        onChange={handleClick}
+        currentItem={currentItem}
+        handleClick={handleClick}
         categoriesList={categoriesList}
       />
       <CategoriesSubMenu
-        value={currentItem}
-        onChange={handleClick}
+        currentItem={currentItem}
+        handleClick={handleClick}
         subCategoriesList={subCategoriesList}
       />
     </div>

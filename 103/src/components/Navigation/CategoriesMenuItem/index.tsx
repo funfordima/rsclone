@@ -5,7 +5,7 @@ import { ICategories } from '../../../interfaces/interfaces';
 
 interface IItem {
   item: ICategories;
-  onHandleClick: (index: number) => void;
+  onHandleClick: (id: string) => void;
   active: boolean;
 }
 
@@ -15,7 +15,7 @@ const CategoriesMenuItem: React.FC<IItem> = ({
   active,
 }) => {
   const handleClick = () => {
-    onHandleClick(item.id);
+    onHandleClick(item._id);
   };
 
   return (

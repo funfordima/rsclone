@@ -6,35 +6,35 @@ import { ISubCategory } from '../../../interfaces/interfaces';
 
 interface ISubCategoriesList {
   subCategoriesList: any;
-  value: number | null;
-  onChange: (index: number | null) => void;
+  currentItem: string | null;
+  handleClick: (id: string | null) => void;
 }
 
 const CategoriesSubMenu: React.FC<ISubCategoriesList> = ({
   subCategoriesList,
-  value,
-  onChange,
+  currentItem,
+  handleClick,
 }) => {
   let subCategoriesMenu: ISubCategory[] = [];
 
   subCategoriesList.forEach((subCategories: any) => {
-    subCategories.categoriesListId === value
+    subCategories.categoriesListId === currentItem
       ? (subCategoriesMenu = subCategories.subCategoriesMenu)
       : null;
   });
 
-  const handleClick = (event: any): void => {
+  const onHandleClick = (event: any): void => {
     event.preventDefault();
-    onChange(null);
+    handleClick(null);
   };
 
   return (
     <div
-      className={value === null ? 'categorySubMenu' : 'categorySubMenu active'}
+      className={currentItem === null ? 'categorySubMenu' : 'categorySubMenu active'}
     >
       <button
         className="categoriesSubMenu-button-close"
-        onClick={handleClick}
+        onClick={onHandleClick}
       ></button>
       <div className="categorySubMenu-row">
         {

@@ -6,11 +6,11 @@ import { ICategories } from '../../../interfaces/interfaces';
 
 interface INavigation {
   categoriesList: ICategories[];
-  value: number | null;
-  onChange: (index: number | null) => void;
+  currentItem: string | null;
+  handleClick: (id: string | null) => void;
 }
 
-const CategoriesMenu: React.FC<INavigation> = ({ categoriesList, value, onChange }) => {
+const CategoriesMenu: React.FC<INavigation> = ({ categoriesList, currentItem, handleClick }) => {
 
   return (
     <>
@@ -19,10 +19,10 @@ const CategoriesMenu: React.FC<INavigation> = ({ categoriesList, value, onChange
           {categoriesList.map((item) => {
             return (
               <CategoriesMenuItem
-                key={item.id}
+                key={item._id}
                 item={item}
-                onHandleClick={onChange}
-                active={item.id === value}
+                onHandleClick={handleClick}
+                active={item._id === currentItem}
               />
             );
           })}

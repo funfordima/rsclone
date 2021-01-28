@@ -1,5 +1,5 @@
 export interface ICategories {
-  id: number,
+  _id: string,
   icon: string,
   name: string,
   subcategories?: ISubCategory[],
@@ -14,4 +14,5 @@ export interface ISubCategory {
 export interface ISubcategoriesItem {
   name: string,
   path: string,
+  complete: boolean,
 }
