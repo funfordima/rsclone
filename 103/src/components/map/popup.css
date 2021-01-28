@@ -1,0 +1,22 @@
+.ymaps-2-1-78-balloon_layout_panel {
+    max-width: 300px;
+    border-radius: 6px;
+    background-color: #ffc3c3 !important;
+}
+
+
+.ymaps-2-1-78-balloon__layout {
+    max-width: 300px;
+    border-radius: 6px;
+    background-color: #ffc3c3 !important;
+}
+
+.ymaps-2-1-78-balloon.ymaps-2-1-78-balloon_layout_normal.ymaps-2-1-78-balloon_to_top.ymaps-2-1-78-i-custom-scroll {
+    border-radius: 6px;
+
+}
+
+.ymaps-2-1-78-balloon__content > ymaps {
+    max-width: 230px;
+    height: 60px !important;
+}
