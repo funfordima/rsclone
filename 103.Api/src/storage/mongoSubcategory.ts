@@ -1,9 +1,9 @@
 import { Collection, MongoClient } from 'mongodb';
-import { DoctorType } from '../types/index';
+import { Subcategory } from '../types/index';
 
 const dbName = 'RSShool';
 const url = `mongodb+srv://anastaisafedotova:2020rsscool@cluster.dlqi4.mongodb.net/${dbName}?retryWrites=true&w=majority`;
-const collectionName = 'doctors';
+const collectionName = 'subcategory';
 
 const getMongoInstance = async () => {
   const client = await MongoClient.connect(url);
@@ -29,7 +29,7 @@ const getById = async (id: string) => {
   return await collection.findOne({ id });
 };
 
-const create = async (item: DoctorType) => {
+const create = async (item: Subcategory) => {
   const collection = await getCollection();
 
   const response = await  collection.insertOne(item);
@@ -37,7 +37,7 @@ const create = async (item: DoctorType) => {
   return response.ops[0];
 };
 
-const update = async (item: DoctorType) => {
+const update = async (item: Subcategory) => {
   const collection = await getCollection();
 
   const id = item._id;
