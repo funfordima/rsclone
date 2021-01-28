@@ -1,7 +1,6 @@
 export type ClinicType = {
     _id: string,
     section: string,
-    subsection: string,
     title: string,
     country: string,
     city: string,
@@ -9,9 +8,8 @@ export type ClinicType = {
     workingHours: string | null,
     tel: string | null,
     description: string | null,
-    pictures: Array<string> | null,
+    picters: Array<string> | null,
     personnelID: Array<string> | null,
-    coordinates: Array<number>,
     complete: boolean
 }
 
@@ -28,7 +26,7 @@ export type DoctorType = {
     placeWork: string | null,
     idWork: string | null,
     tel: string | null,
-    pictures: Array<string> | null,
+    picters: Array<string> | null,
     complete: boolean
 }
 
@@ -38,5 +36,31 @@ export type ArticleType = {
     subtitle: string | null,
     text: string,
     src: string | null,
+    complete: boolean
+}
+
+export type Category = {
+    _id: string,
+    name: string,
+    icon: string
+}
+
+export type Subcategory = {
+    _id: string,
+    itemsMenu: Array<SubcategoriesMenu>,
+    categoriesId: string
+}
+
+export type SubcategoriesMenu = {
+    _id: string,
+    icon: string,
+    title: string | null,
+    items: Array<SubcategoriesItem>
+}
+
+export type SubcategoriesItem = {
+    _id: string,
+    name: string,
+    path: string,
     complete: boolean
 }
