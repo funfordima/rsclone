@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { SignInContext } from '../../App';
+import { SignInContext } from '../../../App';
 import styled from 'styled-components';
 import { ModalUserBar } from '../ModalUserBar';
+import { ReactComponent as ArrowDown } from '../public/arrow-down.svg';
+import { ReactComponent as IconUserHeader } from '../public/icon-user-header.svg';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
@@ -87,6 +89,7 @@ const UserBarIcon = styled.span`
     transform-origin: center center;
     transition-property: transform;
     transition-duration: .24s;
+    transform: ${props => props.isOpenMenu ? 'rotateZ(180deg)' : ''};
   }
 `;
 
@@ -120,28 +123,8 @@ const UserBar: React.FC = () => {
             />
           </UserBarPicture>
           <UserBarName isOpenMenu={isOpenMenu}>{firebase.auth().currentUser.displayName}</UserBarName>
-          <UserBarIcon>
-            <svg
-              id="icon-menu-down"
-              viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g id="dfXMLID_4_">
-                <path id="dfXMLID_2_" d="M49 11.1l-5.5-5.4.5-.5 5 5.1 5-5.1.5.5z" />
-              </g>
-              <path id="dfXMLID_5_" className="dfst0" d="M-26 0h16v16h-16z" />
-              <g id="dfXMLID_6_">
-                <path
-                  id="dfXMLID_3_"
-                  className="dfst1"
-                  d="M-20.5 5.5l-5.3 5.2-5.2-5.2"
-                />
-                <path id="dfXMLID_1_" className="dfst2" d="M-26 0h16v16h-16z" />
-              </g>
-              <g id="dfXMLID_7_">
-                <path id="dfXMLID_9_" d="M8 11L2.7 5.7l.6-.6L8 9.8l4.7-4.7.6.6z" />
-              </g>
-            </svg>
+          <UserBarIcon isOpenMenu={isOpenMenu}>
+            <ArrowDown />
           </UserBarIcon>
           {isOpenMenu && <ModalUserBar />}
         </>)
@@ -149,22 +132,7 @@ const UserBar: React.FC = () => {
           to="/authorization"
         >
           <UserBarIcon>
-            <svg
-              viewBox="0 0 24 24"
-              id="icon-user-header"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M12 4.6a4.2 4.2 0 1 0 0 8.4 4.2 4.2 0 0 0 0-8.4zM6.3 8.8a5.7 5.7 0 1 1 11.4 0 5.7 5.7 0 0 1-11.4 0z"
-              />
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M12 17.2c-3 0-5.7 1.4-7.4 3.6-.3.3-.7.4-1 .2a.7.7 0 0 1-.2-1 11 11 0 0 1 17.2 0c.3.3.2.7-.1 1-.4.2-.8.1-1-.2a9.6 9.6 0 0 0-7.5-3.6z"
-              />
-            </svg>
+            <IconUserHeader />
           </UserBarIcon>
           <UserBarText>Login</UserBarText>
         </UserBarLink>)

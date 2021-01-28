@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { Form, InputText, FormField, TogglePassword, InputBtnSignIn, AlertSuccess } from '../styledComponents';
-import { ResetPasswordContext } from '../../App';
+import { ResetPasswordContext } from '../../../App';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
@@ -31,7 +31,15 @@ interface LogInPageProps {
   toggleEnterUser: (value: boolean) => void;
 }
 
-export class LogInPage extends React.Component<LogInPageProps> {
+interface LogInPageState {
+  'email': string;
+  'password': string;
+  'isSignIn': boolean;
+  'isChangeEmail': string;
+  'isOpenPassword': boolean;
+}
+
+export class LogInPage extends React.Component<LogInPageProps, LogInPageState> {
   constructor(props: LogInPageProps) {
     super(props);
     this.state = {
@@ -39,12 +47,14 @@ export class LogInPage extends React.Component<LogInPageProps> {
       'password': '',
       'isSignIn': false,
       'isChangeEmail': '',
+      'isOpenPassword': false,
     };
-    this.openPasswordRef = React.createRef();
   }
 
   toggleVisiblePassword = (): void => {
-    this.openPasswordRef.current.previousElementSibling.setAttribute('type', this.openPasswordRef.current.previousElementSibling.getAttribute('type') === 'text' ? 'password' : 'text');
+    this.setState(({ isOpenPassword }) => ({
+      'isOpenPassword': !isOpenPassword,
+    }));
   }
 
   handleChangeInput = ({ target: { value, id } }: React.ChangeEvent<HTMLInputElement>): void => {
@@ -86,7 +96,6 @@ export class LogInPage extends React.Component<LogInPageProps> {
         <ResetPasswordContext.Consumer>
           {context => context && <AlertSuccess>{context}</AlertSuccess>}
         </ResetPasswordContext.Consumer>
-        {/* {ResetPasswordContext && <AlertSuccess>{ResetPasswordContext}</AlertSuccess>} */}
         < Form >
           <FormField>
             <InputText
@@ -99,19 +108,17 @@ export class LogInPage extends React.Component<LogInPageProps> {
               onChange={this.handleChangeInput}
             />
           </FormField>
-          {/* {!this.state.isSignIn && <AlertError>{this.state.isSignIn}</AlertError>} */}
           <FormField>
             <InputPassword
               tabIndex="2"
               id="password"
               name="password"
               placeholder="Password"
-              type="password"
+              type={this.state.isOpenPassword ? "text" : "password"}
               autocomplete="off"
               onChange={this.handleChangeInput}
             />
             <TogglePassword
-              ref={this.openPasswordRef}
               onClick={this.toggleVisiblePassword}
             />
           </FormField>
@@ -143,70 +150,3 @@ export class LogInPage extends React.Component<LogInPageProps> {
     );
   }
 }
-
-// export const LogInPage: React.FC = () => {
-//   const [value, setValue] = useState({});
-
-//   const toggleChecked = (): void => {
-//     console.log(1);
-//   };
-
-//   const toggleVisiblePassword = (event: React.MouseEvent): void => {
-//     const span = event.target;
-//     span.previousElementSibling.setAttribute('type', span.previousElementSibling.getAttribute('type') === 'text' ? 'password' : 'text');
-//   };
-
-//   const handleChangeInput = ({ target: { value, id } }: React.ChangeEvent<HTMLInputElement>): void => {
-//     setValue({
-//       [id]: value,
-//     });
-//   }
-
-//   return (
-//     <Form>
-//       <InputText
-//         tabIndex="1"
-//         id="email"
-//         name="username"
-//         placeholder="E-mail"
-//         type="text"
-//         autocomplete="off"
-//         onChange={handleChangeInput}
-//       />
-//       <FormField>
-//         <InputPassword
-//           tabIndex="2"
-//           id="password"
-//           name="password"
-//           placeholder="Password"
-//           type="password"
-//           autocomplete="off"
-//           onChange={handleChangeInput}
-//         />
-//         <TogglePassword onClick={toggleVisiblePassword} />
-//       </FormField>
-//       <FormOptions>
-//         <div>
-//           <label htmlFor="rememberMe">
-//             <input
-//               tabIndex="3"
-//               id="rememberMe"
-//               name="rememberMe"
-//               type="checkbox"
-//               checked
-//               onChange={toggleChecked}
-//             />
-//             Remember Me
-//           </label>
-//         </div>
-//         <NavLink to="/">Forgot password?</NavLink>
-//         <InputBtnSignIn
-//           tabIndex="4"
-//           type="submit"
-//           value="LogIn"
-//           name="login"
-//         />
-//       </FormOptions>
-//     </Form>
-//   );
-// };

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { LogInPage } from './LogInPage';
 import { SignInPage } from './SignInPage';
 import { SocialBefore, AlertError, BackButton, Wrapper, Content, ContentHeader, ContentWrapper } from '../styledComponents';
+import { ReactComponent as ArrowLeft } from '../public/arrow-left.svg';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
@@ -68,13 +69,7 @@ export const AuthorizationPage: React.FC<AuthorizationPageProps> = ({ onToggleEn
         <Content>
           <Header>
             <BackButton to="/">
-              <svg
-                width="24"
-                height="24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M9.3 7.5a.4.4 0 010-.7c.3-.2.6-.1.8 0l4.6 4.9v.6L10 17.1c-.2.2-.5.3-.7 0a.4.4 0 010-.6l4.2-4.5-4.3-4.5z" />
-              </svg>
+              <ArrowLeft />
               <span>103.ua</span>
             </BackButton>
           </Header>

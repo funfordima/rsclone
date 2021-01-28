@@ -52,10 +52,6 @@ export const UserContentPage: React.FC<UserContentPageProps> = ({ toggleDisplay 
     [name, surname] = user?.displayName.split(' ');
   }
   const mail = user?.email || '';
-  // const photo = user?.photoURL || '';
-  // const [firstName, setFirstName] = useState(name);
-  // const [lastName, setLastName] = useState(surname);
-  // const [email, setEmail] = useState(mail);
 
   const [stateUser, setStateUser] = useState({
     'firstName': name,
@@ -82,19 +78,16 @@ export const UserContentPage: React.FC<UserContentPageProps> = ({ toggleDisplay 
 
   const changeName = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setStateUser(() => ({ ...stateUser, 'firstName': event.target.value.trim() }));
-    // setFirstName(event.target.value.trim());
     setError('');
   };
 
   const changeLastName = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setStateUser(() => ({ ...stateUser, ...{ 'lastName': event.target.value.trim() } }));
-    // setLastName(event.target.value.trim());
     setError('');
   };
 
   const changeEmail = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setStateUser(() => ({ ...stateUser, ...{ 'email': event.target.value.trim() } }));
-    // setEmail(event.target.value.trim());
     setError('');
   };
 
@@ -113,18 +106,11 @@ export const UserContentPage: React.FC<UserContentPageProps> = ({ toggleDisplay 
     user.updateProfile({
       displayName: `${stateUser.firstName} ${stateUser.lastName}`,
       photoURL: `${isPhoto}`,
-    }).then(() => {
-      // setFirstName(firstName.toString());
-      // setLastName(lastName.toString());
-      // set Image Name
     }).catch((error) => {
       setError(error.message);
     });
 
-    user.updateEmail(`${stateUser.email}`).then(() => {
-      // setEmail(email);
-      //set Email
-    }).catch((error) => {
+    user.updateEmail(`${stateUser.email}`).catch((error) => {
       setError(error.message);
     });
 
@@ -143,13 +129,10 @@ export const UserContentPage: React.FC<UserContentPageProps> = ({ toggleDisplay 
       'email': mail
     });
     toggleDisplay();
-    // setFirstName(name);
-    // setLastName(name);
-    // setEmail(mail);
   };
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const selectedFile = event.target!.files[0];
+    const selectedFile = event.target.files[0] || null;
     const reader = new FileReader();
 
     if (!selectedFile.type.match('image.*')) {
