@@ -44,7 +44,8 @@ export type ArticleType = {
 export type Category = {
     _id: string,
     name: string,
-    icon: string
+    icon: string,
+    path: string,
 }
 
 export type Subcategory = {
