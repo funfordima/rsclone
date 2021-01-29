@@ -120,7 +120,7 @@ const LinkToEmail = styled.a`
   font-family: Helvetica, Arial;
 `;
 
-const HeaderForChatbot: React.FC<HeaderForChatbotProps> = () => {
+const HeaderForChatbot: React.FC = () => {
   return (
     <>
       <HeaderWrapper>
