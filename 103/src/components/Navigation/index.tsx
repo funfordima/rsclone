@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
-import CategoriesMenu from './CategoriesMenu';
-import CategoriesSubMenu from './CategoriesSubMenu';
+import './index.scss';
 
-import { ICategories } from '../../interfaces/interfaces';
+import CategoriesItem from './CategoriesItem';
+import { Category } from '../../types';
 
 interface INavigation {
-  categoriesList: ICategories[];
-  subCategoriesList: any;
+  categoriesList: Category[];
 }
 
-const Navigation: React.FC<INavigation> = ({
-  categoriesList,
-  subCategoriesList,
-}) => {
+const Navigation: React.FC<INavigation> = ({ categoriesList }) => {
   const [currentItem, setCurrentItem] = useState<string | null>(null);
 
   const handleClick = (id: string | null): void => {
@@ -21,16 +17,20 @@ const Navigation: React.FC<INavigation> = ({
 
   return (
     <div className="navigation">
-      <CategoriesMenu
-        currentItem={currentItem}
-        handleClick={handleClick}
-        categoriesList={categoriesList}
-      />
-      <CategoriesSubMenu
-        currentItem={currentItem}
-        handleClick={handleClick}
-        subCategoriesList={subCategoriesList}
-      />
+      <nav className="menu">
+        <div className="categories-menu">
+          {categoriesList.map((item) => {
+            return (
+              <CategoriesItem
+                key={item._id}
+                item={item}
+                active={item._id === currentItem}
+                onHandleClick={handleClick}
+              />
+            );
+          })}
+        </div>
+      </nav>
     </div>
   );
 };
