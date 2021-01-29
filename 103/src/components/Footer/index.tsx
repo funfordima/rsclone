@@ -20,9 +20,15 @@ const FooterLineContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
+
+  @media (max-width: 500px) and (min-width: 0) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const FooterLogoLink = styled(NavLink)`
+  margin-right: 1rem;
   flex: 0 0 124px;
   
   & svg {
@@ -38,6 +44,21 @@ const AuthorContainer = styled.div`
   display: flex;
   font: 13px Roboto;
   text-align: right;
+
+  @media (max-width: 500px) and (min-width: 0) {
+    justify-content: space-between;
+    width: 60%;
+  }
+`;
+
+const SchoolContainer = styled(AuthorContainer)`
+  display: flex;
+  font: 13px Roboto;
+  text-align: right;
+
+  @media (max-width: 767px) and (min-width: 0) {
+    display: none;
+  }
 `;
 
 const AuthorWrapper = styled.div`
@@ -48,6 +69,14 @@ const AuthorWrapper = styled.div`
     height: 2rem;
     margin-left: 1rem;
     transition: .3s;
+
+    @media (max-width: 560px) and (min-width: 0) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 560px) and (min-width: 0) {
+    padding-right: 0;
   }
 `;
 
@@ -64,18 +93,30 @@ const Author = styled.a`
   }
 `;
 
+const ShareContainer = styled.div`
+  display: flex;
+
+  @media (max-width: 500px) and (min-width: 0) {
+    justify-content: space-between;
+    width: 100%;
+  }
+`;
+
 const Footer: React.FC = () => {
   return (
     <>
       <FooterWrapper>
         <FooterLineContainer>
-          <FooterLogoLink to="/" title="logo" aria-label="logo">
-            <LogoSvg />
-          </FooterLogoLink>
-          <YandexShare
-            content={{ title: '103 RS Clone' }}
-            theme={{ lang: 'en', services: 'vkontakte,facebook,linkedin', dataLimit: '3' }}
-          />
+          <ShareContainer>
+            <FooterLogoLink to="/" title="logo" aria-label="logo">
+              <LogoSvg />
+            </FooterLogoLink>
+            <YandexShare
+              content={{ title: '103 RS Clone' }}
+              theme={{ className: "ya-share2", lang: 'en', services: 'vkontakte,facebook,linkedin', dataLimit: "0", dataMoreButtonType: "short" }}
+            />
+          </ShareContainer>
+
           <AuthorContainer>
             <AuthorWrapper>
               <Author href='https://github.com/znakay'>
@@ -94,12 +135,12 @@ const Footer: React.FC = () => {
               </Author>
             </AuthorWrapper>
           </AuthorContainer>
-          <AuthorContainer>
-            <AuthorContainer href='https://rs.school/js/'>
+          <SchoolContainer>
+            <Author href='https://rs.school/js/'>
               <RSLogoSvg />
               RSClone by RS SCHOOL @&nbsp;2021
-            </AuthorContainer>
-          </AuthorContainer>
+            </Author>
+          </SchoolContainer>
         </FooterLineContainer>
       </FooterWrapper>
     </>
