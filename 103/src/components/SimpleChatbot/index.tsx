@@ -9,8 +9,11 @@ import 'firebase/auth';
 import 'firebase/storage';
 import emailjs from 'emailjs-com';
 
+export const EnabledVolumeContext = React.createContext(false);
+
 const SimpleChatbot: React.FC = () => {
   const user = firebase.auth().currentUser;
+
   // const storageRef = firebase.storage().ref().child(user?.email + '/profile.jpg');
   const userAvatar = user?.photoURL || defaultUserAvatar;
   const steps = [
@@ -38,7 +41,6 @@ const SimpleChatbot: React.FC = () => {
       id: "Waiting user input message",
       user: true,
       trigger: (previousValue: Record<string, unknown>) => {
-        console.log(previousValue.value);
         return "Ask contact information";
       },
     },
@@ -128,10 +130,8 @@ const SimpleChatbot: React.FC = () => {
         Please, contact me: ${phone ? phone : email} 
         My subject is: ${subject} city: ${city}`,
     }, 'user_Byn4mRCUn0EZbJWxvefwH')
-      .then((result) => {
-        console.log(result.text);
-      }, (error) => {
-        console.log(error.text);
+      .catch((error) => {
+        console.error(error.text);
       });
   };
 

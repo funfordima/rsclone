@@ -10,7 +10,7 @@ import CatalogPage from './components/CatalogPage';
 import SimpleChatbot from './components/SimpleChatbot';
 
 export const SignInContext = React.createContext(false);
-export const ResetPasswordContext = React.createContext(false);
+export const ResetPasswordContext = React.createContext('');
 
 const App: React.FC = () => {
   const [isSignedIn, setSignedIn] = useState(false);

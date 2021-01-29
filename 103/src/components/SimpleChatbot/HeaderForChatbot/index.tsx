@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import chatbotHeaderImg from '../../../assets/images/chatbot/header-img.jpg';
+import { ReactComponent as Volume } from '../../../assets/images/chatbot/volume.svg';
 
 const HeaderWrapper = styled.div`
   position: relative;
@@ -120,29 +121,31 @@ const LinkToEmail = styled.a`
   font-family: Helvetica, Arial;
 `;
 
-const HeaderForChatbot: React.FC = () => {
+const HeaderForChatbot: React.FC<HeaderForChatbotProps> = () => {
   return (
-    <HeaderWrapper>
-      <AvatarWrapper>
-        <AvatarInnerContainer>
-          <img
-            src={chatbotHeaderImg}
-            alt='chatbot header image'
-          />
-        </AvatarInnerContainer>
-      </AvatarWrapper>
-      <TextContainer>
-        <Text>
-          Write to the administrator 103.ua
-        </Text>
-        <LinkToEmail
-          href="mailto:103.ua@gmail.com?subject=Advertising on 103.ua"
-          target="_blank"
-        >
-          Advertising on 103.ua
-        </LinkToEmail>
-      </TextContainer>
-    </HeaderWrapper>
+    <>
+      <HeaderWrapper>
+        <AvatarWrapper>
+          <AvatarInnerContainer>
+            <img
+              src={chatbotHeaderImg}
+              alt='chatbot header image'
+            />
+          </AvatarInnerContainer>
+        </AvatarWrapper>
+        <TextContainer>
+          <Text>
+            Write to the administrator 103.ua
+          </Text>
+          <LinkToEmail
+            href="mailto:103.ua@gmail.com?subject=Advertising on 103.ua"
+            target="_blank"
+          >
+            Advertising on 103.ua
+          </LinkToEmail>
+        </TextContainer>
+      </HeaderWrapper>
+    </>
   );
 };
 
