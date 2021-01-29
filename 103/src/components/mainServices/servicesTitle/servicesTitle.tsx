@@ -1,7 +1,7 @@
 import React from 'react';
 import './servicesTitle.css';
 
-export interface servicesTitleProps {
+interface servicesTitleProps {
   title: string
 }
 
