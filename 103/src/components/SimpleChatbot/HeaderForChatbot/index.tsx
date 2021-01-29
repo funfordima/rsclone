@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import chatbotHeaderImg from '../../../assets/images/chatbot/header-img.jpg';
-import { ReactComponent as Volume } from '../../../assets/images/chatbot/volume.svg';
 
 const HeaderWrapper = styled.div`
   position: relative;
