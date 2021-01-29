@@ -12,6 +12,7 @@ import SimpleChatbot from './components/SimpleChatbot';
 import { doctors, clinics, comments, category, subcategory, articles } from './api';
 import { ArticleType, Category, ClinicType, DoctorType, Subcategory, Comment } from './types'
 import Footer from './components/Footer';
+import ArticlePage from './components/ArticlePage';
 
 export const SignInContext = React.createContext(false);
 export const ResetPasswordContext = React.createContext('');
@@ -99,6 +100,7 @@ const App: React.FC = () => {
                 ]}
               />
               <CatalogPage {...user} />
+              <ArticlePage />
               <SimpleChatbot />
               <Footer />
             </Route>
