@@ -7,9 +7,13 @@ import FormForChatbot from './FormForChatbot';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/storage';
+import emailjs from 'emailjs-com';
+
+export const EnabledVolumeContext = React.createContext(false);
 
 const SimpleChatbot: React.FC = () => {
   const user = firebase.auth().currentUser;
+
   // const storageRef = firebase.storage().ref().child(user?.email + '/profile.jpg');
   const userAvatar = user?.photoURL || defaultUserAvatar;
   const steps = [
@@ -37,7 +41,6 @@ const SimpleChatbot: React.FC = () => {
       id: "Waiting user input message",
       user: true,
       trigger: (previousValue: Record<string, unknown>) => {
-        console.log(previousValue.value);
         return "Ask contact information";
       },
     },
@@ -71,7 +74,7 @@ const SimpleChatbot: React.FC = () => {
       user: true,
       validator: (value: number) => {
         if (isNaN(value) || !value.toString().match(/^\d{12}$/)) {
-          return 'phone must contains only numbers, for example: 380991478563'
+          return 'For example: 380991478563'
         }
 
         return true;
@@ -105,20 +108,43 @@ const SimpleChatbot: React.FC = () => {
     userFontColor: "#00B2B2"
   };
 
-  const handleEndChat = ({ values }: Record<string, unknown>): void => {
-    console.log('end input');
-    console.log(values);
+  const handleEndChat = ({ values }: any[]): void => {
+    const [name, subject, _, contactToConnect] = values;
+    const toString = Object.prototype.toString;
+    let phone = '';
+    let city = '';
+    let email = '';
+
+    if (toString.call(contactToConnect) === '[object Object]') {
+      city = contactToConnect.city;
+      email = contactToConnect.email;
+    } else {
+      phone = contactToConnect;
+    }
+
+
+    emailjs.send("service_qp93pei", "template_50xktp7", {
+      from_name: `${email ? email : "rsclonedefault@gmail.com"}`,
+      to_name: "Admin",
+      message: `Hello! I'm ${name}! 
+        Please, contact me: ${phone ? phone : email} 
+        My subject is: ${subject} city: ${city}`,
+    }, 'user_Byn4mRCUn0EZbJWxvefwH')
+      .catch((error) => {
+        console.error(error.text);
+      });
   };
 
   return (
     <ThemeProvider theme={theme} >
       <ChatBot
         headerTitle={<HeaderForChatbot />}
+        inputStyle={{ 'fontSize': '14px' }}
         floating='true'
         userAvatar={userAvatar}
         botAvatar={'https://vjoy.cc/wp-content/uploads/2020/11/klassnye-kartinki-i-fotki-v-shapke-na-avu-avatarku-podborka-2.jpg'}
         recognitionEnable={true}
-        speechSynthesis={{ enable: true, lang: 'en' }}
+        speechSynthesis={{ enable: false, lang: 'en' }}
         steps={steps}
         handleEnd={handleEndChat}
       />

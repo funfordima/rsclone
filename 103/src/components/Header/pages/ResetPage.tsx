@@ -40,7 +40,7 @@ const FormInfo = styled.div`
 `;
 
 interface ResetPageProps {
-  onResetPassword: () => void;
+  onResetPassword: (isReset: string) => void;
 }
 
 export const ResetPage: React.FC<ResetPageProps> = ({ onResetPassword }) => {

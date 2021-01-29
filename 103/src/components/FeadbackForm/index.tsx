@@ -162,7 +162,7 @@ const FeedbackForm: React.FC = () => {
   return (
     <>
       <FeedbackFormWrapper>
-        <FormElement onSubmit={handleSubmitReview}>
+        <FormElement onSubmit={handleSubmitReview} action={'./sendMail.php'} method="POST">
           <FeedbackTitle>
             LEAVE A REVIEW
           </FeedbackTitle>

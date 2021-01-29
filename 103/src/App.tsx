@@ -12,7 +12,7 @@ import { doctors, clinics, comments, category, subcategory, articles } from './a
 import { ArticleType, Category, ClinicType, DoctorType, Subcategory, Comment } from './types'
 
 export const SignInContext = React.createContext(false);
-export const ResetPasswordContext = React.createContext(false);
+export const ResetPasswordContext = React.createContext('');
 
 const App: React.FC = () => {
   useEffect(() => {
