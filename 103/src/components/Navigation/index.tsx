@@ -1,38 +1,23 @@
-import React, { useState } from 'react';
-import CategoriesMenu from './CategoriesMenu';
-import CategoriesSubMenu from './CategoriesSubMenu';
+import React from 'react';
+import './index.scss';
 
-import { ICategories } from '../../interfaces/interfaces';
+import CategoriesItem from './CategoriesItem';
+import { Category } from '../../types';
 
 interface INavigation {
-  categoriesList: ICategories[];
-  subCategoriesList: any;
+  categoriesList: Category[];
 }
 
-const Navigation: React.FC<INavigation> = ({
-  categoriesList,
-  subCategoriesList,
-}) => {
-  const [currentItem, setCurrentItem] = useState<string | null>(null);
-
-  const handleClick = (id: string | null): void => {
-    currentItem !== id ? setCurrentItem(id) : setCurrentItem(null);
-  };
-
-  return (
-    <div className="navigation">
-      <CategoriesMenu
-        currentItem={currentItem}
-        handleClick={handleClick}
-        categoriesList={categoriesList}
-      />
-      <CategoriesSubMenu
-        currentItem={currentItem}
-        handleClick={handleClick}
-        subCategoriesList={subCategoriesList}
-      />
-    </div>
-  );
-};
+const Navigation: React.FC<INavigation> = ({ categoriesList }) => (
+  <div className="navigation">
+    <nav className="menu">
+      <div className="categories-menu">
+        {categoriesList.map(item => {
+          return <CategoriesItem key={item._id} item={item} />;
+        })}
+      </div>
+    </nav>
+  </div>
+);
 
 export default Navigation;
