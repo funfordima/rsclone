@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import LogoSvg from '../Header/LogoSvg';
+import YandexShare from 'react-yandex-share';
 
 const FooterWrapper = styled.div`
   background-color: #fff;
@@ -39,6 +40,10 @@ const Footer: React.FC = () => {
           <FooterLogoLink to="/" title="logo" aria-label="logo">
             <LogoSvg />
           </FooterLogoLink>
+          <YandexShare
+            content={{ title: '103 RS Clone' }}
+            theme={{ lang: 'en', services: 'vkontakte,facebook,linkedin', dataLimit: '3' }}
+          />
         </FooterLineContainer>
       </FooterWrapper>
     </>
