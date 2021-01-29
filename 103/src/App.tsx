@@ -11,6 +11,7 @@ import CatalogPage from './components/CatalogPage';
 import SimpleChatbot from './components/SimpleChatbot';
 import { doctors, clinics, comments, category, subcategory, articles } from './api';
 import { ArticleType, Category, ClinicType, DoctorType, Subcategory, Comment } from './types'
+import Footer from './components/Footer';
 
 export const SignInContext = React.createContext(false);
 export const ResetPasswordContext = React.createContext('');
@@ -20,7 +21,7 @@ const App: React.FC = () => {
     setData();
   }, []);
 
-  const [isLoaded, setIsloaded] = useState(false); 
+  const [isLoaded, setIsloaded] = useState(false);
   const [dataDoctors, setDataDoctorsState] = useState<DoctorType[]>([]);
   const [dataClinics, setDataClinicsState] = useState<ClinicType[]>([]);
   const [dataComments, setDataComments] = useState<Comment[]>([]);
@@ -56,15 +57,11 @@ const App: React.FC = () => {
   const [isResetPassword, setResetPassword] = useState('');
 
   const toggleEnterUser = (isSign: boolean): void => {
-    console.log('test sign app');
     setSignedIn(isSign);
-    console.log(isSign);
   };
 
   const resetUserPassword = (isReset: string): void => {
-    console.log('reset app');
     setResetPassword(isReset);
-    console.log(isResetPassword);
   };
 
   const user = {
@@ -88,7 +85,7 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path={'/'}>
               <CreateHeader />
-              <Clinic whatIsIt={'Медицинский центр'} thisName={'SANTE'} thisAddress={'Минск, ул. Тростенецкая, 3'} thisPhone={'+375294356839'} thisDescription={'Медицинский центр «Sante (Санте)» —  современный клинико-диагностический центр в Минске, оказывающий  широкий спектр медицинских услуг населению. Работа центра базируется на двух принципах: высокие требования к квалификации специалистов и бережное отношение к каждому пациенту.'}/>
+              <Clinic whatIsIt={'Медицинский центр'} thisName={'SANTE'} thisAddress={'Минск, ул. Тростенецкая, 3'} thisPhone={'+375294356839'} thisDescription={'Медицинский центр «Sante (Санте)» —  современный клинико-диагностический центр в Минске, оказывающий  широкий спектр медицинских услуг населению. Работа центра базируется на двух принципах: высокие требования к квалификации специалистов и бережное отношение к каждому пациенту.'} />
               <MainServices
                 serviceName={'Новый год 2021 в санаториях Беларуси'}
                 serviceLinks={['#', '#', '#', '#', '#', '#']}
@@ -103,6 +100,7 @@ const App: React.FC = () => {
               />
               <CatalogPage {...user} />
               <SimpleChatbot />
+              <Footer />
             </Route>
             <Route
               path={'/authorization'}
@@ -110,8 +108,8 @@ const App: React.FC = () => {
                 isSignedIn ? (
                   <Redirect to="/" />
                 ) : (
-                  <AuthorizationPage onToggleEnterUser={toggleEnterUser} />
-                )
+                    <AuthorizationPage onToggleEnterUser={toggleEnterUser} />
+                  )
               }
             />
             <Route path={'/profile'} component={UserPage} />
@@ -121,8 +119,8 @@ const App: React.FC = () => {
                 isResetPassword ? (
                   <Redirect to="/authorization" />
                 ) : (
-                  <ResetPage onResetPassword={resetUserPassword} />
-                )
+                    <ResetPage onResetPassword={resetUserPassword} />
+                  )
               }
             />
           </Switch>
