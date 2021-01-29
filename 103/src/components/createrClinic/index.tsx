@@ -20,6 +20,14 @@ const CreaterText = styled.p`
     @media only screen and (max-width: 767px) and (min-width: 0) {
         display: none;
     }
+    &.creater-clinic__text_large {
+        font-size: 16px;
+        text-align: center;
+        color: rgb(0, 0, 0);
+        @media only screen and (max-width: 767px) and (min-width: 0) {
+            display: inline-block;
+        }
+    }
 `;
 
 const CreaterPopupWrap = styled.div`
@@ -40,9 +48,6 @@ const CreaterPopupWrap = styled.div`
         justify-content: center;
         align-items: center;
     }
-    &.creater-clinic__popup {
-        
-    }
 `
 
 const CreaterPopup = styled.div`
@@ -56,6 +61,10 @@ const CreaterPopup = styled.div`
     height: 80vh;
     background-color: #ffffff;
     border-radius: 8px;
+    &.creater-clinic__window {
+        width: 50vw;
+        height: 40vh;
+    }
 `
 
 const CreaterInput = styled.input`
@@ -213,8 +222,8 @@ const CreaterClinic: React.FC = () => {
                 </CreaterPopup>
             </CreaterPopupWrap>
             <CreaterPopupWrap className={ isOpenPopup ? "creater-clinic__popup creater-clinic__popup_opened" : "creater-clinic__popup"}>
-                <CreaterPopup>
-                    <CreaterText>
+                <CreaterPopup className="creater-clinic__window">
+                    <CreaterText className="creater-clinic__text_large">
                         В ближашее время с вами свяжется администратор для уточнения информации.
                         Компания появится в списке с пометкой &quot;на проверке&quot;.
                     </CreaterText>
