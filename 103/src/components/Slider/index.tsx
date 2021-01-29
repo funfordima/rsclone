@@ -1,6 +1,7 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
+import { ArticleType } from '../../types';
 
 import styled from 'styled-components';
 
@@ -136,23 +137,11 @@ const SwiperWrapper = styled.div`
   }
 `;
 
-const Slider: React.FC = () => {
-  let slides = Array.from({ length: 4 }).map((_, index) => {
-    return {
-      link: `/${index + 1}`,
-      label: `Тема дня ${index + 1}`,
-      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-      backgroundImage:
-        'https://static.103.by/images/common/journal/background_logos/4a9e362ea514af80a90a1cf936627c54.png',
-    };
-  });
+interface IArticleType {
+  dataArticles: ArticleType[];
+}
 
-  slides = slides.map(ob => {
-    ob.backgroundImage = `url(${ob.backgroundImage})`;
-    return ob;
-  });
-
-  return (
+const Slider: React.FC<IArticleType> = ({ dataArticles }) => (
     <SwiperWrapper>
       <Swiper
         spaceBetween={0}
@@ -161,19 +150,21 @@ const Slider: React.FC = () => {
         pagination={{ clickable: true }}
         loop={true}
       >
-        {slides.map(({ label, title, link, backgroundImage }, index) => {
+        {dataArticles.map(({ src, title }, index) => {
+          const backgroundImage = {
+            backgroundImage: `url(${src})`,
+          };
+
           return (
             <SwiperSlide key={index}>
-              <a href={link} className="slide" style={{ backgroundImage }}>
-                <h3 className="TopJournalGallery__label">{label}</h3>
-                <p className="TopJournalGallery__title">{title}</p>
+              <a href="/" className="slide" style={backgroundImage}>
+                <h3 className="TopJournalGallery__title">{title}</h3>
               </a>
             </SwiperSlide>
           );
         })}
       </Swiper>
     </SwiperWrapper>
-  );
-};
+);
 
 export default Slider;
