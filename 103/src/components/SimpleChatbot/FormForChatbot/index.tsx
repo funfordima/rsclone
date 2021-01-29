@@ -117,7 +117,7 @@ const FormForChatbot: React.FC<FormForChatbotProps> = ({ triggerNextStep }) => {
   };
 
   const handleSubmitForm = (event: ChangeEvent<HTMLFormElement>): boolean => {
-    // event.preventDefault();
+    event.preventDefault();
     const { name, city, email } = userMsg;
     const minNameLength = 3;
 
@@ -129,9 +129,7 @@ const FormForChatbot: React.FC<FormForChatbotProps> = ({ triggerNextStep }) => {
 
       return false;
     } else {
-      console.log('Send request');
       setError(false);
-      // Обработка отправки сообщения на почту админа
       triggerNextStep({ value: userMsg, trigger: 'Finish' });
 
       return true;
