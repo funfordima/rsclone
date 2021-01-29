@@ -6,6 +6,7 @@ import doctorRouter from './routes/doctors';
 import articlesRouter from './routes/articles';
 import categoryRouter from './routes/category';
 import subcategoryRouter from './routes/subcategory';
+import commentsRouter from './routes/comments';
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use('/doctors', doctorRouter);
 app.use('/articles', articlesRouter);
 app.use('/category', categoryRouter);
 app.use('/subcategory', subcategoryRouter);
+app.use('/comments', commentsRouter);
 
 app.use(function(req, res, next) {
   res.json({
