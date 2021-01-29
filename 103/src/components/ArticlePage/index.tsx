@@ -6,6 +6,11 @@ const Wrapper = styled.div`
   margin: 0 auto;
   max-width: 1240px;
   width: 100%;
+
+  @media (max-width: 960px) {
+    max-width: 640px;
+    width: 90%;
+  }
 `;
 
 const Container = styled.div`
