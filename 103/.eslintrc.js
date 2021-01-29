@@ -24,6 +24,6 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-        "react/prop-types": 0
+        "react/prop-types": 0,
     }
 };

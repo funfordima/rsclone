@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import * as storage from '../storage/mongoArticles';
 
-
 const router = Router();
 
 router.get('/', async (req, res, next) => {
@@ -11,7 +10,6 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   const item = await storage.getById(req.params['_id']);
-
 
   res.status(item ? 200 : 404)
       .json(item ?? {
@@ -40,6 +38,5 @@ router.delete('/:id', async (req, res, next) => {
     .status(404)
     .json(null);
 });
-
 
 export default router;
