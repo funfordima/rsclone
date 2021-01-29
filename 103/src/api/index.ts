@@ -1,4 +1,4 @@
-import { ClinicType, DoctorType, ArticleType, Category, Subcategory } from "../types";
+import { ClinicType, DoctorType, ArticleType, Category, Subcategory, Comment } from "../types";
 
 const Service = async function<T>(src: string) : Promise<Array<T>> {
     const data = (await (await fetch(src)).json());
@@ -10,3 +10,4 @@ export const clinics = Service<ClinicType>("https://rs-wars-clone.herokuapp.com/
 export const articles = Service<ArticleType>("https://rs-wars-clone.herokuapp.com/articles");
 export const category = Service<Category>("https://rs-wars-clone.herokuapp.com/category");
 export const subcategory = Service<Subcategory>("https://rs-wars-clone.herokuapp.com/subcategory");
+export const comments= Service<Comment>("https://rs-wars-clone.herokuapp.com/comments");
