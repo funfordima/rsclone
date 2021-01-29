@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import CreateHeader from './components/Header/CreateHeader';
 import MainServices from './components/mainServices/mainServices';
@@ -8,11 +8,49 @@ import { UserPage } from './components/Header/pages/UserPage';
 import { ResetPage } from './components/Header/pages/ResetPage';
 import CatalogPage from './components/CatalogPage';
 import SimpleChatbot from './components/SimpleChatbot';
+import { doctors, clinics, comments, category, subcategory, articles } from './api';
+import { ArticleType, Category, ClinicType, DoctorType, Subcategory, Comment } from './types'
 
 export const SignInContext = React.createContext(false);
 export const ResetPasswordContext = React.createContext('');
 
 const App: React.FC = () => {
+  useEffect(() => {
+    setData();
+  }, []);
+
+  const [isLoaded, setIsloaded] = useState(false); 
+  const [dataDoctors, setDataDoctorsState] = useState<DoctorType[]>([]);
+  const [dataClinics, setDataClinicsState] = useState<ClinicType[]>([]);
+  const [dataComments, setDataComments] = useState<Comment[]>([]);
+  const [dataCategory, setDataCategory] = useState<Category[]>([]);
+  const [dataSubcategory, setDataSubcategory] = useState<Subcategory[]>([]);
+  const [dataArticles, setDataArticles] = useState<ArticleType[]>([]);
+
+  const setData = async () => {
+    const dataDoctors: Array<DoctorType> = await doctors;
+    const dataClinics: Array<ClinicType> = await clinics;
+    const dataComments: Array<Comment> = await comments;
+    const dataCategory: Array<Category> = await category;
+    const dataSubcategory: Array<Subcategory> = await subcategory;
+    const dataArticles: Array<ArticleType> = await articles;
+
+    setDataDoctorsState(dataDoctors);
+    setDataClinicsState(dataClinics);
+    setDataComments(dataComments);
+    setDataCategory(dataCategory);
+    setDataSubcategory(dataSubcategory);
+    setDataArticles(dataArticles);
+    setIsloaded(true);
+  };
+  if (isLoaded) {
+    console.log(dataDoctors);
+    console.log(dataClinics);
+    console.log(dataComments);
+    console.log(dataCategory);
+    console.log(dataSubcategory);
+    console.log(dataArticles);
+  }
   const [isSignedIn, setSignedIn] = useState(false);
   const [isResetPassword, setResetPassword] = useState('');
 

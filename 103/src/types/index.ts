@@ -66,3 +66,11 @@ export type SubcategoriesItem = {
     path: string,
     complete: boolean
 }
+
+export type Comment = {
+    _id: string,
+    idArticle: string,
+    userName: string,
+    message: string,
+    complete: boolean
+}
