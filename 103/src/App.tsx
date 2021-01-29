@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import CreaterClinic from './components/createrClinic';
 import CreateHeader from './Header/CreateHeader';
+import CreaterClinic from './components/createrClinic'
 
 const App: React.FC = () => {
   return (

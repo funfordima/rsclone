@@ -22,7 +22,7 @@ const CreaterText = styled.p`
     }
 `;
 
-const CreaterFormWrap = styled.div`
+const CreaterPopupWrap = styled.div`
     z-index: 11;
     position: absolute;
     top: 0;
@@ -35,9 +35,17 @@ const CreaterFormWrap = styled.div`
         justify-content: center;
         align-items: center;
     }
+    &.creater-clinic__popup_opened {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &.creater-clinic__popup {
+        
+    }
 `
 
-const CreaterForm = styled.form`
+const CreaterPopup = styled.div`
     z-index: 11;
     display: flex;
     align-items: center;
@@ -88,7 +96,7 @@ const CreaterButton = styled.div`
     }
 `
 
-const CreaterFormButton = styled.button`
+const CreaterPopupButton = styled.button`
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -117,17 +125,67 @@ const CreaterFormButton = styled.button`
 `
 
 const CreaterClinic: React.FC = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpenForm, setIsOpenForm] = useState(false);
+    const [isOpenPopup, setIsOpenPopup] = useState(false);
+    const [country, setСountry] = useState("");
+    const [city, setCity] = useState("");
+    const [section, setSection] = useState("");
+    const [subsection, setSubsection] = useState("");
+    const [address, setAddress] = useState("");
+    const [title, setTitle] = useState("");
+    const [workingHours, setWorkingHours] = useState("");
+    const [tel, setTel] = useState("");
+    const [description, setDescription] = useState("");
     const openPopup = (event: React.MouseEvent<HTMLDivElement, MouseEvent> & { target: Element }) => {
         event.preventDefault();
         if (event.target.tagName === 'FORM' || event.target.tagName === 'INPUT' || event.target.tagName === 'BUTTON') return;
-        setIsOpen(!isOpen);
+        setIsOpenForm(!isOpenForm);
     }
 
-    const submitForm = (event: React.MouseEvent<HTMLDivElement, MouseEvent> & { target: Element }) => {
+    const submitForm = (event: { preventDefault: () => void }) => {
         event.preventDefault();
-        if (event.target.tagName === 'FORM' || event.target.tagName === 'INPUT' || event.target.tagName === 'BUTTON') return;
-        setIsOpen(!isOpen);
+        if (!section.trim() || !subsection.trim() || !title.trim() ||
+        !country.trim() || !city.trim() || !address.trim() || !workingHours.trim()
+        || !tel.trim() || !description.trim()) {
+            alert('Все поля обязательны для заполнения');
+            return;
+        }
+        const clinic  = {
+            section: section,
+            subsection: subsection,
+            title: title,
+            country: country,
+            city: city,
+            address: address,
+            workingHours: workingHours,
+            tel: tel,
+            description: description,
+            personnelID: null,
+            coordinates: null,
+            complete: false
+        };
+
+        const req = async () => await fetch('https://rs-wars-clone.herokuapp.com/clinics', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify(clinic)
+        });
+
+        req();
+
+        setСountry("");
+        setCity("");
+        setSection("");
+        setSubsection("");
+        setAddress("");
+        setTitle("");
+        setWorkingHours("");
+        setTel("");
+        setDescription("");
+        setIsOpenForm(false);
+        setIsOpenPopup(true);
     }
 
     return (
@@ -138,22 +196,33 @@ const CreaterClinic: React.FC = () => {
             <CreaterButton className="creater-clinic__btn" onClick={ openPopup }>
                 Добавить компанию
             </CreaterButton>
-            <CreaterFormWrap className={ isOpen ? "creater-clinic__popup creater-clinic__popup__opened" : "creater-clinic__popup"} onClick={ openPopup }>
-                <CreaterForm>
-                    <CreaterInput type="text" placeholder="Страна" />
-                    <CreaterInput type="text" placeholder="Город" />
-                    <CreaterInput type="text" placeholder="Название" />
-                    <CreaterInput type="text" placeholder="Категория" />
-                    <CreaterInput type="text" placeholder="Город" />
-                    <CreaterInput type="text" placeholder="Андрес" />
-                    <CreaterInput type="text" placeholder="Часы работы" />
-                    <CreaterInput type="text" placeholder="Контактный телефон" />
-                    <CreaterInput type="text" placeholder="Описание" />
-                    <CreaterFormButton onClick={ submitForm }>
+            <CreaterPopupWrap className={ isOpenForm ? "creater-clinic__popup creater-clinic__popup__opened" : "creater-clinic__popup"} onClick={ openPopup }>
+                <CreaterPopup className="creater-clinic__form">
+                    <CreaterInput type="text" onChange={ (e) => setСountry(e.target.value) } placeholder="* Страна" required value={ country } />
+                    <CreaterInput type="text" onChange={ (e) => setCity(e.target.value) } placeholder="* Город" required value={ city } />
+                    <CreaterInput type="text" onChange={ (e) => setSection(e.target.value) } placeholder="* Категория" required value={ section } />
+                    <CreaterInput type="text" onChange={ (e) => setSubsection(e.target.value) } placeholder="* Специализация" required value={ subsection } />
+                    <CreaterInput type="text" onChange={ (e) => setTitle(e.target.value) } placeholder="* Название" required value={ title } />
+                    <CreaterInput type="text" onChange={ (e) => setAddress(e.target.value) } placeholder="* Андрес" required value={ address } />
+                    <CreaterInput type="text" onChange={ (e) => setWorkingHours(e.target.value) } placeholder="* Часы работы (8.00 - 12.00)" required value={ workingHours } />
+                    <CreaterInput type="text" onChange={ (e) => setTel(e.target.value) } placeholder="* Контактный телефон" required value={ tel } />
+                    <CreaterInput type="text" onChange={ (e) => setDescription(e.target.value) } placeholder="* Описание" required value={ description } />
+                    <CreaterPopupButton className="creater-clinic__btn" type="submit" onClick={ submitForm }>
                         Отправить
-                    </CreaterFormButton>
-                </CreaterForm>
-            </CreaterFormWrap>
+                    </CreaterPopupButton>
+                </CreaterPopup>
+            </CreaterPopupWrap>
+            <CreaterPopupWrap className={ isOpenPopup ? "creater-clinic__popup creater-clinic__popup_opened" : "creater-clinic__popup"}>
+                <CreaterPopup>
+                    <CreaterText>
+                        В ближашее время с вами свяжется администратор для уточнения информации.
+                        Компания появится в списке с пометкой &quot;на проверке&quot;.
+                    </CreaterText>
+                    <CreaterPopupButton type="button" onClick={() => setIsOpenPopup(false)}>
+                        ок
+                    </CreaterPopupButton>
+                </CreaterPopup>
+            </CreaterPopupWrap>
         </CreaterWrapper>
     )
 }
