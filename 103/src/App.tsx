@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import CreateHeader from './components/Header/CreateHeader';
 import MainServices from './components/mainServices/mainServices';
-import Clinic from './components/clinics/clinics';
+import Clinics from './components/clinics/clinics';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { AuthorizationPage } from './components/Header/pages/AuthorizationPage';
 import { UserPage } from './components/Header/pages/UserPage';
@@ -11,7 +11,7 @@ import Navigation from './components/Navigation';
 import CatalogPage from './components/CatalogPage';
 import SimpleChatbot from './components/SimpleChatbot';
 import { doctors, clinics, comments, category, subcategory, articles } from './api';
-import { ArticleType, Category, ClinicType, DoctorType, Subcategory, Comment } from './types'
+import { ArticleType, Category, ClinicType, DoctorType, Subcategory, Comment } from './types';
 import Footer from './components/Footer';
 import ArticlePage from './components/ArticlePage';
 
@@ -84,8 +84,8 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path={'/'}>
               <CreateHeader />
+              <Clinics clinics={dataClinics} />
               <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
-              <Clinic whatIsIt={'Медицинский центр'} thisName={'SANTE'} thisAddress={'Минск, ул. Тростенецкая, 3'} thisPhone={'+375294356839'} thisDescription={'Медицинский центр «Sante (Санте)» —  современный клинико-диагностический центр в Минске, оказывающий  широкий спектр медицинских услуг населению. Работа центра базируется на двух принципах: высокие требования к квалификации специалистов и бережное отношение к каждому пациенту.'} />
               <MainServices
                 serviceName={'Новый год 2021 в санаториях Беларуси'}
                 serviceLinks={['#', '#', '#', '#', '#', '#']}
