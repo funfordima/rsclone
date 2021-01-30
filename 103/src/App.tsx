@@ -48,8 +48,6 @@ const App: React.FC = () => {
     setIsloaded(true);
   };
 
-  console.log(dataArticles, 1111);
-
   if (isLoaded) {
     console.log(dataDoctors);
     console.log(dataClinics);

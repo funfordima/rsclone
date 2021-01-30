@@ -120,7 +120,7 @@ export const ReviewBox: React.FC<ReviewBoxProps> = ({ reviewsArticle, countRevie
             {subtitle}
           </ReviewBoxHeaderSubTitle>
         </ReviewBoxHeaderTitleContainer>
-        <ReviewAllLink to="/reviews">
+        <ReviewAllLink to="/review">
           Все отзывы
           <ArrowLeftSvg />
         </ReviewAllLink>

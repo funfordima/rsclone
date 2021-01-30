@@ -137,7 +137,6 @@ type ArticleType = {
   countView: number
 }
 
-
 interface CatalogPageProps {
   dataArticles: ArticleType;
   reviews: reviewType[];
@@ -145,7 +144,6 @@ interface CatalogPageProps {
 }
 
 const CatalogPage: React.FC<CatalogPageProps> = ({ dataArticles, reviews, countReviews }) => {
-  console.log(dataArticles);
   const { title, subtitle, articleDate, countView, text, src } = dataArticles;
 
   return (
@@ -182,7 +180,11 @@ const CatalogPage: React.FC<CatalogPageProps> = ({ dataArticles, reviews, countR
       </CatalogPageWrapper>
       <BorderBottom />
       <CatalogPageWrapper>
-        <ReviewBox reviewsArticle={reviews} countReviews={countReviews} subtitle={subtitle} />
+        <ReviewBox
+          reviewsArticle={reviews}
+          countReviews={countReviews}
+          subtitle={subtitle}
+        />
       </CatalogPageWrapper>
       <BorderBottom />
       <FeedbackForm />

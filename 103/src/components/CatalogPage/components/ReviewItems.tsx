@@ -119,7 +119,7 @@ interface ReviewItemsProps {
 export const ReviewItems: React.FC<ReviewItemsProps> = ({ reviews }) => {
   return (
     <>
-      {reviews.map(({ _id, idArticle, userName, message, complete }) => {
+      {reviews.map(({ _id, userName, message, complete }) => {
         return (
           <ReviewItemElement key={_id}>
             <ReviewTime>
