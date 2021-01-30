@@ -59,9 +59,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ articles, getIdForCatalogPage
           </Title>
         </HeaderContainer>
         <BodyArticles>
-          <Switch>
-            <ArticleList articles={articles} setIdForCatalogPage={getIdForCatalogPage} />
-          </Switch>
+          <ArticleList articles={articles} setIdForCatalogPage={getIdForCatalogPage} />
         </BodyArticles>
       </Container>
     </Wrapper>

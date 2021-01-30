@@ -136,6 +136,7 @@ const App: React.FC = () => {
               }
             />
             <Route
+              exact
               path="/journal"
               render={() => (
                 <>
@@ -147,7 +148,7 @@ const App: React.FC = () => {
               }
             />
             <Route
-              path={`/journal/${idCatalogPage}`}
+              path={`/journal/article`}
               render={() => (
                 <>
                   <CreateHeader />

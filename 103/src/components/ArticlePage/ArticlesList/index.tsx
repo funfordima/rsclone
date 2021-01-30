@@ -122,7 +122,7 @@ const ArticlesList: React.FC<ArticlesListProps> = ({ articles, setIdForCatalogPa
       {articles.map(({ title, src, _id, countView }) => {
         return (
           <ArticleListItem key={_id}>
-            <ArticleListImgLink to={`journal/${_id}`} onClick={() => setIdForCatalogPage(_id)}>
+            <ArticleListImgLink to={`journal/article`} onClick={() => setIdForCatalogPage(_id)}>
               <ArticleImg
                 src={src}
                 alt={title}
@@ -131,7 +131,7 @@ const ArticlesList: React.FC<ArticlesListProps> = ({ articles, setIdForCatalogPa
             <BackToMainArticleLink to='/journal'>
               Журнал
             </BackToMainArticleLink>
-            <TitleArticleLink to={`journal/${_id}`} onClick={() => setIdForCatalogPage(_id)}>
+            <TitleArticleLink to={`journal/article`} onClick={() => setIdForCatalogPage(_id)}>
               {title}
             </TitleArticleLink>
             <ViewCountContainer>
