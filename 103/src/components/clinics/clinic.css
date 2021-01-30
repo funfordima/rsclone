@@ -1,101 +1,24 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 ::selection {
-    background-color: #b3d4fc;
-    color: #000;
-    text-shadow: none;
+  background-color: #b3d4fc;
+  color: #000;
+  text-shadow: none;
 }
 
 .clinic-container {
-    width: 45%;
-    min-width: 688px;
-    background-color: #e2e2e2;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 15px;
+  width: 45%;
+  min-width: 688px;
+  background-color: #f5f5f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 15px;
 }
 
 .place-list {
-    margin-top: 16px;
-}
-
-.clinic-wrapper {
-    margin: 0 16px;
-    padding: 16px;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 4%);
-    font-size: 13px;
-    line-height: 20px;
-}
-
-.clinic-wrapper:not(:first-child) {
-    margin-top: 16px;
-}
-
-.clinic-what-is-it {
-    text-transform: uppercase;
-    color: rgba(0,0,0,.48);
-    letter-spacing: .08em;
-    font-size: 12px;
-    white-space: nowrap;
-    margin-bottom: 8px;
-    line-height: 16px;
-}
-
-.clinic-info-wrapper {
-    padding-bottom: 0;
-    margin-bottom: 16px;
-    width: 100%;
-}
-
-.clinic-name {
-    padding-right: 8px;
-    font-size: 21px;
-    line-height: 24px;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: rgba(0,0,0, 0.8);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    vertical-align: top;
-}
-
-.other-info-div {
-    margin-top: 4px;
-    color: rgba(0,0,0, 0.96);;
-}
-
-.this-address {
-    max-width: 100%;
-    margin-right: 4px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.this-time {
-    position: relative;
-    padding-left: 14px;
-}
-
-.work-marker {
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    left: 3px;
-    width: 4px;
-    height: 4px;
-    margin-top: -1px;
-    border-radius: 50%;
-    background-color: #ed4343;
-    vertical-align: middle;
-}
-
-.work-marker--opened {
-    background-color: #21c286;
+  margin-top: 16px;
 }
