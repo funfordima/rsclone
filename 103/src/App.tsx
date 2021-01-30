@@ -60,6 +60,7 @@ const App: React.FC = () => {
   const [isSignedIn, setSignedIn] = useState(false);
   const [isResetPassword, setResetPassword] = useState('');
   const [idCatalogPage, setIdCatalogPage] = useState('');
+  const [currentPageId, setCurrentPageId] = useState<string | null>(null);
 
   const toggleEnterUser = (isSign: boolean): void => {
     setSignedIn(isSign);
@@ -74,20 +75,6 @@ const App: React.FC = () => {
     console.log(value);
   };
 
-  const user = {
-    title: 'Как бороться с паническими атаками? Советы невролога',
-    authorName: 'Тылец Александра, 21 января',
-    text:
-      'Часто пациенты с приступами паники вынуждены обращаться к профильным врачам, чтобы избавиться от сопутствующих последствий этих состояний. У некоторых на пике паники подскакивает давление, возникают боли в сердце и учащенное сердцебиение. А кому-то во время приступа не хватает воздуха, так что появляется ощущение удушья. Врач-невролог Анатолий Нимчук дал несколько советов, как действовать во время панической атаки.',
-    imgSrc:
-      'https://static.103.ua/images/common/wysiwyg/2021/01/a368beef7705709f558a9613be3c0447.jpg',
-    complete: true,
-    articleDate: new Date().toLocaleTimeString(),
-    countViewPost: 72,
-    imgTitle: 'Как бороться с паническими атаками? Советы невролога',
-    headerArticle: 'Как бороться с паническими атаками? Советы невролога',
-  };
-
   return (
     <SignInContext.Provider value={isSignedIn}>
       <ResetPasswordContext.Provider value={isResetPassword}>
@@ -95,7 +82,7 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path={'/'}>
               <CreateHeader />
-              <Navigation categoriesList={dataCategory} />
+              <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
               <Clinic whatIsIt={'Медицинский центр'} thisName={'SANTE'} thisAddress={'Минск, ул. Тростенецкая, 3'} thisPhone={'+375294356839'} thisDescription={'Медицинский центр «Sante (Санте)» —  современный клинико-диагностический центр в Минске, оказывающий  широкий спектр медицинских услуг населению. Работа центра базируется на двух принципах: высокие требования к квалификации специалистов и бережное отношение к каждому пациенту.'} />
               <MainServices
                 serviceName={'Новый год 2021 в санаториях Беларуси'}
@@ -109,8 +96,6 @@ const App: React.FC = () => {
                   'https://static.103.by/images/common/image_block_item/00bc4712a75fd469242c191469a80b5f.jpg',
                 ]}
               />
-              {/* <CatalogPage {...user} /> */}
-              {/* <ArticlePage articles={dataArticles} /> */}
               <SimpleChatbot />
               <Footer />
             </Route>
@@ -141,7 +126,7 @@ const App: React.FC = () => {
               render={() => (
                 <>
                   <CreateHeader />
-                  <Navigation categoriesList={dataCategory} />
+                  <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
                   <ArticlePage articles={dataArticles} getIdForCatalogPage={getIdForCatalogPage} />
                 </>
               )
@@ -152,7 +137,7 @@ const App: React.FC = () => {
               render={() => (
                 <>
                   <CreateHeader />
-                  <Navigation categoriesList={dataCategory} />
+                  <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
                   <CatalogPage {...dataArticles.find((article) => article._id === idCatalogPage)} />
                 </>)
               }

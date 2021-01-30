@@ -37,6 +37,7 @@ export type ArticleType = {
     title: string,
     subtitle: string | null,
     text: string,
+    countView: number,
     src: string | null,
     complete: boolean
 }
