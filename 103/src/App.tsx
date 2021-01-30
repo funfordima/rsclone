@@ -82,7 +82,7 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path={'/'}>
               <CreateHeader />
-              <Clinics clinics={dataClinics} />
+              <Clinics clinics={dataClinics} doctors={dataDoctors} />
               <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
               <MainServices
                 serviceName={'Новый год 2021 в санаториях Беларуси'}

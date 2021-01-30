@@ -29,6 +29,14 @@
   margin-top: 16px;
 }
 
+.info-with-logo {
+  display: flex;
+}
+
+.clinic-main-info {
+  width: 85%;
+}
+
 .clinic-what-is-it {
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.48);
@@ -52,9 +60,6 @@
   text-transform: uppercase;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.8);
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   vertical-align: top;
 }
 
@@ -96,4 +101,102 @@
 .description-div {
   margin-bottom: 16px;
   font-size: 15px;
+  text-indent: 22px;
+  text-align: justify; 
+  max-height: 120px;
+  overflow-y: scroll;
+}
+
+.description-div::-webkit-scrollbar { 
+  display: none; 
+}
+
+.staff-div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.staff-items {
+  list-style: none;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  height: 36px;
+  float: left;
+  padding: 2px;
+  overflow: hidden;
+  border-radius: 16px;
+  z-index: 1;
+}
+
+.staff-button {
+  margin-top: 2px;
+  color: inherit;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 32px;
+  border-radius: 16px;
+  padding: 0 12px;
+  background-color: rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease-in-out;
+}
+
+.staff-button:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.click-buttons {
+  display: flex;
+}
+
+.star-button,
+.phone-button {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: 32px;
+  width: 32px;
+  margin-right: 8px;
+  padding: 12px 14px;
+  border-radius: 50%;
+  box-shadow: none;
+  z-index: 1;
+  color: #fff;
+  background-color: #46cdd6;
+  transition: all 0.2s ease-in-out;
+}
+
+.star-button {
+  margin-right: 0;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.phone-button:hover {
+  background-color: #5ed6df;
+}
+
+.star-button:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.star-button:hover img {
+  filter: invert(0);
+}
+
+.phone-button img {
+  position: absolute;
+  width: 16px;
+  left: 8px;
+  top: 8px;transform: scale(-1, 1);
+  filter: invert();
+}
+
+.star-button img {
+  position: absolute;
+  width: 20px;
+  left: 6px;
+  top: 6px;
+  filter: invert(0.4);
+  transition: all 0.2s ease-in-out;
 }

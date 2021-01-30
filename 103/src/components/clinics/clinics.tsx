@@ -1,19 +1,23 @@
 import React from 'react';
 import ClinicItem from './clinicItem/clinicItem';
 import './clinic.css';
-import { ClinicType } from '../../types';
+import { ClinicType, DoctorType } from '../../types';
 
 interface clinicsProps {
   clinics: Array<ClinicType>;
+  doctors: Array<DoctorType>;
 }
 
 export default function Clinics({
   clinics,
+  doctors,
 }: clinicsProps) {
+  const currentCity = localStorage.getItem('myCity');
   return (
     <div className="clinic-container">
       <div className="place-list">
-        {clinics.map((item, index) => {
+        {clinics.filter((item) => item.city === currentCity).map((item, index) => {
+          const currentDoctors = doctors.filter((doctor) => doctor.idWork === item._id);
           return (
             <ClinicItem
               key={index}
@@ -25,11 +29,10 @@ export default function Clinics({
               thisPictures={item.pictures}
               thisWorkingHours={item.workingHours}
               thisComplete={item.complete}
+              thisDoctors={currentDoctors}
             />
           );
         })}
-
-        {/* <ClinicItem whatIsIt={whatIsIt} thisName={thisName} thisAddress={thisAddress} thisPhone={thisPhone} thisDescription={thisDescription}/> */}
       </div>
     </div>
   );

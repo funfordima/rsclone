@@ -17,12 +17,12 @@ export default function ClinicSlider({ thisPictures }: clinicItemProps) {
   return (
     <div className="slider">
       <Swiper spaceBetween={0} slidesPerView={3} navigation loop={false}>
-        {thisPictures.map((item, index) => {
+        {thisPictures.filter((item, index) => index > 0).map((item, index) => {
           return (
             <SwiperSlide key={index}>
-              <a href="https://103.by/" className="slide">
+              <div className="slide">
                 <img src={item} alt="" />
-              </a>
+              </div>
             </SwiperSlide>
           );
         })}
