@@ -64,7 +64,6 @@ const ReviewAllLink = styled(NavLink)`
   color: #00a8b4;
   transition-duration: .12s;
   transition-timing-function: ease-in-out;
-  color: rgba(0,0,0,.96);
   text-decoration: none;
   transition-property: color;
   cursor: pointer;

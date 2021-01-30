@@ -145,6 +145,7 @@ interface CatalogPageProps {
 }
 
 const CatalogPage: React.FC<CatalogPageProps> = ({ dataArticles, reviews, countReviews }) => {
+  console.log(dataArticles);
   const { title, subtitle, articleDate, countView, text, src } = dataArticles;
 
   return (

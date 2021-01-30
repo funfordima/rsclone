@@ -58,10 +58,13 @@ const App: React.FC = () => {
     console.log(dataSubcategory);
     console.log(dataArticles);
   }
+  const idCatalogPageDefault = localStorage.getItem('pageId') || '';
+
   const [isSignedIn, setSignedIn] = useState(false);
   const [isResetPassword, setResetPassword] = useState('');
-  const [idCatalogPage, setIdCatalogPage] = useState('');
+  const [idCatalogPage, setIdCatalogPage] = useState(idCatalogPageDefault);
   const [currentPageId, setCurrentPageId] = useState<string | null>(null);
+  console.log(idCatalogPageDefault, idCatalogPage, dataArticles);
 
   const toggleEnterUser = (isSign: boolean): void => {
     setSignedIn(isSign);
@@ -73,6 +76,7 @@ const App: React.FC = () => {
 
   const getIdForCatalogPage = (value: string): void => {
     setIdCatalogPage(value);
+    localStorage.setItem('pageId', value);
   };
 
   return (
@@ -135,7 +139,7 @@ const App: React.FC = () => {
             <Route
               path={`/journal/article`}
               render={() => (
-                <>
+                <div style={{ 'background': '#f2f2f2' }}>
                   <CreateHeader />
                   <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
                   <CatalogPage
@@ -143,7 +147,7 @@ const App: React.FC = () => {
                     reviews={dataComments.filter((reviewArticle) => reviewArticle.idArticle === idCatalogPage)}
                     countReviews={dataComments.length}
                   />
-                </>)
+                </div>)
               }
             />
           </Switch>
