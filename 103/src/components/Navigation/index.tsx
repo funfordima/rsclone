@@ -6,14 +6,24 @@ import { Category } from '../../types';
 
 interface INavigation {
   categoriesList: Category[];
+  setCurrentPageId: (_id: string | null) => void;
 }
 
-const Navigation: React.FC<INavigation> = ({ categoriesList }) => (
+const Navigation: React.FC<INavigation> = ({
+  categoriesList,
+  setCurrentPageId,
+}) => (
   <div className="navigation">
     <nav className="menu">
       <div className="categories-menu">
         {categoriesList.map(item => {
-          return <CategoriesItem key={item._id} item={item} />;
+          return (
+            <CategoriesItem
+              key={item._id}
+              item={item}
+              setCurrentPageId={setCurrentPageId}
+            />
+          );
         })}
       </div>
     </nav>
