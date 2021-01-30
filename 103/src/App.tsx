@@ -148,6 +148,17 @@ const App: React.FC = () => {
                 </div>)
               }
             />
+            <Route
+              exact
+              path="/review"
+              render={() => (
+                <>
+                  <CreateHeader />
+                  <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
+                </>
+              )
+              }
+            />
           </Switch>
         </BrowserRouter>
       </ResetPasswordContext.Provider>
