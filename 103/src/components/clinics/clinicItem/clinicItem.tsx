@@ -1,5 +1,6 @@
 import React from 'react';
 import ClinicSlider from '../clinicSlider/clinicSlider';
+import OnChange from '../onChangeItem/onChange';
 import './clinicItem.css';
 
 interface clinicItemProps {
@@ -13,6 +14,18 @@ interface clinicItemProps {
   thisComplete: boolean;
 }
 
+function currentTime(workTime: string | null) {
+  if (!workTime || typeof workTime !== 'string') return false;
+  const date = new Date();
+  const currentHour = date.getHours();
+  const currentMin = date.getMinutes();
+  const currentTime = `${currentHour}.${currentMin}`;
+  const workTimeArr = workTime.split(' ');
+  const [start, end] = [workTimeArr[0], workTimeArr[2]];
+  if (+currentTime > +start && +currentTime < +end) return true;
+  return false;
+}
+
 export default function ClinicItem({
   whatIsIt,
   thisName,
@@ -23,13 +36,14 @@ export default function ClinicItem({
   thisWorkingHours,
   thisComplete,
 }: clinicItemProps) {
+  const onCheck = thisComplete ? '' : 'clinic-wrapper--oncheck';
+  let openedClass = '';
+  if (currentTime(thisWorkingHours)) {
+    openedClass = 'work-marker--opened'; 
+  }
   return (
-    <div className="clinic-wrapper">
-      {/* {
-        if (!thisComplete) {
-          <div className="on-check"></div>
-        }
-      } */}
+    <div className={"clinic-wrapper " + onCheck}>
+      <OnChange thisComplete={thisComplete}/>
       <p className="clinic-what-is-it">{whatIsIt}</p>
       <div className="clinic-info-wrapper">
         <div className="clinic-info">
@@ -39,7 +53,7 @@ export default function ClinicItem({
           <div className="other-info-div">
             <span className="this-address">{thisAddress}</span>
             <span className="this-time">
-              <span className="work-marker work-marker--opened"></span> {/* менять цвет */}
+              <span className={"work-marker " + openedClass}></span>
               {thisWorkingHours}
             </span>
           </div>
