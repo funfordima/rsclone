@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { BackButton } from '../Header/styledComponents';
 import FeedbackForm from '../FeadbackForm';
 import { ReactComponent as IconEyeOpen } from '../../components/Header/public/hide.svg';
+import { ReviewBox } from './components/ReviewBox';
 
 const CatalogPageWrapper = styled.div`
   margin: 0 auto;
@@ -120,16 +121,31 @@ const BorderBottom = styled.div`
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
-interface CatalogPageProps {
-  title: string;
-  subtitle: string;
-  articleDate: string;
-  countView: number;
-  text: string;
-  src: string;
+type reviewType = {
+  _id: number,
+  idArticle: string,
+  userName: string,
+  message: string,
+  complete: boolean,
 }
 
-const CatalogPage: React.FC<CatalogPageProps> = ({ title, subtitle, articleDate, countView, text, src }) => {
+type ArticleType = {
+  title: string,
+  src: string,
+  _id: number,
+  linkSrc?: string,
+  countView: number
+}
+
+interface CatalogPageProps {
+  dataArticles: ArticleType;
+  reviews: reviewType[];
+  countReviews: number;
+}
+
+const CatalogPage: React.FC<CatalogPageProps> = ({ dataArticles, reviews, countReviews }) => {
+  const { title, subtitle, articleDate, countView, text, src } = dataArticles;
+
   return (
     <>
       <CatalogPageWrapper>
@@ -161,6 +177,14 @@ const CatalogPage: React.FC<CatalogPageProps> = ({ title, subtitle, articleDate,
           </ImgContainer>
           {text}
         </BodyTextContainer>
+      </CatalogPageWrapper>
+      <BorderBottom />
+      <CatalogPageWrapper>
+        <ReviewBox
+          reviewsArticle={reviews}
+          countReviews={countReviews}
+          subtitle={subtitle}
+        />
       </CatalogPageWrapper>
       <BorderBottom />
       <FeedbackForm />
