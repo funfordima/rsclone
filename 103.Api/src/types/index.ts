@@ -72,5 +72,6 @@ export type Comment = {
     idArticle: string,
     userName: string,
     message: string,
+    date: string,
     complete: boolean
 }
