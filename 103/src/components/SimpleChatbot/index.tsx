@@ -40,7 +40,7 @@ const SimpleChatbot: React.FC = () => {
     {
       id: "Waiting user input message",
       user: true,
-      trigger: (previousValue: Record<string, unknown>) => {
+      trigger: () => {
         return "Ask contact information";
       },
     },
@@ -108,7 +108,7 @@ const SimpleChatbot: React.FC = () => {
     userFontColor: "#00B2B2"
   };
 
-  const handleEndChat = ({ values }: any[]): void => {
+  const handleEndChat = ({ values }: string[]): void => {
     const [name, subject, _, contactToConnect] = values;
     const toString = Object.prototype.toString;
     let phone = '';
