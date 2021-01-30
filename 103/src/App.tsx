@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { AuthorizationPage } from './components/Header/pages/AuthorizationPage';
 import { UserPage } from './components/Header/pages/UserPage';
 import { ResetPage } from './components/Header/pages/ResetPage';
+import Navigation from './components/Navigation';
 import CatalogPage from './components/CatalogPage';
 import SimpleChatbot from './components/SimpleChatbot';
 import { doctors, clinics, comments, category, subcategory, articles } from './api';
@@ -29,6 +30,8 @@ const App: React.FC = () => {
   const [dataCategory, setDataCategory] = useState<Category[]>([]);
   const [dataSubcategory, setDataSubcategory] = useState<Subcategory[]>([]);
   const [dataArticles, setDataArticles] = useState<ArticleType[]>([]);
+
+  console.log(dataArticles, 1111);
 
   const setData = async () => {
     const dataDoctors: Array<DoctorType> = await doctors;
@@ -56,6 +59,7 @@ const App: React.FC = () => {
   }
   const [isSignedIn, setSignedIn] = useState(false);
   const [isResetPassword, setResetPassword] = useState('');
+  const [idCatalogPage, setIdCatalogPage] = useState('');
 
   const toggleEnterUser = (isSign: boolean): void => {
     setSignedIn(isSign);
@@ -63,6 +67,11 @@ const App: React.FC = () => {
 
   const resetUserPassword = (isReset: string): void => {
     setResetPassword(isReset);
+  };
+
+  const getIdForCatalogPage = (value: string): void => {
+    setIdCatalogPage(value);
+    console.log(value);
   };
 
   const user = {
@@ -86,6 +95,7 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path={'/'}>
               <CreateHeader />
+              <Navigation categoriesList={dataCategory} />
               <Clinic whatIsIt={'Медицинский центр'} thisName={'SANTE'} thisAddress={'Минск, ул. Тростенецкая, 3'} thisPhone={'+375294356839'} thisDescription={'Медицинский центр «Sante (Санте)» —  современный клинико-диагностический центр в Минске, оказывающий  широкий спектр медицинских услуг населению. Работа центра базируется на двух принципах: высокие требования к квалификации специалистов и бережное отношение к каждому пациенту.'} />
               <MainServices
                 serviceName={'Новый год 2021 в санаториях Беларуси'}
@@ -99,8 +109,8 @@ const App: React.FC = () => {
                   'https://static.103.by/images/common/image_block_item/00bc4712a75fd469242c191469a80b5f.jpg',
                 ]}
               />
-              <CatalogPage {...user} />
-              <ArticlePage />
+              {/* <CatalogPage {...user} /> */}
+              {/* <ArticlePage articles={dataArticles} /> */}
               <SimpleChatbot />
               <Footer />
             </Route>
@@ -123,6 +133,27 @@ const App: React.FC = () => {
                 ) : (
                     <ResetPage onResetPassword={resetUserPassword} />
                   )
+              }
+            />
+            <Route
+              path="/journal"
+              render={() => (
+                <>
+                  <CreateHeader />
+                  <Navigation categoriesList={dataCategory} />
+                  <ArticlePage articles={dataArticles} getIdForCatalogPage={getIdForCatalogPage} />
+                </>
+              )
+              }
+            />
+            <Route
+              path={`/journal/${idCatalogPage}`}
+              render={() => (
+                <>
+                  <CreateHeader />
+                  <Navigation categoriesList={dataCategory} />
+                  <CatalogPage {...dataArticles.find((article) => article._id === idCatalogPage)} />
+                </>)
               }
             />
           </Switch>

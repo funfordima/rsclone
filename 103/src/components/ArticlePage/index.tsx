@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ArticleList from './ArticlesList';
+import { Switch } from 'react-router-dom';
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -35,41 +36,20 @@ const BodyArticles = styled.div`
 
 `;
 
-const ArticlePage: React.FC = () => {
-  const articles = [
-    {
-      title: 'Как бороться с паническими атаками? Советы невролога',
-      subtitle: 'Текст: Тылец Александра, 21 января',
-      text: 'Часто пациенты с приступами паники вынуждены обращаться к профильным врачам, чтобы избавиться от сопутствующих последствий этих состояний. У некоторых на пике паники подскакивает давление, возникают боли в сердце и учащенное сердцебиение. А кому-то во время приступа не хватает воздуха, так что появляется ощущение удушья. Врач-невролог Анатолий Нимчук дал несколько советов, как действовать во время панической атаки.',
-      src: 'https://static.103.ua/images/common/wysiwyg/2021/01/a368beef7705709f558a9613be3c0447.jpg',
-      complete: true,
-      id: 1,
-      linkSrc: '/profile',
-      countView: 10,
-    },
-    {
-      title: 'Как бороться с паническими атаками? Советы невролога',
-      subtitle: 'Текст: Тылец Александра, 21 января',
-      text: 'Часто пациенты с приступами паники вынуждены обращаться к профильным врачам, чтобы избавиться от сопутствующих последствий этих состояний. У некоторых на пике паники подскакивает давление, возникают боли в сердце и учащенное сердцебиение. А кому-то во время приступа не хватает воздуха, так что появляется ощущение удушья. Врач-невролог Анатолий Нимчук дал несколько советов, как действовать во время панической атаки.',
-      src: 'https://static.103.ua/images/common/wysiwyg/2021/01/a368beef7705709f558a9613be3c0447.jpg',
-      complete: false,
-      id: 2,
-      linkSrc: '/reset',
-      countView: 15,
-    },
-    {
-      title: 'Как бороться с паническими атаками? Советы невролога',
-      subtitle: 'Текст: Тылец Александра, 21 января',
-      text: 'Часто пациенты с приступами паники вынуждены обращаться к профильным врачам, чтобы избавиться от сопутствующих последствий этих состояний. У некоторых на пике паники подскакивает давление, возникают боли в сердце и учащенное сердцебиение. А кому-то во время приступа не хватает воздуха, так что появляется ощущение удушья. Врач-невролог Анатолий Нимчук дал несколько советов, как действовать во время панической атаки.',
-      src: 'https://static.103.ua/images/common/wysiwyg/2021/01/a368beef7705709f558a9613be3c0447.jpg',
-      complete: true,
-      id: 3,
-      linkSrc: '/authorization',
-      countView: 17,
-    },
-  ];
+type ArticleType = {
+  title: string,
+  src: string,
+  _id: number,
+  linkSrc: string,
+  countView: number
+}
 
+interface ArticlePageProps {
+  articles: ArticleType[];
+  getIdForCatalogPage: (id: string) => void;
+}
 
+const ArticlePage: React.FC<ArticlePageProps> = ({ articles, getIdForCatalogPage }) => {
   return (
     <Wrapper>
       <Container>
@@ -79,7 +59,9 @@ const ArticlePage: React.FC = () => {
           </Title>
         </HeaderContainer>
         <BodyArticles>
-          <ArticleList articles={articles} />
+          <Switch>
+            <ArticleList articles={articles} setIdForCatalogPage={getIdForCatalogPage} />
+          </Switch>
         </BodyArticles>
       </Container>
     </Wrapper>
