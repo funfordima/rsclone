@@ -122,27 +122,29 @@ const LinkToEmail = styled.a`
 
 const HeaderForChatbot: React.FC = () => {
   return (
-    <HeaderWrapper>
-      <AvatarWrapper>
-        <AvatarInnerContainer>
-          <img
-            src={chatbotHeaderImg}
-            alt='chatbot header image'
-          />
-        </AvatarInnerContainer>
-      </AvatarWrapper>
-      <TextContainer>
-        <Text>
-          Write to the administrator 103.ua
-        </Text>
-        <LinkToEmail
-          href="mailto:103.ua@gmail.com?subject=Advertising on 103.ua"
-          target="_blank"
-        >
-          Advertising on 103.ua
-        </LinkToEmail>
-      </TextContainer>
-    </HeaderWrapper>
+    <>
+      <HeaderWrapper>
+        <AvatarWrapper>
+          <AvatarInnerContainer>
+            <img
+              src={chatbotHeaderImg}
+              alt='chatbot header image'
+            />
+          </AvatarInnerContainer>
+        </AvatarWrapper>
+        <TextContainer>
+          <Text>
+            Write to the administrator 103.ua
+          </Text>
+          <LinkToEmail
+            href="mailto:103.ua@gmail.com?subject=Advertising on 103.ua"
+            target="_blank"
+          >
+            Advertising on 103.ua
+          </LinkToEmail>
+        </TextContainer>
+      </HeaderWrapper>
+    </>
   );
 };
 

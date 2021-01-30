@@ -1,46 +1,78 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import CreateHeader from './Header/CreateHeader';
+import CreateHeader from './components/Header/CreateHeader';
 import MainServices from './components/mainServices/mainServices';
 import Clinics from './components/clinics/clinics';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { AuthorizationPage } from './Header/pages/AuthorizationPage';
-import { UserPage } from './Header/pages/UserPage';
-import { ResetPage } from './Header/pages/ResetPage';
+import { AuthorizationPage } from './components/Header/pages/AuthorizationPage';
+import { UserPage } from './components/Header/pages/UserPage';
+import { ResetPage } from './components/Header/pages/ResetPage';
+import Navigation from './components/Navigation';
 import CatalogPage from './components/CatalogPage';
 import SimpleChatbot from './components/SimpleChatbot';
+import { doctors, clinics, comments, category, subcategory, articles } from './api';
+import { ArticleType, Category, ClinicType, DoctorType, Subcategory, Comment } from './types';
+import Footer from './components/Footer';
+import ArticlePage from './components/ArticlePage';
 
-export const SignInContext = React.createContext();
-export const ResetPasswordContext = React.createContext();
+export const SignInContext = React.createContext(false);
+export const ResetPasswordContext = React.createContext('');
 
 const App: React.FC = () => {
+  useEffect(() => {
+    setData();
+  }, []);
+
+  const [isLoaded, setIsloaded] = useState(false);
+  const [dataDoctors, setDataDoctorsState] = useState<DoctorType[]>([]);
+  const [dataClinics, setDataClinicsState] = useState<ClinicType[]>([]);
+  const [dataComments, setDataComments] = useState<Comment[]>([]);
+  const [dataCategory, setDataCategory] = useState<Category[]>([]);
+  const [dataSubcategory, setDataSubcategory] = useState<Subcategory[]>([]);
+  const [dataArticles, setDataArticles] = useState<ArticleType[]>([]);
+
+  console.log(dataArticles, 1111);
+
+  const setData = async () => {
+    const dataDoctors: Array<DoctorType> = await doctors;
+    const dataClinics: Array<ClinicType> = await clinics;
+    const dataComments: Array<Comment> = await comments;
+    const dataCategory: Array<Category> = await category;
+    const dataSubcategory: Array<Subcategory> = await subcategory;
+    const dataArticles: Array<ArticleType> = await articles;
+
+    setDataDoctorsState(dataDoctors);
+    setDataClinicsState(dataClinics);
+    setDataComments(dataComments);
+    setDataCategory(dataCategory);
+    setDataSubcategory(dataSubcategory);
+    setDataArticles(dataArticles);
+    setIsloaded(true);
+  };
+  if (isLoaded) {
+    console.log(dataDoctors);
+    console.log(dataClinics);
+    console.log(dataComments);
+    console.log(dataCategory);
+    console.log(dataSubcategory);
+    console.log(dataArticles);
+  }
   const [isSignedIn, setSignedIn] = useState(false);
   const [isResetPassword, setResetPassword] = useState('');
+  const [idCatalogPage, setIdCatalogPage] = useState('');
+  const [currentPageId, setCurrentPageId] = useState<string | null>(null);
 
   const toggleEnterUser = (isSign: boolean): void => {
-    console.log('test sign app');
     setSignedIn(isSign);
-    console.log(isSign);
   };
 
   const resetUserPassword = (isReset: string): void => {
-    console.log('reset app');
     setResetPassword(isReset);
-    console.log(isResetPassword);
   };
 
-  const user = {
-    title: 'Как бороться с паническими атаками? Советы невролога',
-    authorName: 'Тылец Александра, 21 января',
-    text:
-      'Часто пациенты с приступами паники вынуждены обращаться к профильным врачам, чтобы избавиться от сопутствующих последствий этих состояний. У некоторых на пике паники подскакивает давление, возникают боли в сердце и учащенное сердцебиение. А кому-то во время приступа не хватает воздуха, так что появляется ощущение удушья. Врач-невролог Анатолий Нимчук дал несколько советов, как действовать во время панической атаки.',
-    imgSrc:
-      'https://static.103.ua/images/common/wysiwyg/2021/01/a368beef7705709f558a9613be3c0447.jpg',
-    complete: true,
-    articleDate: new Date().toLocaleTimeString(),
-    countViewPost: 72,
-    imgTitle: 'Как бороться с паническими атаками? Советы невролога',
-    headerArticle: 'Как бороться с паническими атаками? Советы невролога',
+  const getIdForCatalogPage = (value: string): void => {
+    setIdCatalogPage(value);
+    console.log(value);
   };
 
   return (
@@ -50,7 +82,8 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path={'/'}>
               <CreateHeader />
-              <Clinics/>
+              <Clinics clinics={dataClinics} />
+              <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
               <MainServices
                 serviceName={'Новый год 2021 в санаториях Беларуси'}
                 serviceLinks={['#', '#', '#', '#', '#', '#']}
@@ -63,8 +96,8 @@ const App: React.FC = () => {
                   'https://static.103.by/images/common/image_block_item/00bc4712a75fd469242c191469a80b5f.jpg',
                 ]}
               />
-              <CatalogPage {...user} />
               <SimpleChatbot />
+              <Footer />
             </Route>
             <Route
               path={'/authorization'}
@@ -72,8 +105,8 @@ const App: React.FC = () => {
                 isSignedIn ? (
                   <Redirect to="/" />
                 ) : (
-                  <AuthorizationPage onToggleEnterUser={toggleEnterUser} />
-                )
+                    <AuthorizationPage onToggleEnterUser={toggleEnterUser} />
+                  )
               }
             />
             <Route path={'/profile'} component={UserPage} />
@@ -83,8 +116,30 @@ const App: React.FC = () => {
                 isResetPassword ? (
                   <Redirect to="/authorization" />
                 ) : (
-                  <ResetPage onResetPassword={resetUserPassword} />
-                )
+                    <ResetPage onResetPassword={resetUserPassword} />
+                  )
+              }
+            />
+            <Route
+              exact
+              path="/journal"
+              render={() => (
+                <>
+                  <CreateHeader />
+                  <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
+                  <ArticlePage articles={dataArticles} getIdForCatalogPage={getIdForCatalogPage} />
+                </>
+              )
+              }
+            />
+            <Route
+              path={`/journal/article`}
+              render={() => (
+                <>
+                  <CreateHeader />
+                  <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
+                  <CatalogPage {...dataArticles.find((article) => article._id === idCatalogPage)} />
+                </>)
               }
             />
           </Switch>

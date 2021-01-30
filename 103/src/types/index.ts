@@ -37,6 +37,7 @@ export type ArticleType = {
     title: string,
     subtitle: string | null,
     text: string,
+    countView: number,
     src: string | null,
     complete: boolean
 }
@@ -44,7 +45,8 @@ export type ArticleType = {
 export type Category = {
     _id: string,
     name: string,
-    icon: string
+    icon: string,
+    path: string,
 }
 
 export type Subcategory = {
@@ -64,5 +66,13 @@ export type SubcategoriesItem = {
     _id: string,
     name: string,
     path: string,
+    complete: boolean
+}
+
+export type Comment = {
+    _id: string,
+    idArticle: string,
+    userName: string,
+    message: string,
     complete: boolean
 }

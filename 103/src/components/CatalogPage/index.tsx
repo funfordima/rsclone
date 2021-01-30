@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BackButton } from '../../Header/styledComponents';
+import { BackButton } from '../Header/styledComponents';
 import FeedbackForm from '../FeadbackForm';
+import { ReactComponent as IconEyeOpen } from '../../components/Header/public/hide.svg';
 
 const CatalogPageWrapper = styled.div`
   margin: 0 auto;
@@ -121,19 +122,18 @@ const BorderBottom = styled.div`
 
 interface CatalogPageProps {
   title: string;
-  authorName: string;
+  subtitle: string;
   articleDate: string;
-  countViewPost: number;
-  headerArticle: string;
-  imgSrc: string;
-  imgTitle: string;
+  countView: number;
+  text: string;
+  src: string;
 }
 
-const CatalogPage: React.FC<CatalogPageProps> = ({ title, authorName, articleDate, countViewPost, headerArticle, imgSrc, imgTitle }) => {
+const CatalogPage: React.FC<CatalogPageProps> = ({ title, subtitle, articleDate, countView, text, src }) => {
   return (
     <>
       <CatalogPageWrapper>
-        <BackLink to='/'>
+        <BackLink to='/journal'>
           Back to Journal
         </BackLink>
         <TitleContainer>
@@ -142,37 +142,24 @@ const CatalogPage: React.FC<CatalogPageProps> = ({ title, authorName, articleDat
           </Title>
           <ArticleAboutDescription>
             <Description>
-              <b>Text</b>
-              {authorName}
+              <b>{subtitle}</b>
               {articleDate}
             </Description>
             <CountView>
-              <svg id="icon-eye-open" viewBox="0 0 16 16">
-                <g
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                >
-                  <path d="M8.1 3C2.1 3 0 8 0 8s2.1 5 8.1 5c6.1 0 7.9-5 7.9-5s-1.7-5-7.9-5zm.1 8.9C6 11.9 4.3 10.2 4.3 8S6 4.1 8.2 4.1s3.9 1.7 3.9 3.9-1.8 3.9-3.9 3.9z" />
-                  <circle
-                    cx="8.1"
-                    cy="8"
-                    r="1.7"
-                  />
-                </g>
-              </svg>
-              {countViewPost}
+              <IconEyeOpen />
+              {countView}
             </CountView>
           </ArticleAboutDescription>
         </TitleContainer>
         <BodyTextContainer>
           <ArticleText>
             <b>
-              {headerArticle}
             </b>
           </ArticleText>
           <ImgContainer>
-            <img src={imgSrc} alt={imgTitle} />
+            <img src={src} alt={title} />
           </ImgContainer>
+          {text}
         </BodyTextContainer>
       </CatalogPageWrapper>
       <BorderBottom />
