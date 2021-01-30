@@ -105,31 +105,33 @@ const ViewCount = styled.span`
 type ArticleType = {
   title: string,
   src: string,
-  id: number,
-  linkSrc: string,
+  _id: number,
+  linkSrc?: string,
   countView: number
 }
 
 interface ArticlesListProps {
   articles: ArticleType[];
+  setIdForCatalogPage: (id: string) => void;
 }
 
-const ArticlesList: React.FC<ArticlesListProps> = ({ articles }) => {
+const ArticlesList: React.FC<ArticlesListProps> = ({ articles, setIdForCatalogPage }) => {
+
   return (
     <ArticlesListElement>
-      {articles.map(({ title, src, id, linkSrc, countView }) => {
+      {articles.map(({ title, src, _id, countView }) => {
         return (
-          <ArticleListItem key={id}>
-            <ArticleListImgLink to={linkSrc}>
+          <ArticleListItem key={_id}>
+            <ArticleListImgLink to={`journal/article`} onClick={() => setIdForCatalogPage(_id)}>
               <ArticleImg
                 src={src}
                 alt={title}
               />
             </ArticleListImgLink>
-            <BackToMainArticleLink to='/'>
+            <BackToMainArticleLink to='/journal'>
               Журнал
             </BackToMainArticleLink>
-            <TitleArticleLink to={linkSrc}>
+            <TitleArticleLink to={`journal/article`} onClick={() => setIdForCatalogPage(_id)}>
               {title}
             </TitleArticleLink>
             <ViewCountContainer>
@@ -138,10 +140,10 @@ const ArticlesList: React.FC<ArticlesListProps> = ({ articles }) => {
                 {countView}
               </ViewCount>
             </ViewCountContainer>
-          </ArticleListItem>
+          </ArticleListItem >
         );
       })}
-    </ArticlesListElement>
+    </ArticlesListElement >
   );
 };
 

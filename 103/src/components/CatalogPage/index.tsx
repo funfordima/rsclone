@@ -122,19 +122,18 @@ const BorderBottom = styled.div`
 
 interface CatalogPageProps {
   title: string;
-  authorName: string;
+  subtitle: string;
   articleDate: string;
-  countViewPost: number;
-  headerArticle: string;
-  imgSrc: string;
-  imgTitle: string;
+  countView: number;
+  text: string;
+  src: string;
 }
 
-const CatalogPage: React.FC<CatalogPageProps> = ({ title, authorName, articleDate, countViewPost, headerArticle, imgSrc, imgTitle }) => {
+const CatalogPage: React.FC<CatalogPageProps> = ({ title, subtitle, articleDate, countView, text, src }) => {
   return (
     <>
       <CatalogPageWrapper>
-        <BackLink to='/'>
+        <BackLink to='/journal'>
           Back to Journal
         </BackLink>
         <TitleContainer>
@@ -143,25 +142,24 @@ const CatalogPage: React.FC<CatalogPageProps> = ({ title, authorName, articleDat
           </Title>
           <ArticleAboutDescription>
             <Description>
-              <b>Text</b>
-              {authorName}
+              <b>{subtitle}</b>
               {articleDate}
             </Description>
             <CountView>
               <IconEyeOpen />
-              {countViewPost}
+              {countView}
             </CountView>
           </ArticleAboutDescription>
         </TitleContainer>
         <BodyTextContainer>
           <ArticleText>
             <b>
-              {headerArticle}
             </b>
           </ArticleText>
           <ImgContainer>
-            <img src={imgSrc} alt={imgTitle} />
+            <img src={src} alt={title} />
           </ImgContainer>
+          {text}
         </BodyTextContainer>
       </CatalogPageWrapper>
       <BorderBottom />
