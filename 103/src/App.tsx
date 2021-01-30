@@ -13,6 +13,7 @@ import { doctors, clinics, comments, category, subcategory, articles } from './a
 import { ArticleType, Category, ClinicType, DoctorType, Subcategory, Comment } from './types'
 import Footer from './components/Footer';
 import ArticlePage from './components/ArticlePage';
+import Navigation from './components/Navigation';
 
 export const SignInContext = React.createContext(false);
 export const ResetPasswordContext = React.createContext('');
@@ -56,6 +57,7 @@ const App: React.FC = () => {
   }
   const [isSignedIn, setSignedIn] = useState(false);
   const [isResetPassword, setResetPassword] = useState('');
+  const [currentPageId, setCurrentPageId] = useState<string | null>(null);
 
   const toggleEnterUser = (isSign: boolean): void => {
     setSignedIn(isSign);
@@ -86,6 +88,7 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path={'/'}>
               <CreateHeader />
+              <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId}/>
               <Clinic whatIsIt={'Медицинский центр'} thisName={'SANTE'} thisAddress={'Минск, ул. Тростенецкая, 3'} thisPhone={'+375294356839'} thisDescription={'Медицинский центр «Sante (Санте)» —  современный клинико-диагностический центр в Минске, оказывающий  широкий спектр медицинских услуг населению. Работа центра базируется на двух принципах: высокие требования к квалификации специалистов и бережное отношение к каждому пациенту.'} />
               <MainServices
                 serviceName={'Новый год 2021 в санаториях Беларуси'}
