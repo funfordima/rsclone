@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.doctor-item {
+  display: block;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 20px;
+  height: 32px;
+  width: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.doctor-item img {
+  position: absolute;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}

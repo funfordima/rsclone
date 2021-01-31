@@ -1,6 +1,10 @@
 import React from 'react';
 import ClinicSlider from '../clinicSlider/clinicSlider';
 import OnChange from '../onChangeItem/onChange';
+import PhoneBtn from '../../doctors/phoneBtn/phoneBtn';
+import DoctorItem from '../doctorItem/doctorItem';
+import ClinicLogo from '../clinicLogo/clinicLogo';
+import { DoctorType } from '../../../types';
 import './clinicItem.css';
 
 interface clinicItemProps {
@@ -12,6 +16,7 @@ interface clinicItemProps {
   thisWorkingHours: string | null;
   thisPictures: Array<string> | null;
   thisComplete: boolean;
+  thisDoctors: Array<DoctorType>;
 }
 
 function currentTime(workTime: string | null) {
@@ -35,33 +40,62 @@ export default function ClinicItem({
   thisPictures,
   thisWorkingHours,
   thisComplete,
+  thisDoctors,
 }: clinicItemProps) {
   const onCheck = thisComplete ? '' : 'clinic-wrapper--oncheck';
   let openedClass = '';
   if (currentTime(thisWorkingHours)) {
-    openedClass = 'work-marker--opened'; 
+    openedClass = 'work-marker--opened';
   }
   return (
-    <div className={"clinic-wrapper " + onCheck}>
-      <OnChange thisComplete={thisComplete}/>
-      <p className="clinic-what-is-it">{whatIsIt}</p>
-      <div className="clinic-info-wrapper">
-        <div className="clinic-info">
-          <div className="clinic-name-div">
-            <p className="clinic-name">{thisName}</p>
-          </div>
-          <div className="other-info-div">
-            <span className="this-address">{thisAddress}</span>
-            <span className="this-time">
-              <span className={"work-marker " + openedClass}></span>
-              {thisWorkingHours}
-            </span>
+    <div className={'clinic-wrapper ' + onCheck}>
+      <OnChange thisComplete={thisComplete} />
+      <div className="info-with-logo">
+        <div className="clinic-main-info">
+          <p className="clinic-what-is-it">{whatIsIt}</p>
+          <div className="clinic-info-wrapper">
+            <div className="clinic-info">
+              <div className="clinic-name-div">
+                <p className="clinic-name">{thisName}</p>
+              </div>
+              <div className="other-info-div">
+                <span className="this-address">{thisAddress}</span>
+                <span className="this-time">
+                  <span className={'work-marker ' + openedClass}></span>
+                  {thisWorkingHours}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
+        <ClinicLogo thisPictures={thisPictures} />
       </div>
-      <ClinicSlider thisPictures={thisPictures}/>
+      <ClinicSlider thisPictures={thisPictures} />
       <div className="description-div">{thisDescription}</div>
-      {/* <div className="connection-div">{thisPhone}</div> */}
+      <div className="staff-div">
+        <div className="staff">
+          <div className="staff-items">
+            {thisDoctors.map((item, index) => {
+              return (
+                <DoctorItem
+                  key={index}
+                  thisImage={item.pictures}
+                  thisName={item.name}
+                />
+              );
+            })}
+          </div>
+          <a href="#" className="staff-button">
+            Специалисты
+          </a>
+        </div>
+        <div className="click-buttons">
+          <PhoneBtn thisPhone={thisPhone} />
+          <a href="#" title="Добавить в избранное?" className="star-button">
+            <img src="https://img.icons8.com/ios-filled/96/000000/bookmark-ribbon.png" />
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
