@@ -1,17 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 // import staffDefaultPhotoSvg from '../../assets/images/doctor/staff-default-photo.svg';
-import { DoctorType } from '../../types';
+import { DoctorType, ClinicType } from '../../types';
+import { StaffWorkClinic } from './components/StaffWorkClinic';
 
 const PersonalWrapper = styled.div`
-  width: 100%; 
+  // width: ${props => props.isOpen ? '100%' : '0'};
+  // height: ${props => props.isOpen ? '100%' : '0'};
+  width: 100%;
+  top: ${props => props.isOpen ? '0' : '-100%'};
+  left: ${props => props.isOpen ? '0' : '-100%'};
   max-width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
   position: relative;
-  background: #f2f2f2; 
+  background: #f2f2f2;
+  overflow: hidden;
+  transition-duration: .3s;
+  transition-property: width, height, top, left;
+  transition-timing-function: ease-in-out; 
+  will-change: transform;
 `;
 
 const PersonalHeaderWrapper = styled.div`
@@ -87,14 +97,41 @@ const StaffWorkPlace = styled.div`
   margin: 16px auto 0;
 `;
 
+const ButtonClose = styled.div`
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 25px;
+  right: 50px;
+  cursor: pointer;
+
+  &:before, &:after {
+    position: absolute;
+    content: '';
+    width: 2px;
+    height: 17px;
+    background: #000;
+  }
+
+  &:before {
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+`;
+
 interface PersonalPageProps {
   personalInfo: DoctorType;
+  clinicInfo: ClinicType;
+  isOpen: boolean;
 }
 
-const PersonalPage: React.FC<PersonalPageProps> = ({ personalInfo }) => {
+const PersonalPage: React.FC<PersonalPageProps> = ({ personalInfo, clinicInfo, isOpen }) => {
   const { pictures, name, profession, experience, category } = personalInfo;
   return (
-    <PersonalWrapper>
+    <PersonalWrapper isOpen={isOpen} >
       <PersonalHeaderWrapper>
         <StaffPageImgContainer>
           <StaffPageImg
@@ -117,9 +154,10 @@ const PersonalPage: React.FC<PersonalPageProps> = ({ personalInfo }) => {
           &nbsp;&nbsp;•&nbsp;&nbsp;
           {experience}
         </StaffPageMeta>
+        <ButtonClose />
       </PersonalHeaderWrapper>
       <StaffWorkPlace>
-
+        <StaffWorkClinic clinicInfo={clinicInfo} />
       </StaffWorkPlace>
     </PersonalWrapper>
   );
