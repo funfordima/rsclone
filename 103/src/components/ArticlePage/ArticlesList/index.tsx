@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as EyeOpenSvg } from '../../Header/public/visibility.svg';
+import { ArticleType } from '../../../types';
 
 const ArticlesListElement = styled.ul`
   padding: 0;
@@ -101,15 +102,6 @@ const ViewCount = styled.span`
     vertical-align: bottom;
   }
 `;
-
-type ArticleType = {
-  title: string,
-  src: string,
-  _id: number,
-  linkSrc?: string,
-  countView: number
-}
-
 interface ArticlesListProps {
   articles: ArticleType[];
   setIdForCatalogPage: (id: string) => void;
@@ -124,7 +116,7 @@ const ArticlesList: React.FC<ArticlesListProps> = ({ articles, setIdForCatalogPa
           <ArticleListItem key={_id}>
             <ArticleListImgLink to={`journal/article`} onClick={() => setIdForCatalogPage(_id)}>
               <ArticleImg
-                src={src}
+                src={src ? src : ""}
                 alt={title}
               />
             </ArticleListImgLink>

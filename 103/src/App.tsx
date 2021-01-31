@@ -31,8 +31,6 @@ const App: React.FC = () => {
   const [dataSubcategory, setDataSubcategory] = useState<Subcategory[]>([]);
   const [dataArticles, setDataArticles] = useState<ArticleType[]>([]);
 
-  console.log(dataArticles, 1111);
-
   const setData = async () => {
     const dataDoctors: Array<DoctorType> = await doctors;
     const dataClinics: Array<ClinicType> = await clinics;
@@ -49,6 +47,7 @@ const App: React.FC = () => {
     setDataArticles(dataArticles);
     setIsloaded(true);
   };
+
   if (isLoaded) {
     console.log(dataDoctors);
     console.log(dataClinics);
@@ -57,10 +56,13 @@ const App: React.FC = () => {
     console.log(dataSubcategory);
     console.log(dataArticles);
   }
+  const idCatalogPageDefault = localStorage.getItem('pageId') || '';
+
   const [isSignedIn, setSignedIn] = useState(false);
   const [isResetPassword, setResetPassword] = useState('');
-  const [idCatalogPage, setIdCatalogPage] = useState('');
+  const [idCatalogPage, setIdCatalogPage] = useState(idCatalogPageDefault);
   const [currentPageId, setCurrentPageId] = useState<string | null>(null);
+  console.log(idCatalogPageDefault, idCatalogPage, dataArticles);
 
   const toggleEnterUser = (isSign: boolean): void => {
     setSignedIn(isSign);
@@ -72,7 +74,7 @@ const App: React.FC = () => {
 
   const getIdForCatalogPage = (value: string): void => {
     setIdCatalogPage(value);
-    console.log(value);
+    localStorage.setItem('pageId', value);
   };
 
   return (
@@ -135,11 +137,26 @@ const App: React.FC = () => {
             <Route
               path={`/journal/article`}
               render={() => (
+                <div style={{ 'background': '#f2f2f2' }}>
+                  <CreateHeader />
+                  <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
+                  <CatalogPage
+                    dataArticles={dataArticles.find((article) => article._id === idCatalogPage)}
+                    reviews={dataComments.filter((reviewArticle) => reviewArticle.idArticle === idCatalogPage)}
+                    countReviews={dataComments.length}
+                  />
+                </div>)
+              }
+            />
+            <Route
+              exact
+              path="/review"
+              render={() => (
                 <>
                   <CreateHeader />
                   <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
-                  <CatalogPage {...dataArticles.find((article) => article._id === idCatalogPage)} />
-                </>)
+                </>
+              )
               }
             />
           </Switch>

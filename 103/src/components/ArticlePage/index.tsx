@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ArticleList from './ArticlesList';
+import { ArticleType } from './../../types'
 import { Switch } from 'react-router-dom';
 
 const Wrapper = styled.div`
@@ -35,14 +36,6 @@ const Title = styled.h1`
 const BodyArticles = styled.div`
 
 `;
-
-type ArticleType = {
-  title: string,
-  src: string,
-  _id: number,
-  linkSrc: string,
-  countView: number
-}
 
 interface ArticlePageProps {
   articles: ArticleType[];
