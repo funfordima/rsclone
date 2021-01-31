@@ -102,13 +102,13 @@
   margin-bottom: 16px;
   font-size: 15px;
   text-indent: 22px;
-  text-align: justify; 
+  text-align: justify;
   max-height: 120px;
   overflow-y: scroll;
 }
 
-.description-div::-webkit-scrollbar { 
-  display: none; 
+.description-div::-webkit-scrollbar {
+  display: none;
 }
 
 .staff-div {
@@ -188,7 +188,8 @@
   position: absolute;
   width: 16px;
   left: 8px;
-  top: 8px;transform: scale(-1, 1);
+  top: 8px;
+  transform: scale(-1, 1);
   filter: invert();
 }
 

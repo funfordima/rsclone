@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.phone-button {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: 32px;
+  width: 32px;
+  margin-right: 8px;
+  padding: 12px 14px;
+  border-radius: 50%;
+  box-shadow: none;
+  z-index: 1;
+  color: #fff;
+  background-color: #46cdd6;
+  transition: all 0.2s ease-in-out;
+}
+
+.phone-button:hover {
+  background-color: #5ed6df;
+}
+
+.phone-button img {
+  position: absolute;
+  width: 16px;
+  left: 8px;
+  top: 8px;
+  transform: scale(-1, 1);
+  filter: invert();
+}

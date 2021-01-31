@@ -1,6 +1,7 @@
 import React from 'react';
 import ClinicSlider from '../clinicSlider/clinicSlider';
 import OnChange from '../onChangeItem/onChange';
+import PhoneBtn from '../../doctors/phoneBtn/phoneBtn';
 import DoctorItem from '../doctorItem/doctorItem';
 import ClinicLogo from '../clinicLogo/clinicLogo';
 import { DoctorType } from '../../../types';
@@ -89,13 +90,7 @@ export default function ClinicItem({
           </a>
         </div>
         <div className="click-buttons">
-          <a
-            href={'tel:' + thisPhone}
-            title="Позвонить?"
-            className="phone-button"
-          >
-            <img src="https://img.icons8.com/ios-filled/50/000000/phone.png" />
-          </a>
+          <PhoneBtn thisPhone={thisPhone} />
           <a href="#" title="Добавить в избранное?" className="star-button">
             <img src="https://img.icons8.com/ios-filled/96/000000/bookmark-ribbon.png" />
           </a>
