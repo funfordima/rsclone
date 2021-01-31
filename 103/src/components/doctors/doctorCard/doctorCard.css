@@ -1,0 +1,132 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.doctor-card {
+  position: relative;
+  margin: 0 16px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 4%);
+  font-size: 13px;
+  line-height: 20px;
+  transition: all 0.3s ease;
+}
+
+.doctor-card--oncheck {
+  background-color: #fff9f2e7;
+}
+
+.doctor-card:not(:first-child) {
+  margin-top: 16px;
+}
+
+.all_info {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  min-height: 250px;
+}
+
+.right_info {
+  width: 380px;
+  font-size: 20px;
+}
+
+.info-with-buttons {
+  display: flex;
+}
+
+.main-info {
+  width: 85%;
+}
+
+h3.this-name {
+  opacity: 0.8;
+  margin-bottom: 8px;
+}
+
+.job-name {
+  font-size: 17px;
+}
+
+.experience-p {
+  color: rgba(0, 0, 0, 0.64);
+  font-size: 16px;
+}
+
+.experience-marker {
+  display: inline-block;
+  top: 50%;
+  left: 3px;
+  width: 4px;
+  height: 4px;
+  margin-top: -1px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.64);
+  vertical-align: middle;
+}
+
+.right_info hr {
+  width: 95%;
+  height: 2px;
+  margin: 15px auto;
+  color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.15);
+  border: 0px none;
+}
+
+.work-place-p {
+  font-size: 16px;
+  color: #00a8b4;
+}
+
+.work-name {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.click-buttons {
+  display: flex;
+  padding-top: 8px;
+}
+
+.star-button {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: 32px;
+  width: 32px;
+  margin-right: 8px;
+  padding: 12px 14px;
+  border-radius: 50%;
+  box-shadow: none;
+  z-index: 1;
+  color: #fff;
+  background-color: #46cdd6;
+  transition: all 0.2s ease-in-out;
+}
+
+.star-button {
+  margin-right: 0;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.star-button:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.star-button:hover img {
+  filter: invert(0);
+}
+
+.star-button img {
+  position: absolute;
+  width: 20px;
+  left: 6px;
+  top: 6px;
+  filter: invert(0.4);
+  transition: all 0.2s ease-in-out;
+}

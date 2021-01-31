@@ -3,6 +3,7 @@ import './App.css';
 import CreateHeader from './components/Header/CreateHeader';
 import MainServices from './components/mainServices/mainServices';
 import Clinics from './components/clinics/clinics';
+import Doctors from './components/doctors/doctors';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { AuthorizationPage } from './components/Header/pages/AuthorizationPage';
 import { UserPage } from './components/Header/pages/UserPage';
@@ -10,8 +11,22 @@ import { ResetPage } from './components/Header/pages/ResetPage';
 import Navigation from './components/Navigation';
 import CatalogPage from './components/CatalogPage';
 import SimpleChatbot from './components/SimpleChatbot';
-import { doctors, clinics, comments, category, subcategory, articles } from './api';
-import { ArticleType, Category, ClinicType, DoctorType, Subcategory, Comment } from './types';
+import {
+  doctors,
+  clinics,
+  comments,
+  category,
+  subcategory,
+  articles,
+} from './api';
+import {
+  ArticleType,
+  Category,
+  ClinicType,
+  DoctorType,
+  Subcategory,
+  Comment,
+} from './types';
 import Footer from './components/Footer';
 import ArticlePage from './components/ArticlePage';
 import { ReviewsAllPage } from './components/CatalogPage/components/ReviewsAllPage';
@@ -135,9 +150,16 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path={'/'}>
               <CreateHeader />
+
               {/* <PersonalPage personalInfo={user} clinicInfo={userT} isOpen={isOpen} /> */}
 
-              <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
+              {/* <Clinics clinics={dataClinics} doctors={dataDoctors} /> */}
+              {/* <Doctors doctors={dataDoctors} /> */}
+
+              <Navigation
+                categoriesList={dataCategory}
+                setCurrentPageId={setCurrentPageId}
+              />
               <MainServices
                 serviceName={'Новый год 2021 в санаториях Беларуси'}
                 serviceLinks={['#', '#', '#', '#', '#', '#']}
@@ -182,27 +204,35 @@ const App: React.FC = () => {
               render={() => (
                 <>
                   <CreateHeader />
-                  {/* <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
-                  <ArticlePage articles={dataArticles} getIdForCatalogPage={getIdForCatalogPage} /> */}
+                  <Navigation
+                    categoriesList={dataCategory}
+                    setCurrentPageId={setCurrentPageId}
+                  />
+                  <ArticlePage
+                    articles={dataArticles}
+                    getIdForCatalogPage={getIdForCatalogPage}
+                  />
                 </>
-              )
-              }
+              )}
             />
             <Route
               path={`/journal/article`}
               render={() => (
-                <div style={{ 'background': '#f2f2f2' }}>
+                <div style={{ background: '#f2f2f2' }}>
                   <CreateHeader />
-                  {/* <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
+                  <Navigation
+                    categoriesList={dataCategory}
+                    setCurrentPageId={setCurrentPageId}
+                  />
                   <CatalogPage
                     dataArticles={dataArticles.find((article) => article._id === idCatalogPage)!}
                     reviews={dataComments.filter((reviewArticle) => reviewArticle.idArticle === idCatalogPage)}
                     countReviews={dataComments.length}
-                  /> */}
-                </div>)
-              }
+                  />
+                </div>
+              )}
             />
-            {/* <Route
+            <Route
               exact
               path="/review"
               render={() => <ReviewsAllPage
@@ -212,7 +242,7 @@ const App: React.FC = () => {
                 dataArticlesAllId={dataArticlesAllId}
               />
               }
-            /> */}
+            />
           </Switch>
         </BrowserRouter>
       </ResetPasswordContext.Provider>

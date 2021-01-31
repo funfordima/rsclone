@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.clinic-logo {
+  align-self: center;
+  position: relative;
+  height: 48px;
+  max-width: 15%;
+}
+
+.clinic-logo img {
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+}
