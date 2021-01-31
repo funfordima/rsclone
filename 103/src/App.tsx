@@ -15,6 +15,8 @@ import { ArticleType, Category, ClinicType, DoctorType, Subcategory, Comment } f
 import Footer from './components/Footer';
 import ArticlePage from './components/ArticlePage';
 import { ReviewsAllPage } from './components/CatalogPage/components/ReviewsAllPage';
+import PersonalPage from './components/PersonalPage';
+// import styled from 'styled-components';
 
 export const SignInContext = React.createContext(false);
 export const ResetPasswordContext = React.createContext('');
@@ -66,7 +68,8 @@ const App: React.FC = () => {
   const [isResetPassword, setResetPassword] = useState('');
   const [idCatalogPage, setIdCatalogPage] = useState(idCatalogPageDefault);
   const [currentPageId, setCurrentPageId] = useState<string | null>(null);
-  console.log(idCatalogPageDefault, idCatalogPage, dataArticles);
+
+  // console.log(idCatalogPageDefault, idCatalogPage, dataArticles);
 
   const toggleEnterUser = (isSign: boolean): void => {
     setSignedIn(isSign);
@@ -83,6 +86,48 @@ const App: React.FC = () => {
 
   const dataArticlesAllId = dataArticles.map(({ _id, subtitle }) => ({ _id, subtitle }));
 
+  // const user = {
+  //   category: "Первая категория, Кандидат медицинских наук",
+  //   city: "Минск",
+  //   complete: true,
+  //   country: "Беларусь",
+  //   education: null,
+  //   experience: "33 года",
+  //   idWork: "600e0b815ce4c700172e327a",
+  //   name: "Осипова Антонина Владимировна",
+  //   pictures: ['https://ms1.103.ua/images/460b72161012319511c48523770efc7a/thumb/point=top-center,w=208,h=208,q=80,watermark=false/catalog_staff_photo/9a/73/65/9a736573f3a8eb207e9f4a73f9e40fbd.jpg'],
+  //   placeWork: "Реабилитационный центр «Элеос»",
+  //   profession: "Аллерголог",
+  //   section: "Аллерголог",
+  //   tel: null,
+  //   _id: "600057d2eb627b03cc021f90",
+  // };
+
+  // const userT = {
+  //   address: "ул. Ленина, 9",
+  //   city: "Минск",
+  //   complete: true,
+  //   coordinates: [53.900167, 27.560259],
+  //   country: "Беларусь",
+  //   description: "С центром пластической хирургии «Эдаран-Медикал» вы сможете добиться любых поставленных целей и осуществить все ваши желания, связанные с внешностью и красотой. Специалисты, работающие у нас, с удовольствием помогут вам выбрать подходящие для вас процедуры, подобрать нужного врача, а также получить всю необходимую информацию и консультацию.",
+  //   personnelID: ["600df80a5ce4c700172e3268", "600df9df5ce4c700172e3269", "600dfadb5ce4c700172e326a"],
+  //   pictures: ["https://ms1.103.ua/images/c8c2de94eb33cdb922db7f82bcc20a28/resize/w=72,h=48,q=80/place_logo/01/51/23/01512333972316bee4fc9cfbf2410fc8.jpg"],
+  //   section: "Медицинские центры и услуги",
+  //   subsection: "Центры пластической хирургии",
+  //   tel: "+37529-222-12-12",
+  //   title: "Центр пластической хирургии «Эдаран-Медикал»",
+  //   workingHours: "8.00 - 20.00",
+  //   _id: "60005084eb627b03cc021f79",
+  // };
+
+  const [isOpen, setOpen] = useState(false);
+
+  // const Div = styled.div`
+  //   width: 100px;
+  //   height: 100px;
+  //   background: green;
+  // `;
+
   return (
     <SignInContext.Provider value={isSignedIn}>
       <ResetPasswordContext.Provider value={isResetPassword}>
@@ -90,7 +135,8 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path={'/'}>
               <CreateHeader />
-              <Clinics clinics={dataClinics} />
+              {/* <PersonalPage personalInfo={user} clinicInfo={userT} isOpen={isOpen} /> */}
+
               <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
               <MainServices
                 serviceName={'Новый год 2021 в санаториях Беларуси'}
@@ -104,6 +150,7 @@ const App: React.FC = () => {
                   'https://static.103.by/images/common/image_block_item/00bc4712a75fd469242c191469a80b5f.jpg',
                 ]}
               />
+              {/* <Div onClick={() => setOpen(() => !isOpen)} /> */}
               <SimpleChatbot />
               <Footer />
             </Route>
@@ -118,6 +165,7 @@ const App: React.FC = () => {
               }
             />
             <Route path={'/profile'} component={UserPage} />
+            <Route path={'/clinics'} render={() => <Clinics clinics={dataClinics} />} />
             <Route
               path="/reset"
               render={() =>
@@ -134,8 +182,8 @@ const App: React.FC = () => {
               render={() => (
                 <>
                   <CreateHeader />
-                  <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
-                  <ArticlePage articles={dataArticles} getIdForCatalogPage={getIdForCatalogPage} />
+                  {/* <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
+                  <ArticlePage articles={dataArticles} getIdForCatalogPage={getIdForCatalogPage} /> */}
                 </>
               )
               }
@@ -145,16 +193,16 @@ const App: React.FC = () => {
               render={() => (
                 <div style={{ 'background': '#f2f2f2' }}>
                   <CreateHeader />
-                  <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
+                  {/* <Navigation categoriesList={dataCategory} setCurrentPageId={setCurrentPageId} />
                   <CatalogPage
                     dataArticles={dataArticles.find((article) => article._id === idCatalogPage)!}
                     reviews={dataComments.filter((reviewArticle) => reviewArticle.idArticle === idCatalogPage)}
                     countReviews={dataComments.length}
-                  />
+                  /> */}
                 </div>)
               }
             />
-            <Route
+            {/* <Route
               exact
               path="/review"
               render={() => <ReviewsAllPage
@@ -164,7 +212,7 @@ const App: React.FC = () => {
                 dataArticlesAllId={dataArticlesAllId}
               />
               }
-            />
+            /> */}
           </Switch>
         </BrowserRouter>
       </ResetPasswordContext.Provider>

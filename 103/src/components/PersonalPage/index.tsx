@@ -131,6 +131,7 @@ interface PersonalPageProps {
 const PersonalPage: React.FC<PersonalPageProps> = ({ personalInfo, clinicInfo, isOpen }) => {
   const { pictures, name, profession, experience, category } = personalInfo;
   return (
+
     <PersonalWrapper isOpen={isOpen} >
       <PersonalHeaderWrapper>
         <StaffPageImgContainer>
@@ -151,8 +152,8 @@ const PersonalPage: React.FC<PersonalPageProps> = ({ personalInfo, clinicInfo, i
         </StaffPageSpecialitie>
         <StaffPageMeta>
           {category}
-          &nbsp;&nbsp;•&nbsp;&nbsp;
-          {experience}
+            &nbsp;&nbsp;•&nbsp;&nbsp;
+            {experience}
         </StaffPageMeta>
         <ButtonClose />
       </PersonalHeaderWrapper>
@@ -160,6 +161,7 @@ const PersonalPage: React.FC<PersonalPageProps> = ({ personalInfo, clinicInfo, i
         <StaffWorkClinic clinicInfo={clinicInfo} />
       </StaffWorkPlace>
     </PersonalWrapper>
+
   );
 };
 
