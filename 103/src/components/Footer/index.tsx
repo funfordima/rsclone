@@ -133,6 +133,9 @@ const Footer: React.FC = () => {
               <Author href='https://github.com/funfordima'>
                 Dima Litvinov
               </Author>
+              <Author href='https://github.com/AndrewShamrey'>
+                Andrey Shamrey
+              </Author>
             </AuthorWrapper>
           </AuthorContainer>
           <SchoolContainer>
