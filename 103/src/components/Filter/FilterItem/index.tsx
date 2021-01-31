@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ISubCategory } from '../../../interfaces/interfaces';
 import { ISubcategoriesItem } from '../../../interfaces/interfaces';
 
-const CategoriesSubMenuItem: React.FC<ISubCategory> = ({
+const FilterItem: React.FC<ISubCategory> = ({
   icon,
   title,
   subcategoriesItem,
@@ -52,4 +52,4 @@ const CategoriesSubMenuItem: React.FC<ISubCategory> = ({
   );
 };
 
-export default CategoriesSubMenuItem;
+export default FilterItem;

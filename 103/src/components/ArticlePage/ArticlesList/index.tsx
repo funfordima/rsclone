@@ -117,7 +117,7 @@ const ArticlesList: React.FC<ArticlesListProps> = ({ articles, setIdForCatalogPa
           <ArticleListItem key={_id}>
             <ArticleListImgLink to={`journal/article`} onClick={() => setIdForCatalogPage(_id)}>
               <ArticleImg
-                src={src}
+                src={src ? src : ""}
                 alt={title}
               />
             </ArticleListImgLink>

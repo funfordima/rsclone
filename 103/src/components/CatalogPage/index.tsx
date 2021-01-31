@@ -129,7 +129,7 @@ interface CatalogPageProps {
 }
 
 const CatalogPage: React.FC<CatalogPageProps> = ({ dataArticles, reviews, countReviews }) => {
-  const { title, subtitle, articleDate, countView, text, src } = dataArticles;
+  const { title, subtitle, date, countView, text, src } = dataArticles;
 
   return (
     <>
@@ -144,7 +144,7 @@ const CatalogPage: React.FC<CatalogPageProps> = ({ dataArticles, reviews, countR
           <ArticleAboutDescription>
             <Description>
               <b>{subtitle}</b>
-              {articleDate}
+              {date}
             </Description>
             <CountView>
               <IconEyeOpen />

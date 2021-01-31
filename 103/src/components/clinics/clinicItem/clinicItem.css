@@ -1,0 +1,99 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background-color: #b3d4fc;
+  color: #000;
+  text-shadow: none;
+}
+
+.clinic-wrapper {
+  position: relative;
+  margin: 0 16px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 4%);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.clinic-wrapper--oncheck {
+  background-color: #fff9f2e7;
+}
+
+.clinic-wrapper:not(:first-child) {
+  margin-top: 16px;
+}
+
+.clinic-what-is-it {
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.48);
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  white-space: nowrap;
+  margin-bottom: 8px;
+  line-height: 16px;
+}
+
+.clinic-info-wrapper {
+  padding-bottom: 0;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.clinic-name {
+  padding-right: 8px;
+  font-size: 21px;
+  line-height: 24px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: top;
+}
+
+.other-info-div {
+  margin-top: 4px;
+  color: rgba(0, 0, 0, 0.96);
+}
+
+.this-address {
+  max-width: 100%;
+  margin-right: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.this-time {
+  position: relative;
+  padding-left: 14px;
+}
+
+.work-marker {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 4px;
+  height: 4px;
+  margin-top: -1px;
+  border-radius: 50%;
+  background-color: #ed4343;
+  vertical-align: middle;
+}
+
+.work-marker--opened {
+  background-color: #21c286;
+}
+
+.description-div {
+  margin-bottom: 16px;
+  font-size: 15px;
+}
