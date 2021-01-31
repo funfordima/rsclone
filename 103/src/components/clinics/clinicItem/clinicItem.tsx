@@ -7,6 +7,12 @@ import ClinicLogo from '../clinicLogo/clinicLogo';
 import { DoctorType } from '../../../types';
 import './clinicItem.css';
 
+type toggleFuncParam = {
+  clinicId: string,
+  doctorId: string,
+  complete: boolean,
+}
+
 interface clinicItemProps {
   whatIsIt: string;
   thisName: string;
@@ -17,6 +23,8 @@ interface clinicItemProps {
   thisPictures: Array<string> | null;
   thisComplete: boolean;
   thisDoctors: Array<DoctorType>;
+  toggleOpenPersonalInformation: (value: toggleFuncParam) => void;
+  idClinic: string;
 }
 
 function currentTime(workTime: string | null) {
@@ -41,6 +49,8 @@ export default function ClinicItem({
   thisWorkingHours,
   thisComplete,
   thisDoctors,
+  toggleOpenPersonalInformation,
+  idClinic,
 }: clinicItemProps) {
   const onCheck = thisComplete ? '' : 'clinic-wrapper--oncheck';
   let openedClass = '';
@@ -81,6 +91,9 @@ export default function ClinicItem({
                   key={index}
                   thisImage={item.pictures}
                   thisName={item.name}
+                  dataId={item._id}
+                  toggleOpenPersonalInformation={toggleOpenPersonalInformation}
+                  idClinic={idClinic}
                 />
               );
             })}

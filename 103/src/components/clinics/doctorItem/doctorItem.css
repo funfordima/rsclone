@@ -13,6 +13,7 @@
   width: 32px;
   position: relative;
   z-index: 1;
+  cursor: pointer;
 }
 
 .doctor-item img {
@@ -20,4 +21,8 @@
   border-radius: 50%;
   width: 100%;
   height: 100%;
+}
+
+.doctor-item img:hover {
+  border: 1px solid #31c7d1;
 }

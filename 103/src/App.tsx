@@ -30,6 +30,8 @@ import {
 import Footer from './components/Footer';
 import ArticlePage from './components/ArticlePage';
 import { ReviewsAllPage } from './components/CatalogPage/components/ReviewsAllPage';
+import PersonalPage from './components/PersonalPage';
+// import styled from 'styled-components';
 
 export const SignInContext = React.createContext(false);
 export const ResetPasswordContext = React.createContext('');
@@ -67,13 +69,13 @@ const App: React.FC = () => {
   if (isLoaded) {
     console.log(dataDoctors);
     console.log(dataClinics);
-    console.log(dataComments);
-    console.log(dataCategory);
-    console.log(dataSubcategory);
-    console.log(dataArticles);
+    // console.log(dataComments);
+    // console.log(dataCategory);
+    // console.log(dataSubcategory);
+    // console.log(dataArticles);
   }
 
-  console.log(dataComments);
+  // console.log(dataComments);
 
   const idCatalogPageDefault = localStorage.getItem('pageId') || '';
 
@@ -81,7 +83,8 @@ const App: React.FC = () => {
   const [isResetPassword, setResetPassword] = useState('');
   const [idCatalogPage, setIdCatalogPage] = useState(idCatalogPageDefault);
   const [currentPageId, setCurrentPageId] = useState<string | null>(null);
-  console.log(idCatalogPageDefault, idCatalogPage, dataArticles);
+
+  // console.log(idCatalogPageDefault, idCatalogPage, dataArticles);
 
   const toggleEnterUser = (isSign: boolean): void => {
     setSignedIn(isSign);
@@ -105,10 +108,7 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path={'/'}>
               <CreateHeader />
-
-              {/* <Clinics clinics={dataClinics} doctors={dataDoctors} /> */}
               {/* <Doctors doctors={dataDoctors} /> */}
-
               <Navigation
                 categoriesList={dataCategory}
                 setCurrentPageId={setCurrentPageId}
@@ -134,19 +134,21 @@ const App: React.FC = () => {
                 isSignedIn ? (
                   <Redirect to="/" />
                 ) : (
-                  <AuthorizationPage onToggleEnterUser={toggleEnterUser} />
-                )
+                    <AuthorizationPage onToggleEnterUser={toggleEnterUser} />
+                  )
               }
             />
             <Route path={'/profile'} component={UserPage} />
+            <Route path={'/clinics'} render={() => <Clinics clinics={dataClinics} doctors={dataDoctors} />} />
+            <Route path={'/doctors'} render={() => <Doctors doctors={dataDoctors} />} />
             <Route
               path="/reset"
               render={() =>
                 isResetPassword ? (
                   <Redirect to="/authorization" />
                 ) : (
-                  <ResetPage onResetPassword={resetUserPassword} />
-                )
+                    <ResetPage onResetPassword={resetUserPassword} />
+                  )
               }
             />
             <Route
