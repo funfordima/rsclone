@@ -93,7 +93,7 @@ const PlaceTime = styled.span`
 `;
 
 const TimeMarker = styled.span`
-  argin-top: -1px;
+  margin-top: -1px;
   display: inline-block;
   width: 4px;
   height: 4px;
@@ -282,20 +282,3 @@ export const StaffWorkClinic: React.FC<StaffWorkClinicProps> = ({ clinicInfo }) 
     </ContentBox>
   );
 };
-
-
-// clinics
-// address: "ул. Ленина, 9"
-// city: "Минск"
-// complete: true
-// coordinates: (2) [53.900167, 27.560259]
-// country: "Беларусь"
-// description: "С центром пластической хирургии «Эдаран-Медикал» вы сможете добиться любых поставленных целей и осуществить все ваши желания, связанные с внешностью и красотой. Специалисты, работающие у нас, с удовольствием помогут вам выбрать подходящие для вас процедуры, подобрать нужного врача, а также получить всю необходимую информацию и консультацию."
-// personnelID: (3) ["600df80a5ce4c700172e3268", "600df9df5ce4c700172e3269", "600dfadb5ce4c700172e326a"]
-// pictures: (5) ["https://ms1.103.by/images/80c4e9b074738e185f00852f…ogo/dd/9b/4b/dd9b4bedeca37704e1e816cf2b97f183.jpg", "https://ms1.103.by/images/f831173f783a28436777112a…oto/da/8e/5a/da8e5a5907c4691bcc83753d460890e7.jpg", "https://ms1.103.by/images/f831173f783a28436777112a…oto/49/8e/71/498e71eaa4ace150d8d75548a45df166.jpg", "https://ms1.103.by/images/f831173f783a28436777112a…oto/24/e4/5a/24e45a2eee8b9c5e5251f32ab77938d0.jpg", "https://ms1.103.by/images/f831173f783a28436777112a…oto/a2/80/c5/a280c586c55f875f9d23aa941b6ab7e8.jpg"]
-// section: "Медицинские центры и услуги"
-// subsection: "Центры пластической хирургии"
-// tel: "+37529-222-12-12"
-// title: "Центр пластической хирургии «Эдаран-Медикал»"
-// workingHours: "8.00 - 20.00"
-// _id: "60005084eb627b03cc021f79"

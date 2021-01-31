@@ -1,27 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
-// import staffDefaultPhotoSvg from '../../assets/images/doctor/staff-default-photo.svg';
 import { DoctorType, ClinicType } from '../../types';
 import { StaffWorkClinic } from './components/StaffWorkClinic';
 
-const PersonalWrapper = styled.div`
-  // width: ${props => props.isOpen ? '100%' : '0'};
-  // height: ${props => props.isOpen ? '100%' : '0'};
+const Overlay = styled.div`
   width: 100%;
-  top: ${props => props.isOpen ? '0' : '-100%'};
-  left: ${props => props.isOpen ? '0' : '-100%'};
-  max-width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 11;
+  background-color: rgba(51, 50, 50, .5);
+  transform: translate(-50%, -50%);
+`;
+
+const PersonalWrapper = styled.div`
+  width: 80%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  flex: 1 0 auto;
-  position: relative;
-  background: #f2f2f2;
-  overflow: hidden;
-  transition-duration: .3s;
-  transition-property: width, height, top, left;
-  transition-timing-function: ease-in-out; 
-  will-change: transform;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all .3s linear;
+  z-index: 10;
 `;
 
 const PersonalHeaderWrapper = styled.div`
@@ -102,7 +107,7 @@ const ButtonClose = styled.div`
   height: 20px;
   position: absolute;
   top: 25px;
-  right: 50px;
+  right: 25px;
   cursor: pointer;
 
   &:before, &:after {
@@ -111,6 +116,12 @@ const ButtonClose = styled.div`
     width: 2px;
     height: 17px;
     background: #000;
+  }
+
+  &:hover {
+    &:before, &:after {
+      background: #ff1446;
+    }
   }
 
   &:before {
@@ -122,63 +133,54 @@ const ButtonClose = styled.div`
   }
 `;
 
+type toggleFuncParam = {
+  clinicId: string,
+  doctorId: string,
+  complete: boolean,
+}
+
 interface PersonalPageProps {
   personalInfo: DoctorType;
   clinicInfo: ClinicType;
   isOpen: boolean;
+  toggleOpenPersonalInformation: (value: toggleFuncParam) => void;
 }
 
-const PersonalPage: React.FC<PersonalPageProps> = ({ personalInfo, clinicInfo, isOpen }) => {
+const PersonalPage: React.FC<PersonalPageProps> = ({ personalInfo, clinicInfo, isOpen, toggleOpenPersonalInformation }) => {
   const { pictures, name, profession, experience, category } = personalInfo;
   return (
-
-    <PersonalWrapper isOpen={isOpen} >
-      <PersonalHeaderWrapper>
-        <StaffPageImgContainer>
-          <StaffPageImg
-            src={pictures ? pictures[0] : ''}
-            alt={name}
-          />
-          <StaffPageImgShadow
-            src={pictures ? pictures[0] : ''}
-            alt={name}
-          />
-        </StaffPageImgContainer>
-        <StaffPageTitle>
-          {name}
-        </StaffPageTitle>
-        <StaffPageSpecialitie>
-          {profession}
-        </StaffPageSpecialitie>
-        <StaffPageMeta>
-          {category}
+    <Overlay>
+      <PersonalWrapper isOpen={isOpen} >
+        <PersonalHeaderWrapper>
+          <StaffPageImgContainer>
+            <StaffPageImg
+              src={pictures ? pictures[0] : ''}
+              alt={name}
+            />
+            <StaffPageImgShadow
+              src={pictures ? pictures[0] : ''}
+              alt={name}
+            />
+          </StaffPageImgContainer>
+          <StaffPageTitle>
+            {name}
+          </StaffPageTitle>
+          <StaffPageSpecialitie>
+            {profession}
+          </StaffPageSpecialitie>
+          <StaffPageMeta>
+            {category}
             &nbsp;&nbsp;•&nbsp;&nbsp;
             {experience}
-        </StaffPageMeta>
-        <ButtonClose />
-      </PersonalHeaderWrapper>
-      <StaffWorkPlace>
-        <StaffWorkClinic clinicInfo={clinicInfo} />
-      </StaffWorkPlace>
-    </PersonalWrapper>
-
+          </StaffPageMeta>
+          <ButtonClose onClick={() => toggleOpenPersonalInformation({ 'clinicId': '', 'doctorId': '', 'complete': false })} />
+        </PersonalHeaderWrapper>
+        <StaffWorkPlace>
+          <StaffWorkClinic clinicInfo={clinicInfo} />
+        </StaffWorkPlace>
+      </PersonalWrapper>
+    </Overlay>
   );
 };
 
 export default PersonalPage;
-
-
-// category: "Первая категория, Кандидат медицинских наук"
-// city: "Минск"
-// complete: true
-// country: "Беларусь"
-// education: null array
-// experience: "33 года"
-// idWork: "600e0b815ce4c700172e327a"
-// name: "Осипова Антонина Владимировна"
-// pictures: null
-// placeWork: "Реабилитационный центр «Элеос»"
-// profession: "Аллерголог"
-// section: "Аллерголог"
-// tel: null
-// _id: "600057d2eb627b03cc021f90"
