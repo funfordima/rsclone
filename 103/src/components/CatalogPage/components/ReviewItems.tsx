@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as SuccessSvg } from '../../Header/public/success.svg';
+import { Comment } from '../../../types';
 
 const ReviewItemElement = styled.div`
   padding: 16px 24px;  
@@ -104,26 +105,18 @@ const ReviewBodyContainer = styled.div`
   white-space: pre-wrap;
 `;
 
-type reviewType = {
-  _id: number,
-  idArticle: string,
-  userName: string,
-  message: string,
-  complete: boolean,
-}
-
 interface ReviewItemsProps {
-  reviews: reviewType[];
+  reviews: Comment[];
 }
 
 export const ReviewItems: React.FC<ReviewItemsProps> = ({ reviews }) => {
   return (
     <>
-      {reviews.map(({ _id, userName, message, complete }) => {
+      {reviews.map(({ _id, userName, message, complete, date }) => {
         return (
           <ReviewItemElement key={_id}>
             <ReviewTime>
-              Time
+              {date}
             </ReviewTime>
             <Review>
               <ReviewHeaderContainer>
@@ -132,7 +125,7 @@ export const ReviewItems: React.FC<ReviewItemsProps> = ({ reviews }) => {
                     {userName}
                   </ReviewAuthor>
                   <ReviewTime>
-                    12-05-20
+                    {date}
                   </ReviewTime>
                 </ReviewHeaderRow>
                 <ReviewMetadata>

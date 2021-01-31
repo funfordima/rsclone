@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as EyeOpenSvg } from '../../Header/public/visibility.svg';
+import { ArticleType } from '../../../types';
 
 const ArticlesListElement = styled.ul`
   padding: 0;
@@ -101,14 +102,6 @@ const ViewCount = styled.span`
     vertical-align: bottom;
   }
 `;
-
-type ArticleType = {
-  title: string,
-  src: string,
-  _id: number,
-  linkSrc?: string,
-  countView: number
-}
 
 interface ArticlesListProps {
   articles: ArticleType[];
