@@ -102,6 +102,7 @@ const ViewCount = styled.span`
     vertical-align: bottom;
   }
 `;
+
 interface ArticlesListProps {
   articles: ArticleType[];
   setIdForCatalogPage: (id: string) => void;
