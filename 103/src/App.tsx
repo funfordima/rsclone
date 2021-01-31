@@ -29,6 +29,7 @@ import {
 } from './types';
 import Footer from './components/Footer';
 import ArticlePage from './components/ArticlePage';
+import { ReviewsAllPage } from './components/CatalogPage/components/ReviewsAllPage';
 
 export const SignInContext = React.createContext(false);
 export const ResetPasswordContext = React.createContext('');
@@ -71,6 +72,9 @@ const App: React.FC = () => {
     console.log(dataSubcategory);
     console.log(dataArticles);
   }
+
+  console.log(dataComments);
+
   const idCatalogPageDefault = localStorage.getItem('pageId') || '';
 
   const [isSignedIn, setSignedIn] = useState(false);
@@ -91,6 +95,8 @@ const App: React.FC = () => {
     setIdCatalogPage(value);
     localStorage.setItem('pageId', value);
   };
+
+  const dataArticlesAllId = dataArticles.map(({ _id, subtitle }) => ({ _id, subtitle }));
 
   return (
     <SignInContext.Provider value={isSignedIn}>
@@ -170,13 +176,8 @@ const App: React.FC = () => {
                     setCurrentPageId={setCurrentPageId}
                   />
                   <CatalogPage
-                    dataArticles={dataArticles.find(
-                      article => article._id === idCatalogPage,
-                    )}
-                    reviews={dataComments.filter(
-                      reviewArticle =>
-                        reviewArticle.idArticle === idCatalogPage,
-                    )}
+                    dataArticles={dataArticles.find((article) => article._id === idCatalogPage)!}
+                    reviews={dataComments.filter((reviewArticle) => reviewArticle.idArticle === idCatalogPage)}
                     countReviews={dataComments.length}
                   />
                 </div>
@@ -185,15 +186,13 @@ const App: React.FC = () => {
             <Route
               exact
               path="/review"
-              render={() => (
-                <>
-                  <CreateHeader />
-                  <Navigation
-                    categoriesList={dataCategory}
-                    setCurrentPageId={setCurrentPageId}
-                  />
-                </>
-              )}
+              render={() => <ReviewsAllPage
+                dataCategory={dataCategory}
+                setCurrentPageId={setCurrentPageId}
+                reviews={dataComments}
+                dataArticlesAllId={dataArticlesAllId}
+              />
+              }
             />
           </Switch>
         </BrowserRouter>

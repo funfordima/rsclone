@@ -4,6 +4,7 @@ import { BackButton } from '../Header/styledComponents';
 import FeedbackForm from '../FeadbackForm';
 import { ReactComponent as IconEyeOpen } from '../../components/Header/public/hide.svg';
 import { ReviewBox } from './components/ReviewBox';
+import { ArticleType, Comment } from '../../types';
 
 const CatalogPageWrapper = styled.div`
   margin: 0 auto;
@@ -121,30 +122,14 @@ const BorderBottom = styled.div`
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
-type reviewType = {
-  _id: number,
-  idArticle: string,
-  userName: string,
-  message: string,
-  complete: boolean,
-}
-
-type ArticleType = {
-  title: string,
-  src: string,
-  _id: number,
-  linkSrc?: string,
-  countView: number
-}
-
 interface CatalogPageProps {
   dataArticles: ArticleType;
-  reviews: reviewType[];
+  reviews: Comment[];
   countReviews: number;
 }
 
 const CatalogPage: React.FC<CatalogPageProps> = ({ dataArticles, reviews, countReviews }) => {
-  const { title, subtitle, articleDate, countView, text, src } = dataArticles;
+  const { title, subtitle, date, countView, text, src } = dataArticles;
 
   return (
     <>
@@ -159,7 +144,7 @@ const CatalogPage: React.FC<CatalogPageProps> = ({ dataArticles, reviews, countR
           <ArticleAboutDescription>
             <Description>
               <b>{subtitle}</b>
-              {articleDate}
+              {date}
             </Description>
             <CountView>
               <IconEyeOpen />

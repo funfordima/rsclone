@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as ArrowLeftSvg } from '../../Header/public/arrow-left.svg';
 import { ReviewItems } from './ReviewItems';
+import { Comment } from '../../../types';
 
 const ReviewBoxWrapper = styled.div`
   position: relative;
@@ -91,18 +92,10 @@ const ReviewContentContainer = styled.div`
   overflow: hidden;
 `;
 
-type reviewType = {
-  _id: number,
-  idArticle: string,
-  userName: string,
-  message: string,
-  complete: boolean,
-}
-
 interface ReviewBoxProps {
-  reviewsArticle: reviewType[];
+  reviewsArticle: Comment[];
   countReviews: number;
-  subtitle: string;
+  subtitle: string | null;
 }
 
 export const ReviewBox: React.FC<ReviewBoxProps> = ({ reviewsArticle, countReviews, subtitle }) => {

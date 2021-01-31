@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ArticleList from './ArticlesList';
-import { ArticleType } from './../../types'
-import { Switch } from 'react-router-dom';
+import { ArticleType } from '../../../types';
 
 const Wrapper = styled.div`
   margin: 0 auto;
