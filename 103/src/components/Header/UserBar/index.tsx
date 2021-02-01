@@ -105,7 +105,8 @@ const UserBarLink = styled(NavLink)`
 `;
 
 const UserBar: React.FC = () => {
-  const isSignIn = useContext(SignInContext) || !!firebase.auth().currentUser;
+  // const isSignIn = useContext(SignInContext) || !!firebase.auth().currentUser;
+  const isSignIn = useContext(SignInContext);
   const [isOpenMenu, setOpenMenu] = useState(false);
 
   const toggleMenu = (): void => {

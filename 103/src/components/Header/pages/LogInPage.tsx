@@ -27,7 +27,7 @@ const FormOptions = styled.div`
 `;
 
 interface LogInPageProps {
-  onToggleErrorComponent: () => void;
+  onToggleErrorComponent: (isError: boolean) => void;
   toggleEnterUser: (value: boolean) => void;
 }
 
@@ -64,14 +64,14 @@ export class LogInPage extends React.Component<LogInPageProps, LogInPageState> {
     this.props.onToggleErrorComponent(false);
   }
 
-  logInAccount = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  logInAccount = (event: React.ChangeEvent<HTMLFormElement>): void => {
     event.preventDefault();
     const { email, password } = this.state;
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(() => {
-        this.setState({ isSignIn: true });
-        this.props.toggleEnterUser(true);
+        // this.setState({ isSignIn: true });
+        // this.props.toggleEnterUser(true);
       })
       .catch(() => {
         this.props.onToggleErrorComponent(true);
@@ -96,7 +96,7 @@ export class LogInPage extends React.Component<LogInPageProps, LogInPageState> {
         <ResetPasswordContext.Consumer>
           {context => context && <AlertSuccess>{context}</AlertSuccess>}
         </ResetPasswordContext.Consumer>
-        < Form >
+        < Form onSubmit={this.logInAccount}>
           <FormField>
             <InputText
               tabIndex="1"
@@ -142,7 +142,6 @@ export class LogInPage extends React.Component<LogInPageProps, LogInPageState> {
               type="submit"
               value="LogIn"
               name="login"
-              onClick={this.logInAccount}
             />
           </FormOptions>
         </Form>
