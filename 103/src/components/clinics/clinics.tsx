@@ -11,7 +11,7 @@ import Filter from '../Filter';
 interface clinicsProps {
   clinics: Array<ClinicType>;
   doctors: Array<DoctorType>;
-  dataSubcategory: Array<Subcategory>;
+  filterList: Array<Subcategory>;
   currentPageId: string | null;
 }
 
@@ -25,7 +25,7 @@ export default function Clinics({
   clinics,
   doctors,
   currentPageId,
-  dataSubcategory,
+  filterList,
 }: clinicsProps) {
   const currentCity = localStorage.getItem('myCity') || 'Minsk';
   const [isOpen, setOpen] = useState({
@@ -42,7 +42,7 @@ export default function Clinics({
     <div className="clinic-container">
       <Filter
         currentPageId={currentPageId}
-        subCategoriesList={dataSubcategory}
+        filterList={filterList}
       />
       <div className="place-list">
         {clinics

@@ -84,7 +84,9 @@ const App: React.FC = () => {
   const [isSignedIn, setSignedIn] = useState(false);
   const [isResetPassword, setResetPassword] = useState('');
   const [idCatalogPage, setIdCatalogPage] = useState(idCatalogPageDefault);
-  const [currentPageId, setCurrentPageId] = useState<string | null>(currentNavigationItemId);
+  const [currentPageId, setCurrentPageId] = useState<string | null>(
+    currentNavigationItemId,
+  );
 
   // console.log(idCatalogPageDefault, idCatalogPage, dataArticles);
 
@@ -147,7 +149,12 @@ const App: React.FC = () => {
             <Route
               path={'/clinics'}
               render={() => (
-                <Clinics clinics={dataClinics} doctors={dataDoctors} currentPageId={currentPageId} dataSubcategory={dataSubcategory}/>
+                <Clinics
+                  clinics={dataClinics}
+                  doctors={dataDoctors}
+                  currentPageId={currentPageId}
+                  filterList={dataSubcategory}
+                />
               )}
             />
             <Route
