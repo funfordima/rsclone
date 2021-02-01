@@ -1,5 +1,5 @@
 import React from 'react';
-import './servicesTitle.css';
+import './servicesTitle.scss';
 
 interface servicesTitleProps {
   title: string

@@ -1,5 +1,5 @@
 import React from 'react';
-import './servicesContent.css';
+import './servicesContent.scss';
 import ServicesContentLink from '../servicesContentLink/servicesContentLink';
 
 interface servicesContentProps {
