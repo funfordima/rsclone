@@ -70,11 +70,15 @@ const App: React.FC = () => {
   // console.log(dataComments);
 
   const idCatalogPageDefault = localStorage.getItem('pageId') || '';
+  const currentNavigationItemId: string | null =
+    localStorage.getItem('navigationItemId') || null;
 
   const [isSignedIn, setSignedIn] = useState(false);
   const [isResetPassword, setResetPassword] = useState('');
   const [idCatalogPage, setIdCatalogPage] = useState(idCatalogPageDefault);
-  const [currentPageId, setCurrentPageId] = useState<string | null>(null);
+  const [currentPageId, setCurrentPageId] = useState<string | null>(
+    currentNavigationItemId,
+  );
 
   // console.log(idCatalogPageDefault, idCatalogPage, dataArticles);
 
@@ -91,7 +95,10 @@ const App: React.FC = () => {
     localStorage.setItem('pageId', value);
   };
 
-  const dataArticlesAllId = dataArticles.map(({ _id, subtitle }) => ({ _id, subtitle }));
+  const dataArticlesAllId = dataArticles.map(({ _id, subtitle }) => ({
+    _id,
+    subtitle,
+  }));
 
   return (
     <SignInContext.Provider value={isSignedIn}>
@@ -127,21 +134,34 @@ const App: React.FC = () => {
                 isSignedIn ? (
                   <Redirect to="/" />
                 ) : (
-                    <AuthorizationPage onToggleEnterUser={toggleEnterUser} />
-                  )
+                  <AuthorizationPage onToggleEnterUser={toggleEnterUser} />
+                )
               }
             />
             <Route path={'/profile'} component={UserPage} />
-            <Route path={'/clinics'} render={() => <Clinics clinics={dataClinics} doctors={dataDoctors} />} />
-            <Route path={'/doctors'} render={() => <Doctors doctors={dataDoctors} />} />
+            <Route
+              path={'/clinics'}
+              render={() => (
+                <Clinics
+                  clinics={dataClinics}
+                  doctors={dataDoctors}
+                  currentPageId={currentPageId}
+                  filterList={dataSubcategory}
+                />
+              )}
+            />
+            <Route
+              path={'/doctors'}
+              render={() => <Doctors doctors={dataDoctors} />}
+            />
             <Route
               path="/reset"
               render={() =>
                 isResetPassword ? (
                   <Redirect to="/authorization" />
                 ) : (
-                    <ResetPage onResetPassword={resetUserPassword} />
-                  )
+                  <ResetPage onResetPassword={resetUserPassword} />
+                )
               }
             />
             <Route
@@ -171,8 +191,15 @@ const App: React.FC = () => {
                     setCurrentPageId={setCurrentPageId}
                   />
                   <CatalogPage
-                    dataArticles={dataArticles.find((article) => article._id === idCatalogPage)!}
-                    reviews={dataComments.filter((reviewArticle) => reviewArticle.idArticle === idCatalogPage)}
+                    dataArticles={
+                      dataArticles.find(
+                        article => article._id === idCatalogPage,
+                      )!
+                    }
+                    reviews={dataComments.filter(
+                      reviewArticle =>
+                        reviewArticle.idArticle === idCatalogPage,
+                    )}
                     countReviews={dataComments.length}
                   />
                 </div>
@@ -181,13 +208,14 @@ const App: React.FC = () => {
             <Route
               exact
               path="/review"
-              render={() => <ReviewsAllPage
-                dataCategory={dataCategory}
-                setCurrentPageId={setCurrentPageId}
-                reviews={dataComments}
-                dataArticlesAllId={dataArticlesAllId}
-              />
-              }
+              render={() => (
+                <ReviewsAllPage
+                  dataCategory={dataCategory}
+                  setCurrentPageId={setCurrentPageId}
+                  reviews={dataComments}
+                  dataArticlesAllId={dataArticlesAllId}
+                />
+              )}
             />
           </Switch>
         </BrowserRouter>

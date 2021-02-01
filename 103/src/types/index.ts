@@ -43,27 +43,27 @@ export type ArticleType = {
 }
 
 export type Category = {
-    _id: string,
+    _id?: string,
     name: string,
     icon: string,
     path: string,
 }
 
 export type Subcategory = {
-    _id: string,
+    _id?: string,
     itemsMenu: Array<SubcategoriesMenu>,
     categoriesId: string
 }
 
 export type SubcategoriesMenu = {
-    _id: string,
+    _id?: string,
     icon: string,
     title: string | null,
     items: Array<SubcategoriesItem>
 }
 
 export type SubcategoriesItem = {
-    _id: string,
+    _id?: string,
     name: string,
     path: string,
     complete: boolean
