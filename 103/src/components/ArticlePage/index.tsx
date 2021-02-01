@@ -1,12 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import ArticleList from './ArticlesList';
-import { ArticleType } from '../../../types';
+import { ArticleType } from '../../types';
 
 const Wrapper = styled.div`
   margin: 0 auto;
   max-width: 1240px;
   width: 100%;
+
+  @media (max-width: 1439px) {
+    padding: 0 15px;
+  }
 
   @media (max-width: 960px) {
     max-width: 640px;
@@ -26,10 +30,10 @@ const HeaderContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font: 600 30px/32px Roboto;
+  font: 500 30px/32px Verdana, sans-serif;
   text-transform: uppercase;
   letter-spacing: .05em;
-  margin: 8px 0;
+  margin: 20px 0;
 `;
 
 const BodyArticles = styled.div`

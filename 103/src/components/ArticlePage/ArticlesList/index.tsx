@@ -10,6 +10,18 @@ const ArticlesListElement = styled.ul`
   flex-flow: row wrap;
   justify-content: space-between;
   gap: 20px;
+
+  @media (max-width: 1209px) {
+    justify-content: space-evenly;
+  }
+
+  @media (max-width: 959px) {
+    justify-content: space-between;
+  }
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 const ArticleListItem = styled.li`
@@ -23,6 +35,13 @@ const ArticleListItem = styled.li`
   background: #fff;
   background-clip: padding-box;
   list-style-type: none;
+
+  @media (max-width: 959px) {
+    justify-content: space-between;
+    &:last-child {
+      align-items: flex-start;
+    }
+  }
 `;
 
 const ArticleListImgLink = styled(NavLink)`
@@ -42,6 +61,7 @@ const ArticleListImgLink = styled(NavLink)`
 
 const ArticleImg = styled.img`
   width: 100%;
+  height: 186px;
   vertical-align: bottom;
   border-radius: 2px 2px 0 0;
   transition: opacity .2s ease-out;
