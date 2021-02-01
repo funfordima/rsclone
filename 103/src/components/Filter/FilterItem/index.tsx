@@ -2,20 +2,30 @@ import React, { ReactNodeArray } from 'react';
 import './index.scss';
 import { Link } from 'react-router-dom';
 
-import { SubcategoriesMenu, SubcategoriesItem } from '../../../types';
+import { SubcategoriesItem } from '../../../types';
 
-const FilterItem: React.FC<SubcategoriesMenu> = ({ icon, title, items }) => {
+interface SubcategoriesMenu {
+  _id?: string | undefined;
+  icon: string;
+  title: string | null;
+  items: Array<SubcategoriesItem>;
+  onclick: (str:string) => void;
+}
+
+const FilterItem: React.FC<SubcategoriesMenu> = ({ icon, title, items, onclick }) => {
   const categoriesFilterItemWithoutTitle = items.slice(1);
-
   const fillSubCategoriesColumn = (
     list: SubcategoriesItem[],
   ): ReactNodeArray => {
     return list.map((item: SubcategoriesItem, index: number) => {
+      const handleClick = () => {
+        onclick(item.name);
+      }
       return (
         <li key={index} className="subCategory-item">
-          <Link to={item.path}>
+          <span onClick={ handleClick }>
             <span>{item.name}</span>
-          </Link>
+          </span>
         </li>
       );
     });
