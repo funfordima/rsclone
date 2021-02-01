@@ -1,18 +1,16 @@
-import React from 'react';
+import React, { ReactNodeArray } from 'react';
 import './index.scss';
 import { Link } from 'react-router-dom';
-import { ISubCategory } from '../../../interfaces/interfaces';
-import { ISubcategoriesItem } from '../../../interfaces/interfaces';
 
-const FilterItem: React.FC<ISubCategory> = ({
-  icon,
-  title,
-  subcategoriesItem,
-}) => {
-  const subcategoriesItemWithoutTitle = subcategoriesItem.slice(1);
+import { SubcategoriesMenu, SubcategoriesItem } from '../../../types';
 
-  const fillSubCategoriesColumn = (list: ISubcategoriesItem[]): any => {
-    return list.map((item: ISubcategoriesItem, index: number) => {
+const FilterItem: React.FC<SubcategoriesMenu> = ({ icon, title, items }) => {
+  const categoriesFilterItemWithoutTitle = items.slice(1);
+
+  const fillSubCategoriesColumn = (
+    list: SubcategoriesItem[],
+  ): ReactNodeArray => {
+    return list.map((item: SubcategoriesItem, index: number) => {
       return (
         <li key={index} className="subCategory-item">
           <Link to={item.path}>
@@ -36,8 +34,8 @@ const FilterItem: React.FC<ISubCategory> = ({
         >
           {title || (
             <li className="subCategory-item item-like-a-link">
-              <Link to={subcategoriesItem[0].path}>
-                <span>{subcategoriesItem[0].name}</span>
+              <Link to={items[0].path}>
+                <span>{items[0].name}</span>
               </Link>
             </li>
           )}
@@ -45,8 +43,8 @@ const FilterItem: React.FC<ISubCategory> = ({
       </div>
       <ul>
         {title
-          ? fillSubCategoriesColumn(subcategoriesItem)
-          : fillSubCategoriesColumn(subcategoriesItemWithoutTitle)}
+          ? fillSubCategoriesColumn(items)
+          : fillSubCategoriesColumn(categoriesFilterItemWithoutTitle)}
       </ul>
     </div>
   );

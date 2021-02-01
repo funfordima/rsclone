@@ -2,47 +2,41 @@ import React from 'react';
 import './index.scss';
 
 import FilterItem from './FilterItem';
-import { ISubCategory } from '../../interfaces/interfaces';
-import {
-  Subcategory,
-  SubcategoriesMenu,
-  SubcategoriesItem,
-} from '../../types/index';
+import { Subcategory, SubcategoriesMenu } from '../../types';
 
-interface ISubCategoriesList {
-  subCategoriesList: Subcategory[];
+interface IFilter {
+  filterList: Subcategory[];
   currentPageId: string | null;
 }
 
-const Filter: React.FC<ISubCategoriesList> = ({
-  subCategoriesList,
-  currentPageId,
-}) => {
-  let subCategoriesMenu: ISubCategory[] = [];
+const Filter: React.FC<IFilter> = ({ filterList, currentPageId }) => {
+  const filterItem =
+    filterList.find(
+      (subCategories: Subcategory) =>
+        subCategories.categoriesId === currentPageId,
+    ) || null;
 
-  subCategoriesList.forEach((subCategories: any) => {
-    subCategories.categoriesId === currentPageId
-      ? (subCategoriesMenu = subCategories.itemsMenu)
-      : null;
-  });
+  const categoriesFilterItem: SubcategoriesMenu[] | null = filterItem
+    ? filterItem.itemsMenu
+    : null;
 
   return (
-    <div
-      className={
-        currentPageId === null ? 'categorySubMenu' : 'categorySubMenu active'
-      }
-    >
+    <div className="categorySubMenu">
       <div className="categorySubMenu-row">
-        {subCategoriesMenu.map((subCategory: any, index: number) => {
-          return (
-            <FilterItem
-              key={index}
-              icon={subCategory.icon}
-              title={subCategory.title}
-              subcategoriesItem={subCategory.items}
-            />
-          );
-        })}
+        {categoriesFilterItem
+          ? categoriesFilterItem.map(
+              (subCategory: SubcategoriesMenu, index) => {
+                return (
+                  <FilterItem
+                    key={index}
+                    icon={subCategory.icon}
+                    title={subCategory.title}
+                    items={subCategory.items}
+                  />
+                );
+              },
+            )
+          : null}
       </div>
     </div>
   );

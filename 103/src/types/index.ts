@@ -1,5 +1,5 @@
 export type ClinicType = {
-    _id: string,
+    _id?: string,
     section: string,
     subsection: string,
     title: string,
@@ -16,7 +16,7 @@ export type ClinicType = {
 }
 
 export type DoctorType = {
-    _id: string,
+    _id?: string,
     name: string,
     country: string,
     city: string,
@@ -33,7 +33,7 @@ export type DoctorType = {
 }
 
 export type ArticleType = {
-    _id: string,
+    _id?: string,
     title: string,
     subtitle: string | null,
     text: string,
@@ -43,34 +43,34 @@ export type ArticleType = {
 }
 
 export type Category = {
-    _id: string,
+    _id?: string,
     name: string,
     icon: string,
     path: string,
 }
 
 export type Subcategory = {
-    _id: string,
+    _id?: string,
     itemsMenu: Array<SubcategoriesMenu>,
     categoriesId: string
 }
 
 export type SubcategoriesMenu = {
-    _id: string,
+    _id?: string,
     icon: string,
     title: string | null,
     items: Array<SubcategoriesItem>
 }
 
 export type SubcategoriesItem = {
-    _id: string,
+    _id?: string,
     name: string,
     path: string,
     complete: boolean
 }
 
 export type Comment = {
-    _id: string,
+    _id?: string,
     idArticle: string,
     userName: string,
     message: string,
