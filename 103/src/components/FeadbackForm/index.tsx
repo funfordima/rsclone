@@ -1,5 +1,7 @@
+import { type } from 'os';
 import React, { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
+import { boolean } from 'yargs';
 import { AlertSuccess } from '../Header/styledComponents';
 
 const FeedbackFormWrapper = styled.div`
@@ -91,8 +93,11 @@ const AlertError = styled.div`
   color: red;
   font-size: 10px;
 `;
+interface Props {
+  id: string;
+}
 
-const FeedbackForm: React.FC = () => {
+const FeedbackForm: React.FC<Props> = (id) => {
   const [isErrorName, setErrorName] = useState('');
   const [isErrorText, setErrorText] = useState('');
   const [isErrorPhone, setErrorPhone] = useState('');
@@ -104,17 +109,17 @@ const FeedbackForm: React.FC = () => {
   });
 
   const changeUserName = (event: ChangeEvent<HTMLInputElement>): void => {
-    setUserReview(() => ({ ...userReview, 'name': event.target.value.trim() }));
+    setUserReview(() => ({ ...userReview, 'name': event.target.value }));
     setErrorName('');
   };
 
   const changeUserText = (event: ChangeEvent<HTMLInputElement>): void => {
-    setUserReview(() => ({ ...userReview, 'text': event.target.value.trim() }));
+    setUserReview(() => ({ ...userReview, 'text': event.target.value }));
     setErrorText('');
   };
 
   const changeUserPhone = (event: ChangeEvent<HTMLInputElement>): void => {
-    setUserReview(() => ({ ...userReview, 'phone': event.target.value.toString().trim() }));
+    setUserReview(() => ({ ...userReview, 'phone': event.target.value.toString() }));
     setErrorPhone('For Example: 380991453287');
   };
 
@@ -124,7 +129,7 @@ const FeedbackForm: React.FC = () => {
     const minTextLength = 5;
 
     switch (true) {
-      case (!name.match(/[a-zA-Z]{3,}/)): {
+      case (!/[a-zA-Zа-яА-Я]{3,}/.test(name)): {
         setErrorName('This field is required');
         break;
       }
@@ -132,18 +137,41 @@ const FeedbackForm: React.FC = () => {
         setErrorText('This field is required');
         break;
       }
-      case (!phone.match(/^\d{10,12}$/)): {
+      case (!/^\d{10,12}$/.test(phone)): {
         setErrorPhone('This field is required');
         break;
       }
-      case (!name.match(/[a-zA-Z]{3,}/) || text.length < minTextLength || !phone.match(/^\d{10,12}$/)): {
+      case (!/[a-zA-Zа-яА-Я]{3,}/.test(name) || text.length < minTextLength || !/^\d{10,12}$/.test(phone)): {
         setErrorName('This field is required');
         setErrorText('This field is required');
         setErrorPhone('This field is required');
         break;
       }
       default: {
-        console.log('Send request');
+        const post = async () => {
+          const comment = {
+              idArticle: id.id,
+              userName: userReview.name,
+              date: new Date().toLocaleDateString(),
+              message: userReview.text,
+              complete: true
+          };
+          await fetch('https://rs-wars-clone.herokuapp.com/comments', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(comment)
+          }).then(() => {
+              alert('Комментарий отправлен');
+              setUserReview(() => ({ 'name': '', 'phone' : '', 'text': ''}));
+            }).catch((error) => {
+              alert('Ошибка, попробуйте повторить запрос позже');
+              throw new Error(error.message);
+          });
+        };
+
+        post();
         // Обработка публикации отзыва на сервер
 
         // fetch(url)
