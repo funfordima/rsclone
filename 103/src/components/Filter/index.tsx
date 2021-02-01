@@ -27,11 +27,7 @@ const Filter: React.FC<ISubCategoriesList> = ({
   });
 
   return (
-    <div
-      className={
-        currentPageId === null ? 'categorySubMenu' : 'categorySubMenu active'
-      }
-    >
+    <div className="categorySubMenu">
       <div className="categorySubMenu-row">
         {subCategoriesMenu.map((subCategory: any, index: number) => {
           return (

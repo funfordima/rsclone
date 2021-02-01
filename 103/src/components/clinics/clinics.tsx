@@ -5,21 +5,34 @@ import { ClinicType, DoctorType } from '../../types';
 import PersonalPage from '../PersonalPage';
 import { isTypeNode } from 'typescript';
 
+import { Subcategory } from '../../types/index';
+import Filter from '../Filter';
+
 interface clinicsProps {
   clinics: Array<ClinicType>;
   doctors: Array<DoctorType>;
+  dataSubcategory: Array<Subcategory>;
+  currentPageId: string | null;
 }
 
 type toggleFuncParam = {
-  clinicId: string,
-  doctorId: string,
-  complete: boolean,
-}
+  clinicId: string;
+  doctorId: string;
+  complete: boolean;
+};
 
-
-export default function Clinics({ clinics, doctors }: clinicsProps) {
+export default function Clinics({
+  clinics,
+  doctors,
+  currentPageId,
+  dataSubcategory,
+}: clinicsProps) {
   const currentCity = localStorage.getItem('myCity') || 'Minsk';
-  const [isOpen, setOpen] = useState({ 'clinicId': '', 'doctorId': '', 'complete': false });
+  const [isOpen, setOpen] = useState({
+    clinicId: '',
+    doctorId: '',
+    complete: false,
+  });
 
   const toggleOpenPersonalInformation = (value: toggleFuncParam): void => {
     setOpen(() => ({ ...value }));
@@ -27,6 +40,10 @@ export default function Clinics({ clinics, doctors }: clinicsProps) {
 
   return (
     <div className="clinic-container">
+      <Filter
+        currentPageId={currentPageId}
+        subCategoriesList={dataSubcategory}
+      />
       <div className="place-list">
         {clinics
           .filter(item => item.city === currentCity)
@@ -52,13 +69,14 @@ export default function Clinics({ clinics, doctors }: clinicsProps) {
             );
           })}
       </div>
-      { isOpen.complete
-        && <PersonalPage
+      {isOpen.complete && (
+        <PersonalPage
           personalInfo={doctors.find(({ _id }) => _id === isOpen.doctorId)!}
           clinicInfo={clinics.find(({ _id }) => _id === isOpen.clinicId)!}
           isOpen={isOpen.complete}
           toggleOpenPersonalInformation={toggleOpenPersonalInformation}
-        />}
+        />
+      )}
     </div>
   );
 }

@@ -10,8 +10,13 @@ interface IItem {
 }
 
 const CategoriesItem: React.FC<IItem> = ({ item, setCurrentPageId }) => {
+  const setCurrentNavigationItemId = (id: string) => {
+    localStorage.setItem('navigationItemId', id);
+  };
+
   const handleClick = () => {
     setCurrentPageId(item._id);
+    setCurrentNavigationItemId(item._id);
   };
 
   return (
