@@ -43,9 +43,9 @@ export default function DoctorCard({
             </div>
             <div className="click-buttons">
               <PhoneBtn thisPhone={thisPhone} />
-              <a href="#" title="Добавить в избранное?" className="star-button">
+              {/* <a href="#" title="Добавить в избранное?" className="star-button">
                 <img src="https://img.icons8.com/ios-filled/96/000000/bookmark-ribbon.png" />
-              </a>
+              </a> */}
             </div>
           </div>
           <hr />

@@ -98,15 +98,15 @@ export default function ClinicItem({
               );
             })}
           </div>
-          <a href="#" className="staff-button">
+          <p className="staff-button">
             Специалисты
-          </a>
+          </p>
         </div>
         <div className="click-buttons">
           <PhoneBtn thisPhone={thisPhone} />
-          <a href="#" title="Добавить в избранное?" className="star-button">
+          {/* <a href="#" title="Добавить в избранное?" className="star-button">
             <img src="https://img.icons8.com/ios-filled/96/000000/bookmark-ribbon.png" />
-          </a>
+          </a> */}
         </div>
       </div>
     </div>
