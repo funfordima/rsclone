@@ -31,6 +31,7 @@ import Footer from './components/Footer';
 import ArticlePage from './components/ArticlePage';
 import { ReviewsAllPage } from './components/CatalogPage/components/ReviewsAllPage';
 import PersonalPage from './components/PersonalPage';
+import Slider from './components/Slider';
 // import styled from 'styled-components';
 
 export const SignInContext = React.createContext(false);
@@ -65,15 +66,6 @@ const App: React.FC = () => {
     setDataArticles(dataArticles);
     setIsloaded(true);
   };
-
-  if (isLoaded) {
-    console.log(dataDoctors);
-    console.log(dataClinics);
-    // console.log(dataComments);
-    // console.log(dataCategory);
-    // console.log(dataSubcategory);
-    // console.log(dataArticles);
-  }
 
   // console.log(dataComments);
 
@@ -113,6 +105,7 @@ const App: React.FC = () => {
                 categoriesList={dataCategory}
                 setCurrentPageId={setCurrentPageId}
               />
+              <Slider dataArticles={ dataArticles } />
               <MainServices
                 serviceName={'Новый год 2021 в санаториях Беларуси'}
                 serviceLinks={['#', '#', '#', '#', '#', '#']}
