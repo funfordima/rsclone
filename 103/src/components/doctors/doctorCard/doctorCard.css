@@ -7,6 +7,7 @@
 .doctor-card {
   position: relative;
   margin: 0 16px;
+  margin-bottom: 16px;
   padding: 16px;
   border-radius: 8px;
   background-color: #fff;
@@ -18,10 +19,6 @@
 
 .doctor-card--oncheck {
   background-color: #fff9f2e7;
-}
-
-.doctor-card:not(:first-child) {
-  margin-top: 16px;
 }
 
 .all_info {
@@ -88,7 +85,88 @@ h3.this-name {
   color: rgba(0, 0, 0, 0.65);
 }
 
-.click-buttons {
+.click-buttons-doc {
   display: flex;
   padding-top: 8px;
+}
+
+@media (max-width: 700px) {
+  .right_info {
+    width: 56%;
+  }
+}
+
+@media (max-width: 700px) {
+  .doctor-card {
+    margin: 0 8px; 
+    margin-bottom: 8px;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  
+  .all_info {
+    padding: 16px;
+    min-height: 260px;
+  } 
+  
+  .right_info {
+    width: 64%;
+    font-size: 18px;
+  }
+  
+  h3.this-name {
+    margin-bottom: 6px;
+  }
+  
+  .job-name {
+    font-size: 15px;
+  }
+  
+  .experience-p {
+    font-size: 14px;
+  }
+  
+  .work-place-p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 450px) {
+  .doctor-card {
+    font-size: 11px;
+    line-height: 15px;
+  }
+  
+  .all_info {
+    padding: 12px;
+    min-height: 210px;
+  } 
+  
+  .right_info {
+    font-size: 16px;
+  }
+  
+  h3.this-name {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .job-name {
+    font-size: 14px;
+  }
+  
+  .experience-p {
+    font-size: 13px;
+  }
+  
+  .right_info hr {
+    height: 1px;
+    margin: 7px auto;
+  }
+  
+  .work-place-p {
+    font-size: 13px;
+  }
 }

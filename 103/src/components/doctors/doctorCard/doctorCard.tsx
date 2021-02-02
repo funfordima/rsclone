@@ -42,7 +42,7 @@ const DoctorCard: React.FC<doctorCardProps> = ({
                 <span className="experience-marker"></span> {thisCategory}
               </p>
             </div>
-            <div className="click-buttons">
+            <div className="click-buttons-doc">
               <PhoneBtn thisPhone={thisPhone} />
               <StarBtn thisComplete={thisComplete} />
             </div>

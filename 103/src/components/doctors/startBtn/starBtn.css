@@ -17,6 +17,7 @@
   color: #fff;
   background-color: rgba(0, 0, 0, 0.04);
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .star-button:hover {
@@ -34,4 +35,32 @@
   top: 6px;
   filter: invert(0.4);
   transition: all 0.2s ease-in-out;
+}
+
+@media (max-width: 1024px) {
+  .star-button {
+    height: 28px;
+    width: 28px;
+    padding: 10px 12px;
+  }
+
+  .star-button img {
+    width: 18px;
+    left: 5px;
+    top: 5px;
+  }
+}
+
+@media (max-width: 425px) {
+  .star-button {
+    height: 24px;
+    width: 24px;
+    padding: 8px 10px;
+  }
+  
+  .star-button img {
+    width: 15px;
+    left: 4px;
+    top: 4px;
+  }
 }
