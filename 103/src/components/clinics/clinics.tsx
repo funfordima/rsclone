@@ -24,16 +24,17 @@ type toggleFuncParam = {
 };
 
 const Wrapper = styled.div`
-    width: 60%;
-    height: 100%;
-    overflow: scroll;
-`
-export default function Clinics({
+  width: 60%;
+  height: 100%;
+  overflow: scroll;
+`;
+
+const Clinics: React.FC<clinicsProps> = ({
   clinics,
   doctors,
   currentPageId,
   filterList,
-}: clinicsProps) {
+}) => {
   const currentCity = localStorage.getItem('myCity') || 'Минск';
   const [isOpen, setOpen] = useState({
     clinicId: '',
@@ -46,18 +47,22 @@ export default function Clinics({
     setOpen(() => ({ ...value }));
   };
 
-  const filteredClinics = clinics.filter(item => filterCriterion ? item.city === currentCity && item.subsection === filterCriterion : item.city === currentCity);
-  console.log(filteredClinics)
+  const filteredClinics = clinics.filter(item =>
+    filterCriterion
+      ? item.city === currentCity && item.subsection === filterCriterion
+      : item.city === currentCity,
+  );
+  console.log(filteredClinics);
   return (
     <div className="clinic-container">
       <Filter
         currentPageId={currentPageId}
         filterList={filterList}
-        onclick={ setFilterCriterion }
+        onclick={setFilterCriterion}
       />
       <div className="place-list">
-        <Wrapper>{
-          filteredClinics.map((item, index) => {
+        <Wrapper>
+          {filteredClinics.map((item, index) => {
             const currentDoctors = doctors.filter(
               doctor => doctor.idWork === item._id,
             );
@@ -79,7 +84,7 @@ export default function Clinics({
             );
           })}
         </Wrapper>
-        <MapClinics city={ currentCity } clinics={ filteredClinics } />
+        <MapClinics city={currentCity} clinics={filteredClinics} />
       </div>
       {isOpen.complete && (
         <PersonalPage
@@ -93,3 +98,5 @@ export default function Clinics({
     </div>
   );
 }
+
+export default Clinics;
