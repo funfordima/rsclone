@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { DoctorType, ClinicType } from '../../types';
 import { StaffWorkClinic } from './components/StaffWorkClinic';
+import BookingWidgetOnline from '../BookingWidgetOnline';
 
 const Overlay = styled.div`
   width: 100%;
@@ -153,6 +154,11 @@ interface PersonalPageProps {
 
 const PersonalPage: React.FC<PersonalPageProps> = ({ personalInfo, clinicInfo, isOpen, toggleOpenPersonalInformation }) => {
   const { pictures, name, profession, experience, category } = personalInfo;
+  const [isOpenWidget, setOpenWidget] = useState(false);
+
+  const toggleOpenWidget = (): void => {
+    setOpenWidget(() => !isOpenWidget);
+  };
   return (
     <Overlay>
       <PersonalWrapper isOpen={isOpen} >
@@ -181,9 +187,10 @@ const PersonalPage: React.FC<PersonalPageProps> = ({ personalInfo, clinicInfo, i
           <ButtonClose onClick={() => toggleOpenPersonalInformation({ 'clinicId': '', 'doctorId': '', 'complete': false })} />
         </PersonalHeaderWrapper>
         <StaffWorkPlace>
-          <StaffWorkClinic clinicInfo={clinicInfo} />
+          <StaffWorkClinic clinicInfo={clinicInfo} toggleOpenWidget={toggleOpenWidget} />
         </StaffWorkPlace>
       </PersonalWrapper>
+      {isOpenWidget && <BookingWidgetOnline personalInfo={personalInfo} isOpen={isOpenWidget} />}
     </Overlay>
   );
 };
