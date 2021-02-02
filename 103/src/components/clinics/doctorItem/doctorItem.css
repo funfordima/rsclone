@@ -26,3 +26,19 @@
 .doctor-item img:hover {
   border: 1px solid #31c7d1;
 }
+
+@media (max-width: 1024px) {
+  .doctor-item {
+    margin-right: 12px;
+    height: 28px;
+    width: 28px;
+  }
+}
+
+@media (max-width: 425px) {
+  .doctor-item {
+    margin-right: 6px;
+    height: 24px;
+    width: 24px;
+  }
+}

@@ -4,6 +4,7 @@ import { YMaps, Map, Placemark, FullscreenControl, ZoomControl } from "react-yan
 import CitiesCoordinates from './citiesCoordinates';
 import { ClinicType } from '../../types';
 import './popup.css';
+import './mapClinics.css';
 interface MapProps {
     clinics: Array<ClinicType>,
     city: string
@@ -11,10 +12,6 @@ interface MapProps {
 
 const Wrapper = styled.div`
     overflow: hidden;
-`;
-
-const Mapwrap = styled.div`
-    position: sticky;
 `;
 
 const MapClinics: React.FC<MapProps> = ( { city, clinics } ) => {
@@ -36,16 +33,16 @@ const MapClinics: React.FC<MapProps> = ( { city, clinics } ) => {
     </Wrapper>);
 
     return (
-        <Mapwrap>
+        <div className="map-wrapper">
             <YMaps>
-                <Map width="40vw" height="100vh" 
+                <Map className="inner-map"
                     defaultState={ mapData } modules={ ["layout.ImageWithContent"] }>
                     { Placemarks }
                     <FullscreenControl />
                     <ZoomControl options={{ float: 'right' }} />
                 </Map>
             </YMaps>
-        </Mapwrap>
+        </div>
     )
 }
 
