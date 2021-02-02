@@ -53,3 +53,45 @@ div.swiper-button-next {
 .swiper-button-next {
   padding-left: 5px;
 }
+
+@media (max-width: 1024px) {  
+  div.swiper-button-prev,
+  div.swiper-button-next {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 13px !important;
+  }
+
+  .swiper-button-prev {
+    padding-right: 3px;
+  }
+  
+  .swiper-button-next {
+    padding-left: 3px;
+  }
+}
+
+@media (max-width: 570px) {
+  div.swiper-button-prev,
+  div.swiper-button-next {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 12px !important;
+  }
+
+  .swiper-button-prev {
+    padding-right: 2px;
+  }
+  
+  .swiper-button-next {
+    padding-left: 2px;
+  }
+}

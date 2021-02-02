@@ -19,7 +19,6 @@
 
 .place-list-clinics {
   width: 60%;
-  min-width: 688px;
   height: 100%;
   overflow: scroll;
 }
@@ -38,8 +37,40 @@
   display: none;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1024px) {
+  .place-list {
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 768px) {  
+  .place-list {
+    flex-direction: column-reverse;
+    height: auto;
+    padding: 0 50px;
+  }
+
+  .place-list-clinics {
+    width: 100%;
+  }
+}
+
+@media (max-width: 570px) {
+  .place-list {
+    padding: 0 10px;
+  }
+
   .clinic-container {
-    min-width: 320px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 425px) {
+  .place-list {
+    padding: 0;
+  }
+
+  .clinic-container {
+    font-size: 12px;
   }
 }
