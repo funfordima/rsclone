@@ -1,6 +1,7 @@
 import React from 'react';
 import OnChange from '../../clinics/onChangeItem/onChange';
 import PhoneBtn from '../phoneBtn/phoneBtn';
+import StarBtn from '../startBtn/startBtn';
 import DoctorImage from '../doctorImage/doctorImage';
 import './doctorCard.css';
 
@@ -43,9 +44,7 @@ export default function DoctorCard({
             </div>
             <div className="click-buttons">
               <PhoneBtn thisPhone={thisPhone} />
-              {/* <a href="#" title="Добавить в избранное?" className="star-button">
-                <img src="https://img.icons8.com/ios-filled/96/000000/bookmark-ribbon.png" />
-              </a> */}
+              <StarBtn thisComplete={thisComplete} />
             </div>
           </div>
           <hr />
