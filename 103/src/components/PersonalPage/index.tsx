@@ -190,7 +190,12 @@ const PersonalPage: React.FC<PersonalPageProps> = ({ personalInfo, clinicInfo, i
           <StaffWorkClinic clinicInfo={clinicInfo} toggleOpenWidget={toggleOpenWidget} />
         </StaffWorkPlace>
       </PersonalWrapper>
-      {isOpenWidget && <BookingWidgetOnline personalInfo={personalInfo} isOpen={isOpenWidget} />}
+      {isOpenWidget
+        && <BookingWidgetOnline
+          personalInfo={personalInfo}
+          isOpen={isOpenWidget}
+          toggleOpenWidget={toggleOpenWidget}
+        />}
     </Overlay>
   );
 };

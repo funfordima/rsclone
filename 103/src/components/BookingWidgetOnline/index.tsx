@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as BtnCloseSvg } from '../../assets/images/widget/btn-close.svg';
 import { DoctorType } from '../../types';
+import { AlertError, AlertSuccess } from '../Header/styledComponents';
+import emailjs from 'emailjs-com';
 
 const Overlay = styled.div`
-  display: ${props => props.isOpen ? 'none' : 'block'};
+  display: block;
+  opacity: ${props => props.isOpen ? '1' : '0'};
   position: fixed;
   width: 100%;
   height: 100%;
@@ -12,6 +15,7 @@ const Overlay = styled.div`
   left: 0;
   background: rgba(255,255,255,.7);
   z-index: 12;
+  transition: all 20s ease; 
 `;
 
 const BookingWidgetWrapper = styled.div`
@@ -23,7 +27,11 @@ const BookingWidgetWrapper = styled.div`
   background: #fff;
   border-left: 1px solid #979797;
   z-index: 13;
-  transition: all 0s ease 0s; 
+  transition: all 20s ease; 
+
+  @media only screen and (min-width: 0) and (max-width: 510px) {
+    width: 301px;
+  }
 `;
 
 const BookingWidget = styled.div`
@@ -73,6 +81,14 @@ const WidgetBtnClose = styled.div`
   position: absolute;
   z-index: 1;
   cursor: pointer;
+
+  & svg {
+    fill: #000;
+  }
+
+  & svg:hover {
+    fill: #ff1446;
+  }
 `;
 
 const WidgetTitle = styled.div`
@@ -252,17 +268,86 @@ const TextArea = styled.textarea`
   }
 `;
 
+const StyledAlertError = styled(AlertError)`
+  margin-top: 0;
+  margin-bottom: 5px;
+`;
+
 interface BookingWidgetOnlineProps {
   personalInfo: DoctorType;
   isOpen: boolean;
+  toggleOpenWidget: () => void;
 }
 
-const BookingWidgetOnline: React.FC<BookingWidgetOnlineProps> = ({ personalInfo, isOpen }) => {
-  const { pictures, name, profession, experience, category } = personalInfo;
-  const isError = false;
+const BookingWidgetOnline: React.FC<BookingWidgetOnlineProps> = ({ personalInfo, isOpen, toggleOpenWidget }) => {
+  const { pictures, name, profession, experience, category, placeWork } = personalInfo;
+  const [isErrorName, setErrorName] = useState('');
+  const [isErrorText, setErrorText] = useState('');
+  const [isErrorPhone, setErrorPhone] = useState('');
+  const [isSuccess, setSuccess] = useState('');
+  const [isError, setError] = useState('');
+  const [userInputBooking, setUserInputBooking] = useState({
+    nameUser: '',
+    text: '',
+    phone: '',
+  });
+
+  const changeUserName = (event: ChangeEvent<HTMLInputElement>): void => {
+    setUserInputBooking(() => ({ ...userInputBooking, 'nameUser': event.target.value }));
+    setErrorName('');
+  };
+
+  const changeUserPhone = (event: ChangeEvent<HTMLInputElement>): void => {
+    setUserInputBooking(() => ({ ...userInputBooking, 'phone': event.target.value }));
+    setErrorPhone('');
+  };
+
+  const changeUserText = (event: ChangeEvent<HTMLInputElement>): void => {
+    setUserInputBooking(() => ({ ...userInputBooking, 'text': event.target.value }));
+    setErrorText('');
+  };
+
+  const handleSubmitForm = (event: ChangeEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    const { nameUser, phone, text } = userInputBooking;
+    const minTextLength = 4;
+
+
+    switch (true) {
+      case (/\d/.test(name)): {
+        setErrorName('This field is invalid');
+        break;
+      }
+      case (text.length < minTextLength): {
+        setErrorText('This field is required');
+        break;
+      }
+      case (!/^\d{10,12}$/.test(phone)): {
+        setErrorPhone('Пример: 380990467780');
+        break;
+      }
+      default: {
+        emailjs.send("service_qp93pei", "template_50xktp7", {
+          from_name: "rsclonedefault@gmail.com",
+          to_name: `Запись к доктору ${name} из ${placeWork}`,
+          message: `Добрый день! Меня зовут, ${nameUser}! 
+            Пожалуйста, свяжитесь со мной: ${phone}. 
+            Данные для записи: ${text}`,
+        }, 'user_Byn4mRCUn0EZbJWxvefwH')
+          .then(() => {
+            setSuccess(`Добрый день, ${nameUser}. Мы свяжемся с вами в течении часа, чтобы подтвердить бронирование`);
+          })
+          .catch((error) => {
+            setError(`Не удалось сделать запись! Попробуйте еще раз, после перезагрузки страницы. ${error.text}`);
+
+            setTimeout(() => setError(''), 500);
+          });
+      }
+    }
+  };
 
   return (
-    <Overlay>
+    <Overlay isOpen={isOpen}>
       <BookingWidgetWrapper isOpen={isOpen}>
         <BookingWidget>
           <WidgetHeader>
@@ -270,7 +355,7 @@ const BookingWidgetOnline: React.FC<BookingWidgetOnlineProps> = ({ personalInfo,
               Онлайн запись
             </WidgetHeaderSubtitle>
             <WidgetHeaderTitleContainer>
-              <WidgetBtnClose>
+              <WidgetBtnClose onClick={() => toggleOpenWidget()}>
                 <BtnCloseSvg />
               </WidgetBtnClose>
               <WidgetTitle>
@@ -309,7 +394,7 @@ const BookingWidgetOnline: React.FC<BookingWidgetOnlineProps> = ({ personalInfo,
               </ServiceInfo>
             </ServiceContainer>
             <FormContainer>
-              <Form>
+              <Form onSubmit={handleSubmitForm}>
                 <LabelName>
                   Ваше имя
                 </LabelName>
@@ -318,8 +403,11 @@ const BookingWidgetOnline: React.FC<BookingWidgetOnlineProps> = ({ personalInfo,
                   name='first_name'
                   required
                   placeholder='Имя'
-                  isError={isError}
+                  isError={isErrorName}
+                  value={userInputBooking.nameUser}
+                  onChange={changeUserName}
                 />
+                {isErrorName && <StyledAlertError>{isErrorName}</StyledAlertError>}
                 <LabelName>
                   Контактные данные
                 </LabelName>
@@ -328,8 +416,11 @@ const BookingWidgetOnline: React.FC<BookingWidgetOnlineProps> = ({ personalInfo,
                   name='phone'
                   required
                   placeholder='Телефон'
-                  isError={isError}
+                  isError={isErrorPhone}
+                  value={userInputBooking.phone}
+                  onChange={changeUserPhone}
                 />
+                {isErrorPhone && <StyledAlertError>{isErrorPhone}</StyledAlertError>}
                 <LabelName>
                   Время записи:
                 </LabelName>
@@ -338,8 +429,11 @@ const BookingWidgetOnline: React.FC<BookingWidgetOnlineProps> = ({ personalInfo,
                   name='user_comment'
                   placeholder='Например, сегодня после 18-00 или завтра после 19-00'
                   title='This field is required'
-                  isError={isError}
+                  isError={isErrorText}
+                  value={userInputBooking.text}
+                  onChange={changeUserText}
                 />
+                {isErrorText && <StyledAlertError>{isErrorText}</StyledAlertError>}
                 <SubmitButtonContainer>
                   <SubmitButton
                     type='submit'
@@ -350,6 +444,8 @@ const BookingWidgetOnline: React.FC<BookingWidgetOnlineProps> = ({ personalInfo,
                 </SubmitButtonContainer>
               </Form>
             </FormContainer>
+            {isSuccess && <AlertSuccess>{isSuccess}</AlertSuccess>}
+            {isError && <AlertError>{isError}</AlertError>}
           </WidgetContentContainer>
         </BookingWidget>
       </BookingWidgetWrapper>
