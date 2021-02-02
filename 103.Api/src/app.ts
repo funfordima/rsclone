@@ -22,8 +22,8 @@ app.use('/articles', articlesRouter);
 app.use('/category', categoryRouter);
 app.use('/subcategory', subcategoryRouter);
 app.use('/comments', commentsRouter);
-app.use('/linksSlider', linksSliderRouter);
-app.use('/linksService', linksServiceRouter);
+app.use('/linkslider', linksSliderRouter);
+app.use('/linkservice', linksServiceRouter);
 
 app.use(function(req, res, next) {
   res.json({

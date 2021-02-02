@@ -3,7 +3,7 @@ import { LinkService } from '../types/index';
 
 const dbName = 'RSShool';
 const url = `mongodb+srv://anastaisafedotova:2020rsscool@cluster.dlqi4.mongodb.net/${dbName}?retryWrites=true&w=majority`;
-const collectionName = 'linksSlider';
+const collectionName = 'linksService';
 
 const getMongoInstance = async () => {
   const client = await MongoClient.connect(url);
