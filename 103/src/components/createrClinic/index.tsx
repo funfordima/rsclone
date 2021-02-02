@@ -32,7 +32,7 @@ const CreaterText = styled.p`
 
 const CreaterPopupWrap = styled.div`
     z-index: 11;
-    position: absolute;
+    position: fixed;
     top: 0;
     display: none;
     width: 100vw;
