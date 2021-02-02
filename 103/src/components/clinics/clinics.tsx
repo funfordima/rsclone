@@ -23,11 +23,6 @@ type toggleFuncParam = {
   complete: boolean;
 };
 
-const Wrapper = styled.div`
-    width: 60%;
-    height: 100%;
-    overflow: scroll;
-`
 export default function Clinics({
   clinics,
   doctors,
@@ -56,7 +51,7 @@ export default function Clinics({
         onclick={ setFilterCriterion }
       />
       <div className="place-list">
-        <Wrapper>{
+        <div className="place-list-clinics">{
           filteredClinics.map((item, index) => {
             const currentDoctors = doctors.filter(
               doctor => doctor.idWork === item._id,
@@ -78,7 +73,7 @@ export default function Clinics({
               />
             );
           })}
-        </Wrapper>
+        </div>
         <MapClinics city={ currentCity } clinics={ filteredClinics } />
       </div>
       {isOpen.complete && (
