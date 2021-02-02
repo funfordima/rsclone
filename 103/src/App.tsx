@@ -30,9 +30,7 @@ import {
 import Footer from './components/Footer';
 import ArticlePage from './components/ArticlePage';
 import { ReviewsAllPage } from './components/CatalogPage/components/ReviewsAllPage';
-import PersonalPage from './components/PersonalPage';
 import Slider from './components/Slider';
-// import styled from 'styled-components';
 
 export const SignInContext = React.createContext(false);
 export const ResetPasswordContext = React.createContext('');
@@ -93,7 +91,6 @@ const App: React.FC = () => {
     setDataCommentsState(dataComments);
     setIsLoadedComments(true);
   };
-
   const idCatalogPageDefault = localStorage.getItem('pageId') || '';
   const currentNavigationItemId: string | null =
     localStorage.getItem('navigationItemId') || null;
@@ -104,8 +101,6 @@ const App: React.FC = () => {
   const [currentPageId, setCurrentPageId] = useState<string | null>(
     currentNavigationItemId,
   );
-
-  // console.log(idCatalogPageDefault, idCatalogPage, dataArticles);
 
   const toggleEnterUser = (isSign: boolean): void => {
     setSignedIn(isSign);
@@ -132,13 +127,12 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path={'/'}>
               <CreateHeader />
-              { isLoadedCategory && isLoadedArticles ? <main>
-                {/* <Doctors doctors={dataDoctors} /> */}
+              {isLoadedCategory && isLoadedArticles ? <main>
                 <Navigation
                   categoriesList={dataCategory}
                   setCurrentPageId={setCurrentPageId}
                 />
-                <Slider dataArticles={ dataArticles } />
+                <Slider dataArticles={dataArticles} />
                 <MainServices
                   serviceName={'Новый год 2021 в санаториях Беларуси'}
                   serviceLinks={['#', '#', '#', '#', '#', '#']}
@@ -152,7 +146,7 @@ const App: React.FC = () => {
                   ]}
                 />
                 <SimpleChatbot />
-              </main> : false }
+              </main> : false}
               <Footer />
             </Route>
             <Route
@@ -161,8 +155,8 @@ const App: React.FC = () => {
                 isSignedIn ? (
                   <Redirect to="/" />
                 ) : (
-                  <AuthorizationPage onToggleEnterUser={toggleEnterUser} />
-                )
+                    <AuthorizationPage onToggleEnterUser={toggleEnterUser} />
+                  )
               }
             />
             <Route path={'/profile'} component={UserPage} />
@@ -187,8 +181,8 @@ const App: React.FC = () => {
                 isResetPassword ? (
                   <Redirect to="/authorization" />
                 ) : (
-                  <ResetPage onResetPassword={resetUserPassword} />
-                )
+                    <ResetPage onResetPassword={resetUserPassword} />
+                  )
               }
             />
             <Route
@@ -230,7 +224,7 @@ const App: React.FC = () => {
                           reviewArticle.idArticle === idCatalogPage,
                       )}
                       countReviews={dataComments.length}
-                    /></main> : false }
+                    /></main> : false}
                 </div>
               )}
             />

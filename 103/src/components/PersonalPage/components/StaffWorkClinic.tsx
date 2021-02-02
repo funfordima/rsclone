@@ -26,6 +26,14 @@ const StaffPagePlace = styled.div`
       ".footer footer footer"
       ".integration integration integration";
   padding: 8px 0;
+
+  @media only screen and (min-width: 0) and (max-width: 720px) {
+    grid-template-areas:
+        "content content contacts"
+        "footer footer footer"
+        "integration integration integration"
+        "button button button";
+  }
 `;
 
 const AriaLogo = styled.div`
@@ -39,6 +47,10 @@ const AriaLogo = styled.div`
   margin-right: 16px;
   z-index: 2;
   position: relative;
+
+  @media only screen and (min-width: 0) and (max-width: 720px) {
+    display: none;
+  }
 `;
 
 const ImgLogo = styled.img`
@@ -113,6 +125,12 @@ const AriaButton = styled.div`
   align-self: center;
   z-index: 2;
   position: relative;
+
+  @media only screen and (min-width: 0) and (max-width: 479px) {
+    margin: 0 -16px -24px;
+    padding: 16px 16px 24px;
+    background-color: rgba(0,0,0,.04);
+  }
 `;
 
 const AriaButtonElement = styled.button`
