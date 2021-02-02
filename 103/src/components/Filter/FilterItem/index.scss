@@ -27,6 +27,7 @@
     padding: 8px 24px;
     font-size: 15px;
     line-height: 24px;
+    cursor: default;
 }
 
 .subcategories-item-title.item-like-a-link {
@@ -42,12 +43,13 @@
     padding: 4px 24px;
     font-size: 15px;
     list-style-type: none;
-    & a {
+    & span {
         text-decoration: none;
         color: rgba(0, 0, 0, 0.64);
         transition: color 0.2 ease-out;
         &:hover {
             color: #46cdd6;
+            cursor: pointer;
         }
     }
 }
@@ -56,7 +58,8 @@
     padding: 8px 24px;
     font-size: 15px;
     line-height: 24px;
-    & a {
+    & span {
         color: #000;
+        cursor: pointer;
     }
 }
