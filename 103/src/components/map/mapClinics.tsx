@@ -13,6 +13,10 @@ const Wrapper = styled.div`
     overflow: hidden;
 `;
 
+const Mapwrap = styled.div`
+    position: sticky;
+`;
+
 const MapClinics: React.FC<MapProps> = ( { city, clinics } ) => {
     const mapData = {
         center: CitiesCoordinates[city],
@@ -32,14 +36,16 @@ const MapClinics: React.FC<MapProps> = ( { city, clinics } ) => {
     </Wrapper>);
 
     return (
-        <YMaps>
-            <Map width="35vw" height="100vh" 
-                defaultState={ mapData } modules={ ["layout.ImageWithContent"] }>
-                { Placemarks }
-                <FullscreenControl />
-                <ZoomControl options={{ float: 'right' }} />
-            </Map>
-        </YMaps>
+        <Mapwrap>
+            <YMaps>
+                <Map width="40vw" height="100vh" 
+                    defaultState={ mapData } modules={ ["layout.ImageWithContent"] }>
+                    { Placemarks }
+                    <FullscreenControl />
+                    <ZoomControl options={{ float: 'right' }} />
+                </Map>
+            </YMaps>
+        </Mapwrap>
     )
 }
 

@@ -169,17 +169,17 @@ const App: React.FC = () => {
             <Route
               path={'/clinics'}
               render={() => (
-                isLoadedDoctors && isLoadedClinics ? <Clinics
+                isLoadedDoctors && isLoadedClinics ? <><CreateHeader /> <Clinics
                   clinics={dataClinics}
                   doctors={dataDoctors}
                   currentPageId={currentPageId}
                   filterList={dataSubcategory}
-                /> : <div />
+                /></> : <div />
               )}
             />
             <Route
               path={'/doctors'}
-              render={() => isLoadedDoctors ? <Doctors doctors={dataDoctors} /> : <div />}
+              render={() => isLoadedDoctors ? <><CreateHeader /><Doctors doctors={dataDoctors} /><Footer /></> : <div />}
             />
             <Route
               path="/reset"
@@ -205,6 +205,7 @@ const App: React.FC = () => {
                     articles={dataArticles}
                     getIdForCatalogPage={getIdForCatalogPage}
                   />
+                  <Footer />
                 </> : <div />
               )}
             />
