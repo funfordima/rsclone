@@ -34,13 +34,5 @@ const CreateHeader: React.FC = () => {
     </Header>
   );
 };
-// <BrowserRouter>
-//   <Switch>
-{/* <Route exact path={'/'} > */ }
-
-{/* </Route> */ }
-{/* <Route path={'/authorization'} component={AuthorizationPage} /> */ }
-{/* </Switch> 
-    </BrowserRouter> */}
 
 export default CreateHeader;

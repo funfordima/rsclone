@@ -17,17 +17,17 @@ const Header = styled.div`
   }
 `;
 
-// const config = {
-//   apiKey: "AIzaSyCaU0-FbnHAag9PF8IbRrHAfNnrP9G-xXw",
-//   authDomain: "react-app-rsclone.firebaseapp.com",
-//   databaseURL: "https://react-app-rsclone-default-rtdb.firebaseio.com",
-//   projectId: "react-app-rsclone",
-//   storageBucket: "react-app-rsclone.appspot.com",
-//   messagingSenderId: "488595044140",
-//   appId: "1:488595044140:web:88056b9ed8c5a660dc5e89"
-// };
+const config = {
+  apiKey: "AIzaSyCaU0-FbnHAag9PF8IbRrHAfNnrP9G-xXw",
+  authDomain: "react-app-rsclone.firebaseapp.com",
+  databaseURL: "https://react-app-rsclone-default-rtdb.firebaseio.com",
+  projectId: "react-app-rsclone",
+  storageBucket: "react-app-rsclone.appspot.com",
+  messagingSenderId: "488595044140",
+  appId: "1:488595044140:web:88056b9ed8c5a660dc5e89"
+};
 
-// firebase.initializeApp(config);
+firebase.initializeApp(config);
 
 const uiConfig = {
   signInFlow: 'popup',
