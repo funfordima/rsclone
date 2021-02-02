@@ -1,7 +1,7 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
-import { ArticleType } from '../../types';
+import { LinkSlider } from '../../types';
 
 import styled from 'styled-components';
 
@@ -138,10 +138,10 @@ const SwiperWrapper = styled.div`
 `;
 
 interface IArticleType {
-  dataArticles: ArticleType[];
+  data: LinkSlider[];
 }
 
-const Slider: React.FC<IArticleType> = ({ dataArticles }) => (
+const Slider: React.FC<IArticleType> = ({ data }) => (
     <SwiperWrapper>
       <Swiper
         spaceBetween={0}
@@ -150,9 +150,9 @@ const Slider: React.FC<IArticleType> = ({ dataArticles }) => (
         pagination={{ clickable: true }}
         loop={true}
       >
-        {dataArticles.map(({ src, title }, index) => {
+        {data.map(({ srcImg, title }, index) => {
           const backgroundImage = {
-            backgroundImage: `url(${src})`,
+            backgroundImage: `url(${srcImg})`,
           };
 
           return (

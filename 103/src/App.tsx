@@ -19,6 +19,8 @@ import {
   category,
   subcategory,
   articles,
+  linkservice,
+  linkslider
 } from './api';
 import {
   ArticleType,
@@ -27,6 +29,8 @@ import {
   DoctorType,
   Subcategory,
   Comment,
+  LinkService,
+  LinkSlider
 } from './types';
 import Footer from './components/Footer';
 import ArticlePage from './components/ArticlePage';
@@ -43,7 +47,6 @@ const App: React.FC = () => {
   }, []);
 
   const [isLoadedCategory, setIsloadedCategory] = useState(false);
-  const [isLoaded, setIsloaded] = useState(false);
   const [isLoadedDoctors, setIsLoadedDoctors] = useState(false);
   const [isLoadedClinics, setIsLoadedClinics] = useState(false);
   const [isLoadedArticles, setIsloadedArticles] = useState(false);
@@ -52,10 +55,10 @@ const App: React.FC = () => {
   const [dataClinics, setDataClinicsState] = useState<ClinicType[]>([]);
   const [dataComments, setDataCommentsState] = useState<Comment[]>([]);
   const [dataCategory, setDataCategoryState] = useState<Category[]>([]);
-  const [dataSubcategory, setDataSubcategoryState] = useState<Subcategory[]>(
-    [],
-  );
+  const [dataSubcategory, setDataSubcategoryState] = useState<Subcategory[]>([]);
   const [dataArticles, setDataArticlesState] = useState<ArticleType[]>([]);
+  const [dataLinksSlider, setDataLinksSlider] = useState<LinkSlider[]>([]);
+  const [dataLinksService, setDataLinksService] = useState<LinkService[]>([]);
 
   const setData = async () => {
     setDataCategory();
@@ -63,7 +66,7 @@ const App: React.FC = () => {
     setDataDoctors();
     setDataClinics();
     setDataComments();
-    setIsloaded(true);
+    setDataLinks();
   };
 
   const setDataCategory = async () => {
@@ -97,6 +100,14 @@ const App: React.FC = () => {
     setDataCommentsState(dataComments);
     setIsLoadedComments(true);
   };
+
+  const setDataLinks = async () => {
+    const linksSlider: Array<LinkSlider> = await linkslider;
+    const linksService: Array<LinkService> = await linkservice;
+    setDataLinksSlider(linksSlider);
+    setDataLinksService(linksService);
+  };
+
   const Wrapper = styled.main`
     min-height: 300px;
     height: 100%;
@@ -146,19 +157,12 @@ const App: React.FC = () => {
                     categoriesList={dataCategory}
                     setCurrentPageId={setCurrentPageId}
                   />
-                  <Slider dataArticles={dataArticles} />
-                  <MainServices
-                    serviceName={'Новый год 2021 в санаториях Беларуси'}
-                    serviceLinks={['#', '#', '#', '#', '#', '#']}
-                    serviceImagesLinks={[
-                      'https://static.103.by/images/common/image_block_item/c65ecfb2dc6930e6c677b0a7d5b3edb7.jpg',
-                      'https://static.103.by/images/common/image_block_item/b7501006e75202ad8cde9a0a7fe09947.jpg',
-                      'https://static.103.by/images/common/image_block_item/66a692cdcc9379ad92f50334a9db81d9.jpg',
-                      'https://static.103.by/images/common/image_block_item/0fd8ab5de08733756d655f695e0a1d17.jpg',
-                      'https://static.103.by/images/common/image_block_item/d8d06f02b0ef97038bdd93db3869bb36.jpg',
-                      'https://static.103.by/images/common/image_block_item/00bc4712a75fd469242c191469a80b5f.jpg',
-                    ]}
-                  />
+                  { dataLinksSlider.length ? <Slider data={ dataLinksSlider } /> : false }
+                  { dataLinksService.length ? <MainServices
+                    serviceName={'Популярное при Covid'}
+                    serviceLinks={dataLinksService.map(link => link.src)}
+                    serviceImagesLinks={dataLinksService.map(link => link.srcImg)}
+                  /> : false }
                   <SimpleChatbot />
                 </main>
               ) : (
