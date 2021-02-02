@@ -16,7 +16,7 @@ interface doctorCardProps {
   thisComplete: boolean;
 }
 
-export default function DoctorCard({
+const DoctorCard: React.FC<doctorCardProps> = ({
   thisName,
   thisProfession,
   thisPhone,
@@ -25,7 +25,7 @@ export default function DoctorCard({
   thisExperience,
   thisCategory,
   thisComplete,
-}: doctorCardProps) {
+}) => {
   const onCheck = thisComplete ? '' : 'doctor-item--oncheck';
   return (
     <div className={'doctor-card ' + onCheck}>
@@ -38,7 +38,7 @@ export default function DoctorCard({
               <h3 className="this-name">{thisName}</h3>
               <p className="job-name">{thisProfession}</p>
               <p className="experience-p">
-                Стаж {thisExperience} лет{' '}
+                Стаж {thisExperience}{' '}
                 <span className="experience-marker"></span> {thisCategory}
               </p>
             </div>
@@ -56,3 +56,5 @@ export default function DoctorCard({
     </div>
   );
 }
+
+export default DoctorCard;
