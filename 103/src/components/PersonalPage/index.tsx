@@ -100,14 +100,19 @@ const StaffWorkPlace = styled.div`
   max-width: 800px;
   padding: 0 24px;
   margin: 16px auto 0;
+
+  @media only screen and (min-width: 0) and (max-width: 760px) {
+    margin-top: 8px;
+    padding: 0;
+  }
 `;
 
 const ButtonClose = styled.div`
   width: 20px;
   height: 20px;
   position: absolute;
-  top: 25px;
-  right: 25px;
+  top: 15px;
+  right: 10px;
   cursor: pointer;
 
   &:before, &:after {

@@ -150,66 +150,10 @@
   line-height: 32px;
   border-radius: 16px;
   padding: 0 12px;
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: rgba(0, 0, 0, 0.06);
   transition: all 0.2s ease-in-out;
-}
-
-.staff-button:hover {
-  background-color: rgba(0, 0, 0, 0.08);
 }
 
 .click-buttons {
   display: flex;
-}
-
-.star-button,
-.phone-button {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  height: 32px;
-  width: 32px;
-  margin-right: 8px;
-  padding: 12px 14px;
-  border-radius: 50%;
-  box-shadow: none;
-  z-index: 1;
-  color: #fff;
-  background-color: #46cdd6;
-  transition: all 0.2s ease-in-out;
-}
-
-.star-button {
-  margin-right: 0;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-
-.phone-button:hover {
-  background-color: #5ed6df;
-}
-
-.star-button:hover {
-  background-color: rgba(0, 0, 0, 0.08);
-}
-
-.star-button:hover img {
-  filter: invert(0);
-}
-
-.phone-button img {
-  position: absolute;
-  width: 16px;
-  left: 8px;
-  top: 8px;
-  transform: scale(-1, 1);
-  filter: invert();
-}
-
-.star-button img {
-  position: absolute;
-  width: 20px;
-  left: 6px;
-  top: 6px;
-  filter: invert(0.4);
-  transition: all 0.2s ease-in-out;
 }

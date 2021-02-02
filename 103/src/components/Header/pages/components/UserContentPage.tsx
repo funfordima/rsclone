@@ -68,9 +68,8 @@ export const UserContentPage: React.FC<UserContentPageProps> = ({ toggleDisplay 
       .then((url) => {
         setPhoto(url);
       })
-      .catch((error) => {
-        console.error(`Something went wrong, ${error.message}`);
-        setPhoto(user?.photoURL);
+      .catch(() => {
+        console.warn(`First enter`);
       });
   };
 
