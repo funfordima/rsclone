@@ -9,21 +9,27 @@ interface SubcategoriesMenu {
   icon: string;
   title: string | null;
   items: Array<SubcategoriesItem>;
-  onclick: (str:string) => void;
+  onclick: (str: string) => void;
 }
 
-const FilterItem: React.FC<SubcategoriesMenu> = ({ icon, title, items, onclick }) => {
+const FilterItem: React.FC<SubcategoriesMenu> = ({
+  icon,
+  title,
+  items,
+  onclick,
+}) => {
   const categoriesFilterItemWithoutTitle = items.slice(1);
+
   const fillSubCategoriesColumn = (
     list: SubcategoriesItem[],
   ): ReactNodeArray => {
     return list.map((item: SubcategoriesItem, index: number) => {
       const handleClick = () => {
         onclick(item.name);
-      }
+      };
       return (
         <li key={index} className="subCategory-item">
-          <span onClick={ handleClick }>
+          <span onClick={handleClick}>
             <span>{item.name}</span>
           </span>
         </li>
@@ -44,9 +50,7 @@ const FilterItem: React.FC<SubcategoriesMenu> = ({ icon, title, items, onclick }
         >
           {title || (
             <li className="subCategory-item item-like-a-link">
-              <Link to={items[0].path}>
-                <span>{items[0].name}</span>
-              </Link>
+              <span onClick={() => onclick(items[0].name)}>{items[0].name}</span>
             </li>
           )}
         </span>

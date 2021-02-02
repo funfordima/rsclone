@@ -11,11 +11,11 @@ interface doctorsProps {
   currentPageId: string | null;
 }
 
-export default function Doctors({
+const Doctors: React.FC<doctorsProps> = ({
   doctors,
   filterList,
   currentPageId,
-}: doctorsProps) {
+}) => {
   const [filterCriterion, setFilterCriterion] = useState<string>('');
 
   const currentCity = localStorage.getItem('myCity');
@@ -55,3 +55,5 @@ export default function Doctors({
     </div>
   );
 }
+
+export default Doctors;
