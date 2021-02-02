@@ -4,9 +4,11 @@ import './clinic.css';
 import { ClinicType, DoctorType } from '../../types';
 import PersonalPage from '../PersonalPage';
 import { isTypeNode } from 'typescript';
-
 import { Subcategory } from '../../types/index';
-import Filter from '../Filter';
+import Filter from './../Filter';
+import CreaterClinic from '../createrClinic';
+import MapClinics from '../map/mapClinics';
+import styled from 'styled-components';
 
 interface clinicsProps {
   clinics: Array<ClinicType>;
@@ -21,40 +23,48 @@ type toggleFuncParam = {
   complete: boolean;
 };
 
+const Wrapper = styled.div`
+    width: 60%;
+    height: 100%;
+    overflow: scroll;
+`
 export default function Clinics({
   clinics,
   doctors,
   currentPageId,
   filterList,
 }: clinicsProps) {
-  const currentCity = localStorage.getItem('myCity') || 'Minsk';
+  const currentCity = localStorage.getItem('myCity') || 'Минск';
   const [isOpen, setOpen] = useState({
     clinicId: '',
     doctorId: '',
     complete: false,
   });
+  const [filterCriterion, setFilterCriterion] = useState<string>('');
 
   const toggleOpenPersonalInformation = (value: toggleFuncParam): void => {
     setOpen(() => ({ ...value }));
   };
 
+  const filteredClinics = clinics.filter(item => filterCriterion ? item.city === currentCity && item.subsection === filterCriterion : item.city === currentCity);
+  console.log(filteredClinics)
   return (
     <div className="clinic-container">
       <Filter
         currentPageId={currentPageId}
         filterList={filterList}
+        onclick={ setFilterCriterion }
       />
       <div className="place-list">
-        {clinics
-          .filter(item => item.city === currentCity)
-          .map((item, index) => {
+        <Wrapper>{
+          filteredClinics.map((item, index) => {
             const currentDoctors = doctors.filter(
               doctor => doctor.idWork === item._id,
             );
             return (
               <ClinicItem
                 key={index}
-                whatIsIt={'Медицинский центр'}
+                whatIsIt={item.subsection}
                 thisName={item.title}
                 thisAddress={`${item.city}, ${item.address}`}
                 thisPhone={item.tel}
@@ -68,6 +78,8 @@ export default function Clinics({
               />
             );
           })}
+        </Wrapper>
+        <MapClinics city={ currentCity } clinics={ filteredClinics } />
       </div>
       {isOpen.complete && (
         <PersonalPage
@@ -77,6 +89,7 @@ export default function Clinics({
           toggleOpenPersonalInformation={toggleOpenPersonalInformation}
         />
       )}
+      <CreaterClinic />
     </div>
   );
 }

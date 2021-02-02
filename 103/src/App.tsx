@@ -30,7 +30,6 @@ import {
 import Footer from './components/Footer';
 import ArticlePage from './components/ArticlePage';
 import { ReviewsAllPage } from './components/CatalogPage/components/ReviewsAllPage';
-import PersonalPage from './components/PersonalPage';
 import Slider from './components/Slider';
 
 export const SignInContext = React.createContext(false);
@@ -41,31 +40,57 @@ const App: React.FC = () => {
     setData();
   }, []);
 
-  const [isLoaded, setIsloaded] = useState(false);
+  const [isLoadedCategory, setIsloadedCategory] = useState(false);
+  const [isLoadedDoctors, setIsLoadedDoctors] = useState(false);
+  const [isLoadedClinics, setIsLoadedClinics] = useState(false);
+  const [isLoadedArticles, setIsloadedArticles] = useState(false);
+  const [isLoadedComments, setIsLoadedComments] = useState(false);
   const [dataDoctors, setDataDoctorsState] = useState<DoctorType[]>([]);
   const [dataClinics, setDataClinicsState] = useState<ClinicType[]>([]);
-  const [dataComments, setDataComments] = useState<Comment[]>([]);
-  const [dataCategory, setDataCategory] = useState<Category[]>([]);
-  const [dataSubcategory, setDataSubcategory] = useState<Subcategory[]>([]);
-  const [dataArticles, setDataArticles] = useState<ArticleType[]>([]);
+  const [dataComments, setDataCommentsState] = useState<Comment[]>([]);
+  const [dataCategory, setDataCategoryState] = useState<Category[]>([]);
+  const [dataSubcategory, setDataSubcategoryState] = useState<Subcategory[]>([]);
+  const [dataArticles, setDataArticlesState] = useState<ArticleType[]>([]);
 
   const setData = async () => {
-    const dataDoctors: Array<DoctorType> = await doctors;
-    const dataClinics: Array<ClinicType> = await clinics;
-    const dataComments: Array<Comment> = await comments;
-    const dataCategory: Array<Category> = await category;
-    const dataSubcategory: Array<Subcategory> = await subcategory;
-    const dataArticles: Array<ArticleType> = await articles;
-
-    setDataDoctorsState(dataDoctors);
-    setDataClinicsState(dataClinics);
-    setDataComments(dataComments);
-    setDataCategory(dataCategory);
-    setDataSubcategory(dataSubcategory);
-    setDataArticles(dataArticles);
-    setIsloaded(true);
+    setDataCategory();
+    setDataArticles();
+    setDataDoctors();
+    setDataClinics();
+    setDataComments();
   };
 
+  const setDataCategory = async () => {
+    const dataCategory: Array<Category> = await category;
+    const dataSubcategory: Array<Subcategory> = await subcategory;
+    setDataCategoryState(dataCategory);
+    setDataSubcategoryState(dataSubcategory);
+    setIsloadedCategory(true);
+  };
+
+  const setDataArticles = async () => {
+    const dataArticles: Array<ArticleType> = await articles;
+    setDataArticlesState(dataArticles);
+    setIsloadedArticles(true);
+  };
+
+  const setDataDoctors = async () => {
+    const dataDoctors: Array<DoctorType> = await doctors;
+    setDataDoctorsState(dataDoctors);
+    setIsLoadedDoctors(true);
+  };
+
+  const setDataClinics = async () => {
+    const dataClinics: Array<ClinicType> = await clinics;
+    setDataClinicsState(dataClinics);
+    setIsLoadedClinics(true);
+  };
+
+  const setDataComments = async () => {
+    const dataComments: Array<Comment> = await comments;
+    setDataCommentsState(dataComments);
+    setIsLoadedComments(true);
+  };
   const idCatalogPageDefault = localStorage.getItem('pageId') || '';
   const currentNavigationItemId: string | null =
     localStorage.getItem('navigationItemId') || null;
@@ -102,24 +127,26 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path={'/'}>
               <CreateHeader />
-              <Navigation
-                categoriesList={dataCategory}
-                setCurrentPageId={setCurrentPageId}
-              />
-              <Slider dataArticles={dataArticles} />
-              <MainServices
-                serviceName={'Новый год 2021 в санаториях Беларуси'}
-                serviceLinks={['#', '#', '#', '#', '#', '#']}
-                serviceImagesLinks={[
-                  'https://static.103.by/images/common/image_block_item/c65ecfb2dc6930e6c677b0a7d5b3edb7.jpg',
-                  'https://static.103.by/images/common/image_block_item/b7501006e75202ad8cde9a0a7fe09947.jpg',
-                  'https://static.103.by/images/common/image_block_item/66a692cdcc9379ad92f50334a9db81d9.jpg',
-                  'https://static.103.by/images/common/image_block_item/0fd8ab5de08733756d655f695e0a1d17.jpg',
-                  'https://static.103.by/images/common/image_block_item/d8d06f02b0ef97038bdd93db3869bb36.jpg',
-                  'https://static.103.by/images/common/image_block_item/00bc4712a75fd469242c191469a80b5f.jpg',
-                ]}
-              />
-              <SimpleChatbot />
+              {isLoadedCategory && isLoadedArticles ? <main>
+                <Navigation
+                  categoriesList={dataCategory}
+                  setCurrentPageId={setCurrentPageId}
+                />
+                <Slider dataArticles={dataArticles} />
+                <MainServices
+                  serviceName={'Новый год 2021 в санаториях Беларуси'}
+                  serviceLinks={['#', '#', '#', '#', '#', '#']}
+                  serviceImagesLinks={[
+                    'https://static.103.by/images/common/image_block_item/c65ecfb2dc6930e6c677b0a7d5b3edb7.jpg',
+                    'https://static.103.by/images/common/image_block_item/b7501006e75202ad8cde9a0a7fe09947.jpg',
+                    'https://static.103.by/images/common/image_block_item/66a692cdcc9379ad92f50334a9db81d9.jpg',
+                    'https://static.103.by/images/common/image_block_item/0fd8ab5de08733756d655f695e0a1d17.jpg',
+                    'https://static.103.by/images/common/image_block_item/d8d06f02b0ef97038bdd93db3869bb36.jpg',
+                    'https://static.103.by/images/common/image_block_item/00bc4712a75fd469242c191469a80b5f.jpg',
+                  ]}
+                />
+                <SimpleChatbot />
+              </main> : false}
               <Footer />
             </Route>
             <Route
@@ -136,17 +163,17 @@ const App: React.FC = () => {
             <Route
               path={'/clinics'}
               render={() => (
-                <Clinics
+                isLoadedDoctors && isLoadedClinics ? <><CreateHeader /> <Clinics
                   clinics={dataClinics}
                   doctors={dataDoctors}
                   currentPageId={currentPageId}
                   filterList={dataSubcategory}
-                />
+                /></> : <div />
               )}
             />
             <Route
               path={'/doctors'}
-              render={() => <Doctors doctors={dataDoctors} />}
+              render={() => isLoadedDoctors ? <><CreateHeader /><Doctors doctors={dataDoctors} /><Footer /></> : <div />}
             />
             <Route
               path="/reset"
@@ -162,7 +189,7 @@ const App: React.FC = () => {
               exact
               path="/journal"
               render={() => (
-                <>
+                isLoadedCategory && isLoadedArticles ? <>
                   <CreateHeader />
                   <Navigation
                     categoriesList={dataCategory}
@@ -172,7 +199,8 @@ const App: React.FC = () => {
                     articles={dataArticles}
                     getIdForCatalogPage={getIdForCatalogPage}
                   />
-                </>
+                  <Footer />
+                </> : <div />
               )}
             />
             <Route
@@ -180,22 +208,23 @@ const App: React.FC = () => {
               render={() => (
                 <div style={{ background: '#f2f2f2' }}>
                   <CreateHeader />
-                  <Navigation
-                    categoriesList={dataCategory}
-                    setCurrentPageId={setCurrentPageId}
-                  />
-                  <CatalogPage
-                    dataArticles={
-                      dataArticles.find(
-                        article => article._id === idCatalogPage,
-                      )!
-                    }
-                    reviews={dataComments.filter(
-                      reviewArticle =>
-                        reviewArticle.idArticle === idCatalogPage,
-                    )}
-                    countReviews={dataComments.length}
-                  />
+                  { isLoadedArticles && isLoadedComments && isLoadedCategory ? <main>
+                    <Navigation
+                      categoriesList={dataCategory}
+                      setCurrentPageId={setCurrentPageId}
+                    />
+                    <CatalogPage
+                      dataArticles={
+                        dataArticles.find(
+                          article => article._id === idCatalogPage,
+                        )!
+                      }
+                      reviews={dataComments.filter(
+                        reviewArticle =>
+                          reviewArticle.idArticle === idCatalogPage,
+                      )}
+                      countReviews={dataComments.length}
+                    /></main> : false}
                 </div>
               )}
             />
@@ -203,12 +232,12 @@ const App: React.FC = () => {
               exact
               path="/review"
               render={() => (
-                <ReviewsAllPage
+                isLoadedArticles && isLoadedComments && isLoadedCategory ? <ReviewsAllPage
                   dataCategory={dataCategory}
                   setCurrentPageId={setCurrentPageId}
                   reviews={dataComments}
                   dataArticlesAllId={dataArticlesAllId}
-                />
+                /> : <div />
               )}
             />
           </Switch>

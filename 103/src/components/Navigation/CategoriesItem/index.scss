@@ -50,3 +50,43 @@
   line-height: 20px;
   color: #000;
 }
+
+@media (max-width: 767px) {
+  .category {
+    height: 80px;
+  }
+
+  .category-icon {
+    margin: 0 auto 12px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .category-name {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 479px) {
+  .category {
+    position: relative;
+    flex-direction: row;
+    width: 100%;
+    height: 54px;
+  }
+
+  .category-icon {
+    position: absolute;
+    top: 50%;
+    left: 38%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+  }
+
+  .category-name {
+    position: relative;
+    right: -20px;
+    font-size: 13px;
+  }
+}

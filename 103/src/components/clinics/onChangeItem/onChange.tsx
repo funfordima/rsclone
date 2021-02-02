@@ -10,7 +10,7 @@ export default function OnChange({ thisComplete }: onChangeProps) {
     return null;
   }
   return (
-    <div className="on-check" title="On check">
+    <div className="on-check" title="На проверке">
       <img
         src="https://img.icons8.com/pastel-glyph/64/000000/pen--v2.png"
         alt="check"

@@ -1,5 +1,5 @@
 import React from 'react';
-import './services.css';
+import './services.scss';
 import ServicesTitle from './servicesTitle/servicesTitle';
 import ServicesContent from './servicesContent/servicesContent';
 

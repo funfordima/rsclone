@@ -44,6 +44,7 @@ const AuthorContainer = styled.div`
   display: flex;
   font: 13px Roboto;
   text-align: right;
+  font-family: Verdana, sans-serif;
 
   @media (max-width: 500px) and (min-width: 0) {
     justify-content: space-between;
@@ -55,6 +56,7 @@ const SchoolContainer = styled(AuthorContainer)`
   display: flex;
   font: 13px Roboto;
   text-align: right;
+  font-family: Verdana, sans-serif;
 
   @media (max-width: 767px) and (min-width: 0) {
     display: none;
@@ -87,6 +89,8 @@ const Author = styled.a`
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+  margin-bottom: 5px;
+  transition: color .3s ease-out;
 
   &:hover {
     color: #46cdd6;

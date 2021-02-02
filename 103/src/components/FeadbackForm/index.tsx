@@ -163,8 +163,8 @@ const FeedbackForm: React.FC<Props> = (id) => {
             },
             body: JSON.stringify(comment)
           }).then(() => {
-              alert('Комментарий отправлен');
               setUserReview(() => ({ 'name': '', 'phone' : '', 'text': ''}));
+              setSuccess(true)
             }).catch((error) => {
               alert('Ошибка, попробуйте повторить запрос позже');
               throw new Error(error.message);

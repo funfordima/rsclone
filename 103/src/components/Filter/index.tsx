@@ -7,9 +7,10 @@ import { Subcategory, SubcategoriesMenu } from '../../types';
 interface IFilter {
   filterList: Subcategory[];
   currentPageId: string | null;
+  onclick: (str:string) => void;
 }
 
-const Filter: React.FC<IFilter> = ({ filterList, currentPageId }) => {
+const Filter: React.FC<IFilter> = ({ filterList, currentPageId, onclick }) => {
   const filterItem =
     filterList.find(
       (subCategories: Subcategory) =>
@@ -32,6 +33,7 @@ const Filter: React.FC<IFilter> = ({ filterList, currentPageId }) => {
                     icon={subCategory.icon}
                     title={subCategory.title}
                     items={subCategory.items}
+                    onclick={ onclick }
                   />
                 );
               },
