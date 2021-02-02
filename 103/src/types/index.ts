@@ -77,3 +77,18 @@ export type Comment = {
     date: string,
     complete: boolean
 }
+
+export type LinkSlider = {
+    _id: string,
+    srcImg: string,
+    title: string,
+    src: string,
+    complete: boolean
+}
+
+export type LinkService = {
+    _id: string,
+    srcImg: string,
+    src: string,
+    complete: boolean
+}

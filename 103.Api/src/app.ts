@@ -7,7 +7,8 @@ import articlesRouter from './routes/articles';
 import categoryRouter from './routes/category';
 import subcategoryRouter from './routes/subcategory';
 import commentsRouter from './routes/comments';
-
+import linksSliderRouter from './routes/linkSlider';
+import linksServiceRouter from './routes/linkService';
 const app = express();
 
 app.use(logger('dev'));
@@ -21,6 +22,8 @@ app.use('/articles', articlesRouter);
 app.use('/category', categoryRouter);
 app.use('/subcategory', subcategoryRouter);
 app.use('/comments', commentsRouter);
+app.use('/linksSlider', linksSliderRouter);
+app.use('/linksService', linksServiceRouter);
 
 app.use(function(req, res, next) {
   res.json({
