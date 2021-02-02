@@ -8,7 +8,7 @@ interface doctorsProps {
 }
 
 export default function Doctors({ doctors }: doctorsProps) {
-  const currentCity = localStorage.getItem('myCity');
+  const currentCity = localStorage.getItem('myCity') || 'Минск';
   return (
     <div className="doctor-container">
       <div className="doctors-list">
