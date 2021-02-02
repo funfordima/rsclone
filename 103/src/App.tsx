@@ -11,6 +11,7 @@ import { ResetPage } from './components/Header/pages/ResetPage';
 import Navigation from './components/Navigation';
 import CatalogPage from './components/CatalogPage';
 import SimpleChatbot from './components/SimpleChatbot';
+import Loader from "react-loader-spinner";
 import {
   doctors,
   clinics,
@@ -32,7 +33,7 @@ import ArticlePage from './components/ArticlePage';
 import { ReviewsAllPage } from './components/CatalogPage/components/ReviewsAllPage';
 import PersonalPage from './components/PersonalPage';
 import Slider from './components/Slider';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
 export const SignInContext = React.createContext(false);
 export const ResetPasswordContext = React.createContext('');
@@ -43,6 +44,7 @@ const App: React.FC = () => {
   }, []);
 
   const [isLoadedCategory, setIsloadedCategory] = useState(false);
+  const [isLoaded, setIsloaded] = useState(false);
   const [isLoadedDoctors, setIsLoadedDoctors] = useState(false);
   const [isLoadedClinics, setIsLoadedClinics] = useState(false);
   const [isLoadedArticles, setIsloadedArticles] = useState(false);
@@ -60,6 +62,7 @@ const App: React.FC = () => {
     setDataDoctors();
     setDataClinics();
     setDataComments();
+    setIsloaded(true);
   };
 
   const setDataCategory = async () => {
@@ -93,6 +96,14 @@ const App: React.FC = () => {
     setDataCommentsState(dataComments);
     setIsLoadedComments(true);
   };
+
+  const Wrapper = styled.main`
+    min-height: 300px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `
 
   const idCatalogPageDefault = localStorage.getItem('pageId') || '';
   const currentNavigationItemId: string | null =
@@ -152,7 +163,15 @@ const App: React.FC = () => {
                   ]}
                 />
                 <SimpleChatbot />
-              </main> : false }
+              </main> : <Wrapper><Loader
+                          type="Puff"
+                          color="#00BFFF"
+                          height={100}
+                          width={100}
+                          timeout={3000}
+                        />
+                </Wrapper>
+              }
               <Footer />
             </Route>
             <Route
@@ -174,12 +193,26 @@ const App: React.FC = () => {
                   doctors={dataDoctors}
                   currentPageId={currentPageId}
                   filterList={dataSubcategory}
-                /></> : <div />
+                /></> : <Wrapper><Loader
+                    type="Puff"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
+                    timeout={3000}
+                  />
+                </Wrapper>
               )}
             />
             <Route
               path={'/doctors'}
-              render={() => isLoadedDoctors ? <><CreateHeader /><Doctors doctors={dataDoctors} /><Footer /></> : <div />}
+              render={() => isLoadedDoctors ? <><CreateHeader /><Doctors doctors={dataDoctors} /><Footer /></> : <Wrapper><Loader
+                  type="Puff"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
+                  timeout={3000}
+                />
+              </Wrapper>}
             />
             <Route
               path="/reset"
@@ -206,7 +239,14 @@ const App: React.FC = () => {
                     getIdForCatalogPage={getIdForCatalogPage}
                   />
                   <Footer />
-                </> : <div />
+                </> : <Wrapper><Loader
+                    type="Puff"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
+                    timeout={3000}
+                  />
+                </Wrapper>
               )}
             />
             <Route
@@ -230,7 +270,14 @@ const App: React.FC = () => {
                           reviewArticle.idArticle === idCatalogPage,
                       )}
                       countReviews={dataComments.length}
-                    /></main> : false }
+                    /></main> : <Wrapper><Loader
+                      type="Puff"
+                      color="#00BFFF"
+                      height={100}
+                      width={100}
+                      timeout={3000}
+                    />
+                  </Wrapper>}
                 </div>
               )}
             />
@@ -243,7 +290,14 @@ const App: React.FC = () => {
                   setCurrentPageId={setCurrentPageId}
                   reviews={dataComments}
                   dataArticlesAllId={dataArticlesAllId}
-                /> : <div />
+                /> :<Wrapper><Loader
+                    type="Puff"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
+                    timeout={3000}
+                  />
+                </Wrapper>
               )}
             />
           </Switch>
