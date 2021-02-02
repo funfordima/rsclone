@@ -255,9 +255,10 @@ const AriaFooter = styled.div`
 
 interface StaffWorkClinicProps {
   clinicInfo: ClinicType;
+  toggleOpenWidget: () => void;
 }
 
-export const StaffWorkClinic: React.FC<StaffWorkClinicProps> = ({ clinicInfo }) => {
+export const StaffWorkClinic: React.FC<StaffWorkClinicProps> = ({ clinicInfo, toggleOpenWidget }) => {
   const { pictures, title, address, workingHours } = clinicInfo;
   return (
     <ContentBox>
@@ -281,7 +282,7 @@ export const StaffWorkClinic: React.FC<StaffWorkClinicProps> = ({ clinicInfo }) 
           </PlaceTime>
         </AriaContent>
         <AriaButton>
-          <AriaButtonElement>
+          <AriaButtonElement onClick={() => toggleOpenWidget()}>
             <IconCalendarSvg />
             <ButtonText>
               Записаться

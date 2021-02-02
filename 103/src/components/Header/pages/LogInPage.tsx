@@ -96,7 +96,7 @@ export class LogInPage extends React.Component<LogInPageProps, LogInPageState> {
         <ResetPasswordContext.Consumer>
           {context => context && <AlertSuccess>{context}</AlertSuccess>}
         </ResetPasswordContext.Consumer>
-        < Form onSubmit={this.logInAccount}>
+        <Form onSubmit={this.logInAccount}>
           <FormField>
             <InputText
               tabIndex="1"

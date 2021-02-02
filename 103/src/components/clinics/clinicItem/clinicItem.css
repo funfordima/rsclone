@@ -22,7 +22,19 @@
 }
 
 .clinic-wrapper--oncheck {
-  background-color: #dadadae7;
+  background-color: #f7f4f1e7;
+}
+
+.clinic-wrapper--oncheck .clinic-name {
+  color: rgb(0 0 0 / 25%);
+}
+
+.clinic-wrapper--oncheck .description-div, .clinic-wrapper--oncheck .other-info-div {
+  color: #a7a6a5;
+}
+
+.clinic-wrapper--oncheck .staff-button {
+  color: rgb(255, 255, 255);
 }
 
 .clinic-wrapper:not(:first-child) {

@@ -37,3 +37,9 @@
 .place-list-clinics::-webkit-scrollbar {
   display: none;
 }
+
+@media (max-width: 700px) {
+  .clinic-container {
+    min-width: 320px;
+  }
+}

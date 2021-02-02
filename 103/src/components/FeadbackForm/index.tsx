@@ -150,11 +150,11 @@ const FeedbackForm: React.FC<Props> = (id) => {
       default: {
         const post = async () => {
           const comment = {
-              idArticle: id.id,
-              userName: userReview.name,
-              date: new Date().toLocaleDateString(),
-              message: userReview.text,
-              complete: true
+            idArticle: id.id,
+            userName: userReview.name,
+            date: new Date().toLocaleDateString(),
+            message: userReview.text,
+            complete: true
           };
           await fetch('https://rs-wars-clone.herokuapp.com/comments', {
             method: 'POST',
@@ -163,26 +163,16 @@ const FeedbackForm: React.FC<Props> = (id) => {
             },
             body: JSON.stringify(comment)
           }).then(() => {
-              setUserReview(() => ({ 'name': '', 'phone' : '', 'text': ''}));
-              setSuccess(true)
-            }).catch((error) => {
-              alert('Ошибка, попробуйте повторить запрос позже');
-              throw new Error(error.message);
+            setUserReview(() => ({ 'name': '', 'phone': '', 'text': '' }));
+            setSuccess(true)
+            setTimeout(() => setSuccess(false), 1000);
+          }).catch((error) => {
+            alert('Ошибка, попробуйте повторить запрос позже');
+            throw new Error(error.message);
           });
         };
 
         post();
-        // Обработка публикации отзыва на сервер
-
-        // fetch(url)
-        //   .then(() => {
-        //     setSuccess(true);
-
-        //     setTimeout(() => setSuccess(false), 1000);
-        //   })
-        //   .catch((error) => {
-        //     setError(error.message);
-        //   });
       }
     }
   };
