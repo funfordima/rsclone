@@ -23,12 +23,6 @@ type toggleFuncParam = {
   complete: boolean;
 };
 
-const Wrapper = styled.div`
-  width: 60%;
-  height: 100%;
-  overflow: scroll;
-`;
-
 const Clinics: React.FC<clinicsProps> = ({
   clinics,
   doctors,
@@ -61,8 +55,9 @@ const Clinics: React.FC<clinicsProps> = ({
         onclick={setFilterCriterion}
       />
       <div className="place-list">
-        <Wrapper>
-          {filteredClinics.map((item, index) => {
+        <div className="place-list-clinics">{
+          filteredClinics.map((item, index) => {
+
             const currentDoctors = doctors.filter(
               doctor => doctor.idWork === item._id,
             );
@@ -83,8 +78,9 @@ const Clinics: React.FC<clinicsProps> = ({
               />
             );
           })}
-        </Wrapper>
-        <MapClinics city={currentCity} clinics={filteredClinics} />
+
+        </div>
+        <MapClinics city={ currentCity } clinics={ filteredClinics } />
       </div>
       {isOpen.complete && (
         <PersonalPage

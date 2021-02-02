@@ -8,7 +8,7 @@ const CreaterWrapper = styled.div`
     padding-top: 24px;
     padding-bottom: 24px;
     background-color: rgba(0, 0, 0, .04);
-    width: 100vw;
+    width: 100%;
     height: auto;
     overflow: hidden;
 `;
