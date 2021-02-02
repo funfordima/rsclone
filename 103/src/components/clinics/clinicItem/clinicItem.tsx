@@ -2,6 +2,7 @@ import React from 'react';
 import ClinicSlider from '../clinicSlider/clinicSlider';
 import OnChange from '../onChangeItem/onChange';
 import PhoneBtn from '../../doctors/phoneBtn/phoneBtn';
+import StarBtn from '../../doctors/startBtn/startBtn';
 import DoctorItem from '../doctorItem/doctorItem';
 import ClinicLogo from '../clinicLogo/clinicLogo';
 import { DoctorType } from '../../../types';
@@ -104,9 +105,7 @@ export default function ClinicItem({
         </div>
         <div className="click-buttons">
           <PhoneBtn thisPhone={thisPhone} />
-          {/* <a href="#" title="Добавить в избранное?" className="star-button">
-            <img src="https://img.icons8.com/ios-filled/96/000000/bookmark-ribbon.png" />
-          </a> */}
+          <StarBtn thisComplete={thisComplete} />
         </div>
       </div>
     </div>
