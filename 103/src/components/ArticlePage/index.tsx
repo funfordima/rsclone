@@ -33,7 +33,7 @@ const Title = styled.h1`
   font: 500 30px/32px Verdana, sans-serif;
   text-transform: uppercase;
   letter-spacing: .05em;
-  margin: 20px 0;
+  margin: 30px 0;
 `;
 
 const BodyArticles = styled.div`
