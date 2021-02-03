@@ -8,7 +8,7 @@ This application is a clone of the International Medical Platform 103 - a projec
 
 ---
 
-Technology stack:
+Technologies stack:
 - TypeScript
 - React.js
 - MonogoDB
@@ -18,9 +18,43 @@ Technology stack:
 ---
 
 ## Project setup
-> Open 103 folder.
+
+There ara 2 folders: 
+- 103 (Front-end)
+- 103.Api (Back-end)
+
+For start of client - open 103 folder and:
+
+Install all dependencies, in repo's root:
 
 ```
-npm install
-npm run build
+
+$ npm install
+
 ```
+And build development version:
+
+```
+
+$ npm run build
+
+```
+
+If you want to start of back on localhost - 103.Api:
+Install all dependencies, in repo's root:
+
+```
+
+$ npm install
+
+```
+And build development version:
+
+```
+
+$ npm run build
+$ npm run start
+
+```
+
+
