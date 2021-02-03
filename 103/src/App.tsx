@@ -41,7 +41,7 @@ import styled from 'styled-components';
 export const SignInContext = React.createContext<boolean>(false);
 export const ResetPasswordContext = React.createContext<string>('');
 
-localStorage.setItem('myCity', 'Minsk');
+localStorage.setItem('myCity', 'Минск');
 
 const App: React.FC = () => {
   useEffect(() => {
