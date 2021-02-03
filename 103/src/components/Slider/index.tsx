@@ -12,7 +12,7 @@ import 'swiper/components/pagination/pagination.scss';
 SwiperCore.use([Navigation, Pagination]);
 
 const SwiperWrapper = styled.div`
-  margin: auto;
+  margin: 15px auto;
   max-width: 1218px;
   font-family: Verdana, sans-serif;
 
