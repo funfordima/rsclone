@@ -1,0 +1,11 @@
+  <svg
+  viewBox="0 0 24 24"
+  id="icon-city"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    fillRule="evenodd"
+    clipRule="evenodd"
+    d="M7.8 5.7a6 6 0 0 1 8.4 0c1 1 1.7 2.6 1.7 4.1 0 4-5.3 9.8-5.5 10a.5.5 0 0 1-.4.2.5.5 0 0 1-.4-.2c-.2-.2-5.5-6-5.5-10 0-1.5.6-3 1.7-4.1zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+  />
+</svg>
