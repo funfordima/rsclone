@@ -4,7 +4,7 @@ This application is a clone of the International Medical Platform 103 - a projec
 
 ![]()
 
-<h2 align="center"><a href="/">Live Demo</a></h2>
+<h2 align="center"><a href="https://rsclone-103.netlify.app/">Live Demo</a></h2>
 
 ---
 
