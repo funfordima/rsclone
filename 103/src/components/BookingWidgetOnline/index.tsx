@@ -187,6 +187,8 @@ const FormContainer = styled.div`
 `;
 
 const Form = styled.form`
+  overflow: scroll;
+  min-height: 520px;
 `;
 
 const LabelName = styled.div`
