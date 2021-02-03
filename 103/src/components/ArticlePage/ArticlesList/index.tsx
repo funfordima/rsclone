@@ -25,13 +25,13 @@ const ArticlesListElement = styled.ul`
 `;
 
 const ArticleListItem = styled.li`
+  box-sizing: border-box;
+  position: relative;
   margin-bottom: 40px;
   padding: 0 24px 55px;
   width: 280px;
-  box-sizing: border-box;
-  position: relative;
   border-radius: 2px;
-  border-bottom: 1px solid rgba(0,0,0,.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   background: #fff;
   background-clip: padding-box;
   list-style-type: none;
@@ -55,7 +55,7 @@ const ArticleListImgLink = styled(NavLink)`
   text-decoration: none;
 
   &: hover {
-    color: #FF1446;
+    color: #ff1446;
   }
 `;
 
@@ -64,11 +64,11 @@ const ArticleImg = styled.img`
   height: 186px;
   vertical-align: bottom;
   border-radius: 2px 2px 0 0;
-  transition: opacity .2s ease-out;
+  transition: opacity 0.2s ease-out;
   opacity: 1;
 
   &:hover {
-    opacity: .7;
+    opacity: 0.7;
   }
 `;
 
@@ -76,26 +76,29 @@ const BackToMainArticleLink = styled(NavLink)`
   margin-top: 24px;
   font: 700 11px/12px Roboto;
   text-transform: uppercase;
-  letter-spacing: .16em;
+  letter-spacing: 0.16em;
   display: block;
   text-decoration: none;
-  color: rgba(0,0,0,.5);
+  color: rgba(0, 0, 0, 0.5);
+  font-family: Verdana, sans-serif;
 
   &:hover {
-    color: #FF1446;
+    color: #ff1446;
   }
 `;
 
 const TitleArticleLink = styled(NavLink)`
   display: block;
   margin-top: 16px;
-  font: 400 18px/24px Roboto;
+  max-height: 96px;
+  font: 400 16px/24px Roboto;
   text-decoration: none;
-  color: rgba(0,0,0,.9);
+  color: rgba(0, 0, 0, 0.9);
   text-transform: none;
+  font-family: Verdana, sans-serif;
 
   &:hover {
-    color: #FF1446;
+    color: #ff1446;
   }
 `;
 
@@ -111,13 +114,13 @@ const ViewCount = styled.span`
   width: 100%;
   display: inline-flex;
   align-items: end;
-  color: rgba(0,0,0,.5);
+  color: rgba(0, 0, 0, 0.5);
   font: 400 14px/16px Roboto;
 
   & svg {
     width: 16px;
     fill: currentColor;
-    fill-opacity: .5;
+    fill-opacity: 0.5;
     margin-right: 8px;
     vertical-align: bottom;
   }
@@ -128,23 +131,26 @@ interface ArticlesListProps {
   setIdForCatalogPage: (id: string) => void;
 }
 
-const ArticlesList: React.FC<ArticlesListProps> = ({ articles, setIdForCatalogPage }) => {
-
+const ArticlesList: React.FC<ArticlesListProps> = ({
+  articles,
+  setIdForCatalogPage,
+}) => {
   return (
     <ArticlesListElement>
       {articles.map(({ title, src, _id, countView }) => {
         return (
           <ArticleListItem key={_id}>
-            <ArticleListImgLink to={`journal/article`} onClick={() => setIdForCatalogPage(_id)}>
-              <ArticleImg
-                src={src ? src : ""}
-                alt={title}
-              />
+            <ArticleListImgLink
+              to={`journal/article`}
+              onClick={() => setIdForCatalogPage(_id)}
+            >
+              <ArticleImg src={src ? src : ''} alt={title} />
             </ArticleListImgLink>
-            <BackToMainArticleLink to='/journal'>
-              Журнал
-            </BackToMainArticleLink>
-            <TitleArticleLink to={`journal/article`} onClick={() => setIdForCatalogPage(_id)}>
+            <BackToMainArticleLink to="/journal">Журнал</BackToMainArticleLink>
+            <TitleArticleLink
+              to={`journal/article`}
+              onClick={() => setIdForCatalogPage(_id)}
+            >
               {title}
             </TitleArticleLink>
             <ViewCountContainer>
@@ -153,10 +159,10 @@ const ArticlesList: React.FC<ArticlesListProps> = ({ articles, setIdForCatalogPa
                 {countView}
               </ViewCount>
             </ViewCountContainer>
-          </ArticleListItem >
+          </ArticleListItem>
         );
       })}
-    </ArticlesListElement >
+    </ArticlesListElement>
   );
 };
 
