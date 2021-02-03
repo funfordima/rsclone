@@ -2,7 +2,7 @@
 
 This application is a clone of the International Medical Platform 103 - a project of the ARTOX company specializing in thematic aggregators. ARTOX has been operating since 2007, and since 2012 has been a resident of the High-Tech Park in Belarus.
 
-<img src="https://ibb.co/h1ZVZZ8" width="80%" alt="screen">
+![]()
 
 <h2 align="center"><a href="/">Live Demo</a></h2>
 
@@ -39,8 +39,16 @@ And build development version:
 $ npm run build
 
 ```
+The result is available in `build/` folder.
 
-If you want to start of back on localhost - 103.Api:
+Running demos:
+
+`$ npm run start`
+
+---
+
+If you want to start of back on localhost - open 103.Api folder:
+
 Install all dependencies, in repo's root:
 
 ```
