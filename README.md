@@ -66,7 +66,7 @@ $ npm run start
 2. Screenshot:
  ![](https://cdn1.savepice.ru/uploads/2021/2/3/39ad70333e4ba356958c74375f3f6f54-full.jpg)
 3. Deploy: https://rsclone-103.netlify.app/
-4. Medium: 
+4. Medium: https://funfordima.medium.com/103-ua-%D0%BA%D0%BB%D0%BE%D0%BD-523c602f195d
 5. Video fullversion:
 6. Video:
 7. Done 03.02.2021 / deadline 03.02.2021
