@@ -111,5 +111,9 @@ $ npm run start
 - [x] deploy бэкенд на Heroku +20
 - [x] работа с API Mongo DB (создано 5 апишек, которые отдают данные в приложение) +30
 
+## Для проверки отправленных данных использована почта: 
+  # login: rsclonedefault@gmail.com 
+  # password: newUser123
+
 # Статья на medium +160
  
