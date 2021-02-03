@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.on-check {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+
+.on-check img {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 1024px) {
+  .on-check {
+    right: 8px;
+    top: 8px;
+  }
+
+  .on-check img {
+    width: 12px;
+    height: 12px;
+  }
+}

@@ -1,0 +1,29 @@
+.categorySubMenu {
+    position: relative;
+    display: block;
+    padding: 28px 0;
+}
+
+.categorySubMenu-row {
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1208px;
+}
+
+@media (max-width: 1208px) {
+    .categorySubMenu-row {
+        padding: 0 15px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 767px) {
+    .categorySubMenu-row {
+        padding: 0 10px;
+        display: flex;
+        justify-content: center;
+    }
+}

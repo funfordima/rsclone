@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+
+.services-wrapper {
+  margin: 0 auto 70px;
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  max-width: 1246px;
+}
+
+.services-container {
+  max-width: 1280px;
+}
+
+@media (max-width: 1279px) {
+  .services-container {
+    max-width: 911px;
+  }
+}
+
+@media (max-width: 767px) {
+  .services-wrapper {
+    padding: 0;
+  }
+}
+
+@media (max-width: 479px) {
+  .services-wrapper {
+    padding: 0;
+  }
+}

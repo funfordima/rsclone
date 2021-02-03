@@ -1,0 +1,13 @@
+.categories-menu {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+@media (max-width: 479px) {
+  .categories-menu {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+}

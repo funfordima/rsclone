@@ -1,0 +1,22 @@
+.map-wrapper {
+    position: sticky;
+}
+
+.inner-map {
+    width: 40vw;
+    height: 100vh;
+}
+
+@media (max-width: 768px) {
+    .map-wrapper {
+        position: static;
+        margin-bottom: 8px;
+        width: 100%;
+        max-height: 50vh;
+    }
+
+    .inner-map {
+        width: 100%;
+        max-height: 50vh;
+    }
+}

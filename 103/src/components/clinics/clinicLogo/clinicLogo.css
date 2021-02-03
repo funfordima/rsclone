@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.clinic-logo {
+  align-self: center;
+  position: relative;
+  height: 48px;
+  max-width: 15%;
+}
+
+.clinic-logo img {
+  border-radius: 4px;
+  width: 100%;
+  max-width: 70px;
+  height: auto;
+}
+
+@media (max-width: 1024px) {
+  .clinic-logo {
+    height: 40px;
+  }
+  
+  .clinic-logo img {
+    width: auto;
+    max-width: 60px;
+    max-height: 40px;
+  }
+}
+
+@media (max-width: 550px) {
+  .clinic-logo {
+    height: 30px;
+  }
+  
+  .clinic-logo img {
+    width: auto;
+    max-width: 45px;
+    max-height: 30px;
+  }
+}

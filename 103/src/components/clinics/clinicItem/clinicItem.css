@@ -1,0 +1,259 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background-color: #b3d4fc;
+  color: #000;
+  text-shadow: none;
+}
+
+.clinic-wrapper {
+  position: relative;
+  margin: 0 16px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 4%);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.clinic-wrapper--oncheck {
+  background-color: #f7f4f1e7;
+}
+
+.clinic-wrapper--oncheck .clinic-name {
+  color: rgb(0 0 0 / 25%);
+}
+
+.clinic-wrapper--oncheck .description-div,
+.clinic-wrapper--oncheck .other-info-div {
+  color: #a7a6a5;
+}
+
+.clinic-wrapper--oncheck .staff-button {
+  color: rgb(255, 255, 255);
+}
+
+.clinic-wrapper:not(:first-child) {
+  margin-top: 16px;
+}
+
+.info-with-logo {
+  display: flex;
+}
+
+.clinic-main-info {
+  width: 85%;
+}
+
+.clinic-what-is-it {
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.48);
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  white-space: nowrap;
+  margin-bottom: 8px;
+  line-height: 16px;
+}
+
+.clinic-info-wrapper {
+  padding-bottom: 0;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.clinic-name {
+  padding-right: 8px;
+  font-size: 21px;
+  line-height: 24px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+  vertical-align: top;
+}
+
+.other-info-div {
+  margin-top: 4px;
+  color: rgba(0, 0, 0, 0.96);
+}
+
+.this-address {
+  max-width: 100%;
+  margin-right: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.this-time {
+  position: relative;
+  padding-left: 14px;
+}
+
+.work-marker {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 4px;
+  height: 4px;
+  margin-top: -1px;
+  border-radius: 50%;
+  background-color: #ed4343;
+  vertical-align: middle;
+}
+
+.work-marker--opened {
+  background-color: #21c286;
+}
+
+.description-div {
+  margin-bottom: 16px;
+  font-size: 15px;
+  text-indent: 22px;
+  text-align: justify;
+  max-height: 120px;
+  overflow-y: scroll;
+}
+
+.description-div::-webkit-scrollbar {
+  display: none;
+}
+
+.staff-div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.staff-items {
+  list-style: none;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  height: 36px;
+  float: left;
+  padding: 2px;
+  overflow: hidden;
+  border-radius: 16px;
+  z-index: 1;
+}
+
+.staff-button {
+  margin-top: 2px;
+  color: inherit;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 32px;
+  border-radius: 16px;
+  padding: 0 12px;
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.click-buttons {
+  display: flex;
+}
+
+@media (max-width: 1024px) {
+  .clinic-wrapper {
+    margin: 0 8px;
+    padding: 8px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .clinic-wrapper:not(:first-child) {
+    margin-top: 8px;
+  }
+
+  .clinic-what-is-it {
+    letter-spacing: 0.04em;
+    font-size: 12px;
+    margin-bottom: 6px;
+    line-height: 16px;
+  }
+
+  .clinic-info-wrapper {
+    margin-bottom: 8px;
+  }
+
+  .clinic-name {
+    padding-right: 6px;
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  .description-div {
+    margin-bottom: 8px;
+    font-size: 13px;
+    text-indent: 20px;
+    max-height: 110px;
+  }
+
+  .staff-div {
+    margin-bottom: 8px;
+  }
+
+  .staff-items {
+    height: 30px;
+    padding: 0;
+    border-radius: 15px;
+  }
+
+  .staff-button {
+    margin-top: 1px;
+    line-height: 28px;
+    border-radius: 15px;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 570px) {
+  .clinic-wrapper {
+    line-height: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 4%);
+  }
+
+  .clinic-what-is-it {
+    font-size: 10px;
+    margin-bottom: 4px;
+    line-height: 14px;
+  }
+
+  .clinic-name {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .description-div {
+    max-height: 180px;
+  }
+}
+
+@media (max-width: 425px) {
+  .clinic-wrapper {
+    font-size: 11px;
+    border-radius: 4px;
+  }
+
+  .description-div {
+    font-size: 12px;
+  }
+
+  .staff-items {
+    height: 24px;
+    border-radius: 12px;
+  }
+
+  .staff-button {
+    margin: 0;
+    padding: 0 6px;
+    line-height: 24px;
+    border-radius: 12px;
+  }
+}
