@@ -16,6 +16,10 @@ const SwiperWrapper = styled.div`
   max-width: 1218px;
   font-family: Verdana, sans-serif;
 
+  .swiper-container {
+    border-radius: 4px;
+  }
+
   .swiper-slide {
     height: 420px;
     background: skyblue;
