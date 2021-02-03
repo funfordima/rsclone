@@ -38,8 +38,8 @@ import { ReviewsAllPage } from './components/CatalogPage/components/ReviewsAllPa
 import Slider from './components/Slider';
 import styled from 'styled-components';
 
-export const SignInContext = React.createContext(false);
-export const ResetPasswordContext = React.createContext('');
+export const SignInContext = React.createContext<boolean>(false);
+export const ResetPasswordContext = React.createContext<string>('');
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -115,6 +115,7 @@ const App: React.FC = () => {
     align-items: center;
     justify-content: center;
   `;
+  
   const idCatalogPageDefault = localStorage.getItem('pageId') || '';
   const currentNavigationItemId: string | null =
     localStorage.getItem('navigationItemId') || null;
